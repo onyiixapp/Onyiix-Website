@@ -8,11 +8,11 @@ interface NotFoundPageProps {
 export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-[#EFEFEF] flex flex-col items-center justify-center p-6 text-center">
-      <div className="w-16 h-16 rounded-full bg-orange-50 text-[#F26522] flex items-center justify-center mb-6 shadow-sm">
+      <div className="w-16 h-16 rounded-full bg-blue-50 text-[#2563EB] flex items-center justify-center mb-6 shadow-sm">
         <Compass className="w-8 h-8" />
       </div>
 
-      <span className="text-xs font-bold uppercase tracking-widest text-[#F26522] mb-2">
+      <span className="text-xs font-bold uppercase tracking-widest text-[#2563EB] mb-2">
         ERROR 404
       </span>
 
@@ -27,10 +27,10 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onBack }) => {
       <button
         type="button"
         onClick={onBack}
-        className="bg-gray-900 hover:bg-[#F26522] text-white text-sm font-semibold px-8 py-3.5 rounded-full inline-flex items-center gap-2 shadow-sm transition-colors cursor-pointer"
+        className="bg-gray-900 hover:bg-[#2563EB] text-white text-sm font-semibold px-8 py-3.5 rounded-full inline-flex items-center gap-2 shadow-sm transition-colors cursor-pointer"
       >
         <ArrowLeft className="w-4 h-4" />
-        <span>Return to ASME Home</span>
+        <span>Return to MEYVARO Home</span>
       </button>
     </div>
   );

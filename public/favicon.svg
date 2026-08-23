@@ -1,9 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
-  <path d="M8 10C14 16 26 16 32 10" stroke="#DC2626" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M8 10V20" stroke="#DC2626" stroke-width="3.8" stroke-linecap="round"/>
-  <path d="M32 10V20" stroke="#DC2626" stroke-width="3.8" stroke-linecap="round"/>
-  <path d="M8 20C14 26 26 14 32 20" stroke="#DC2626" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M8 20V30" stroke="#DC2626" stroke-width="3.8" stroke-linecap="round"/>
-  <path d="M32 20V30" stroke="#DC2626" stroke-width="3.8" stroke-linecap="round"/>
-  <path d="M8 30C14 24 26 24 32 30" stroke="#DC2626" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" fill="none">
+  <defs>
+    <linearGradient id="a" x1="7" y1="8" x2="43" y2="45" gradientUnits="userSpaceOnUse"><stop stop-color="#60A5FA"/><stop offset="1" stop-color="#1D4ED8"/></linearGradient>
+    <linearGradient id="b" x1="42" y1="7" x2="14" y2="46" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB"/><stop offset="1" stop-color="#0B3BA7"/></linearGradient>
+  </defs>
+  <path d="M6 40V11.5C6 8.8 9.1 7.25 11.25 8.9L26 20.25L18.55 28.15L13.25 24.1V40H6Z" fill="url(#a)"/>
+  <path d="M46 40V11.5C46 8.8 42.9 7.25 40.75 8.9L26 20.25L33.45 28.15L38.75 24.1V40H46Z" fill="url(#b)"/>
+  <path d="M18.55 28.15L26 20.25L33.45 28.15L26 36.1L18.55 28.15Z" fill="#0B1020"/>
+  <path d="M38.75 35.25L46 40V31.5L38.75 35.25Z" fill="#60A5FA"/>
 </svg>

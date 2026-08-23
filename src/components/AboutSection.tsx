@@ -1,154 +1,50 @@
 import React from 'react';
-import { ArrowRight, ShieldCheck, Zap, Globe2 } from 'lucide-react';
+import { ArrowRight, Gauge, Globe2, ShieldCheck, Users } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-interface AboutSectionProps {
-  onOpenAboutModal: () => void;
-}
+interface AboutSectionProps { onOpenAboutModal: () => void; }
 
-export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenAboutModal }) => {
-  const smallImageUrl =
-    'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260516_090123_74be96d4-9c1b-40cf-932a-96f4f4babed3.png&w=1280&q=85';
-  const largeImageUrl =
-    'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260516_090133_c157d30b-a99a-4477-bec1-a446149ec3f2.png&w=1280&q=85';
+const principles = [
+  { Icon: Gauge, title: 'Fast by design', copy: 'Lean interfaces and measured Core Web Vitals—not speed claims without proof.' },
+  { Icon: ShieldCheck, title: 'Yours at handover', copy: 'Source code, design assets and documentation transfer with no platform lock-in.' },
+  { Icon: Globe2, title: 'Global, founder-led', copy: 'Direct collaboration from Bengaluru with working-hour overlap across India, Europe and North America.' },
+];
 
-  return (
-    <section
-      id="studio"
-      className="bg-white pt-16 sm:pt-20 lg:pt-32 pb-16 sm:pb-20 lg:pb-28 overflow-hidden"
-    >
-      <div className="max-w-[1440px] mx-auto">
-        {/* Badge row */}
-        <div className="px-5 sm:px-8 lg:px-12 flex items-center gap-3 mb-6 sm:mb-8">
-          <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gray-900 text-white text-[11px] sm:text-[12px] font-semibold flex items-center justify-center">
-            1
+export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenAboutModal }) => (
+  <section id="studio" className="overflow-hidden bg-white px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+    <div className="mx-auto max-w-[1440px]">
+      <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+        <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.35 }}>
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.16em] text-blue-700">
+            <Users className="h-3.5 w-3.5" /> About the studio
           </div>
-          <div className="text-[12px] sm:text-[13px] font-medium border border-gray-200 rounded-full px-3 sm:px-4 py-1 sm:py-1.5 text-gray-900">
-            Introducing ASME Studio
-          </div>
-        </div>
+          <h2 className="max-w-3xl text-[clamp(2.2rem,5.6vw,5.4rem)] font-medium leading-[0.98] tracking-[-0.055em] text-[#0B1020]">
+            Small team.<br />Senior thinking.<br /><span className="text-blue-600">Serious systems.</span>
+          </h2>
+        </motion.div>
 
-        {/* Heading H2 */}
-        <h2 className="text-[clamp(1.5rem,4vw,3.2rem)] font-medium leading-[1.12] tracking-[-0.02em] text-gray-900 mb-12 sm:mb-16 lg:mb-20 px-5 sm:px-8 lg:px-12 max-w-5xl">
-          Strategy-led creatives, delivering
-          <br className="hidden sm:block" />
-          <span className="sm:hidden"> </span>
-          results in digital and beyond.
-        </h2>
-
-        {/* Studio Philosophy Narrative */}
-        <div className="px-5 sm:px-8 lg:px-12 max-w-4xl mb-12 text-sm sm:text-base text-gray-700 leading-relaxed space-y-4">
-          <p>
-            ASME Studio is a boutique software engineering and product design practice founded in <strong>Bengaluru, India</strong>. We specialize in turning high-friction business operations into fluid, high-converting digital products, multi-tenant SaaS platforms, and automated workflow engines.
+        <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ delay: 0.1 }} className="lg:pt-10">
+          <p className="text-lg font-semibold leading-relaxed text-slate-800 sm:text-xl">
+            Meyvaro is the product studio of Maaz and Suman. We design, engineer and launch websites, SaaS products, AI workflows and internal systems for teams that value clarity and momentum.
           </p>
-          <p>
-            Every system we deploy is backed by our <strong>30-Day Zero-Cost Bug Warranty</strong>, <strong>1-Month Free Website Maintenance SLA</strong>, and <strong>100% Code Ownership guarantee</strong>.
+          <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-600">
+            One senior team stays with the work from discovery to launch. Every delivery includes direct founder access, a 30-day scoped bug warranty and one month of post-launch maintenance.
           </p>
-        </div>
-
-        {/* Desktop 3-Column Grid */}
-        <div className="hidden lg:grid grid-cols-[26%_1fr_48%] items-end gap-6 xl:gap-8 px-5 sm:px-8 lg:px-12 mb-16">
-          {/* Left Column (self-end) */}
-          <div className="self-end w-full">
-            <img
-              src={smallImageUrl}
-              alt="ASME Studio Creative Process"
-              loading="lazy"
-              className="w-full aspect-[438/346] rounded-2xl object-cover shadow-sm"
-            />
-          </div>
-
-          {/* Center Column (self-start, flex justify-end) */}
-          <div className="self-start flex flex-col justify-end items-start h-full pb-2">
-            <p className="text-[16px] xl:text-[18px] leading-[1.65] font-medium text-gray-900 whitespace-nowrap mb-8">
-              Through research, creative thinking and iteration
-              <br />
-              we help growing brands realize their
-              <br />
-              digital full potential.
-            </p>
-
-            <button
-              type="button"
-              onClick={onOpenAboutModal}
-              className="bg-[#F26522] hover:bg-[#e05a1a] text-white text-[14px] rounded-full pl-6 pr-2 py-2 flex items-center gap-3 group transition-colors duration-300 cursor-pointer shadow-sm"
-            >
-              <div className="overflow-hidden h-[20px] flex flex-col justify-start">
-                <span className="transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-translate-y-full font-medium">
-                  About our studio
-                </span>
-                <span className="transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-translate-y-full font-medium">
-                  About our studio
-                </span>
-              </div>
-
-              <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-rotate-45">
-                <ArrowRight className="w-4 h-4 text-[#F26522] stroke-[2.5]" />
-              </div>
-            </button>
-          </div>
-
-          {/* Right Column (self-end) */}
-          <div className="self-end w-full">
-            <img
-              src={largeImageUrl}
-              alt="ASME Studio Design Showcase"
-              loading="lazy"
-              className="w-full aspect-[3/2] rounded-2xl object-cover shadow-sm"
-            />
-          </div>
-        </div>
-
-        {/* Mobile/Tablet Stacked Media */}
-        <div className="lg:hidden px-5 sm:px-8 mb-12">
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-5">
-            <img
-              src={smallImageUrl}
-              alt="ASME Studio Creative Process"
-              loading="lazy"
-              className="w-full sm:w-[45%] aspect-[438/346] rounded-xl sm:rounded-2xl object-cover"
-            />
-            <img
-              src={largeImageUrl}
-              alt="ASME Studio Design Work"
-              loading="lazy"
-              className="w-full sm:w-[55%] aspect-[900/600] rounded-xl sm:rounded-2xl object-cover"
-            />
-          </div>
-        </div>
-
-        {/* Architectural Pillars Cards */}
-        <div className="px-5 sm:px-8 lg:px-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200/80">
-            <ShieldCheck className="w-6 h-6 text-[#F26522] mb-3" />
-            <h3 className="text-base font-bold text-gray-900 mb-1">
-              Engineering Rigor
-            </h3>
-            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-              Clean TypeScript architecture with zero bloat and verified sub-second rendering across all device viewports.
-            </p>
-          </div>
-
-          <div className="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200/80">
-            <Zap className="w-6 h-6 text-[#F26522] mb-3" />
-            <h3 className="text-base font-bold text-gray-900 mb-1">
-              Performance First
-            </h3>
-            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-              Strict adherence to Core Web Vitals (≤ 2.5s LCP) ensuring high search visibility and instant customer conversions.
-            </p>
-          </div>
-
-          <div className="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200/80">
-            <Globe2 className="w-6 h-6 text-[#F26522] mb-3" />
-            <h3 className="text-base font-bold text-gray-900 mb-1">
-              Global Delivery
-            </h3>
-            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-              Serving fast-growing businesses across India, France, and worldwide with full intellectual property transfer.
-            </p>
-          </div>
-        </div>
+          <button type="button" onClick={onOpenAboutModal} className="group mt-7 inline-flex items-center gap-3 rounded-full bg-blue-600 py-2 pl-5 pr-2 text-sm font-bold text-white shadow-[0_12px_28px_rgba(37,99,235,0.25)] transition hover:bg-blue-700">
+            Meet the studio <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-blue-700"><ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" /></span>
+          </button>
+        </motion.div>
       </div>
-    </section>
-  );
-};
+
+      <div className="mt-14 grid gap-4 md:grid-cols-3">
+        {principles.map(({ Icon, title, copy }, index) => (
+          <motion.article key={title} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.06 }} className="group rounded-[1.6rem] border border-slate-200/80 bg-[#F7FAFF] p-6 transition hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-[0_20px_55px_rgba(15,23,42,0.08)] sm:p-7">
+            <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl border border-white/80 bg-white/80 text-blue-600 shadow-[0_8px_24px_rgba(37,99,235,0.12)] backdrop-blur-xl"><Icon className="h-5 w-5" /></div>
+            <h3 className="text-base font-extrabold text-slate-950">{title}</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-600">{copy}</p>
+          </motion.article>
+        ))}
+      </div>
+    </div>
+  </section>
+);

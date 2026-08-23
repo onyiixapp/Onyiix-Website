@@ -19,8 +19,8 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onBack }) => {
         </button>
 
         <div className="max-w-3xl mb-12">
-          <span className="text-xs font-semibold text-[#F26522] uppercase tracking-wider block mb-2">
-            CAREERS AT ASME STUDIO
+          <span className="text-xs font-semibold text-[#2563EB] uppercase tracking-wider block mb-2">
+            CAREERS AT MEYVARO STUDIO
           </span>
           <h1 className="text-4xl sm:text-5xl font-medium tracking-tight text-gray-900">
             Work with us
@@ -32,7 +32,7 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onBack }) => {
 
         {/* Current Openings Status */}
         <div className="bg-gray-50 rounded-3xl p-8 sm:p-12 border border-gray-200 text-center max-w-2xl mx-auto my-12">
-          <div className="w-14 h-14 rounded-full bg-orange-50 text-[#F26522] flex items-center justify-center mx-auto mb-4">
+          <div className="w-14 h-14 rounded-full bg-blue-50 text-[#2563EB] flex items-center justify-center mx-auto mb-4">
             <Briefcase className="w-6 h-6" />
           </div>
 
@@ -45,8 +45,8 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onBack }) => {
           </p>
 
           <a
-            href="mailto:maazmohammed112@gmail.com?subject=ASME Studio Speculative Application / Portfolio"
-            className="inline-flex items-center gap-2 bg-gray-900 hover:bg-[#F26522] text-white text-xs font-semibold px-6 py-3 rounded-full transition-colors"
+            href="mailto:maazmohammed112@gmail.com?subject=MEYVARO Studio Speculative Application / Portfolio"
+            className="inline-flex items-center gap-2 bg-gray-900 hover:bg-[#2563EB] text-white text-xs font-semibold px-6 py-3 rounded-full transition-colors"
           >
             <Mail className="w-3.5 h-3.5" />
             <span>Send Speculative Portfolio</span>

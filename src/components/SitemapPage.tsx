@@ -10,7 +10,7 @@ export const SitemapPage: React.FC<SitemapPageProps> = ({ onBack }) => {
     {
       category: 'Main Studio Pages',
       links: [
-        { label: 'Home & Hero Section', path: '/#home', desc: 'Main landing with WebGL shaders & live Bengaluru clock' },
+        { label: 'Home & Hero Section', path: '/#home', desc: 'Animated introduction and live Bengaluru clock' },
         { label: 'About Studio & Founders', path: '/about', desc: 'Genesis story & profiles of Mohammed Maaz A and Suman Kumar Singh' },
         { label: 'Careers & Opportunities', path: '/careers', desc: 'Active openings & freelance speculative portfolio intake' },
       ],
@@ -18,11 +18,10 @@ export const SitemapPage: React.FC<SitemapPageProps> = ({ onBack }) => {
     {
       category: 'Engineering & Capabilities',
       links: [
-        { label: 'Featured Client Projects', path: '/#projects', desc: 'primkart.app, Workshop Management SaaS, Narrativ, Luminar' },
-        { label: '4-Pillar Services', path: '/#services', desc: 'CMS, SaaS, Full-Stack Web Development, and Ongoing Optimization' },
-        { label: 'Interactive Package Selector', path: '/#selector', desc: '3-step qualification & recommendation tool' },
-        { label: '8-Stage Engineering Pipeline', path: '/#process', desc: 'From discovery to deployment and post-launch maintenance' },
-        { label: 'Packages & Pricing', path: '/#packages', desc: 'Starter, Business, Professional, and SaaS with 1-Month Free SLA' },
+        { label: 'Bengaluru Service Journey', path: '/#journey', desc: 'Web, SaaS, AI workflow and digital-system destinations' },
+        { label: 'Featured Client Projects', path: '/#projects', desc: 'Primkart and Workshop Management SaaS case studies' },
+        { label: 'Four-Step Process', path: '/#process', desc: 'From alignment and design to engineering and launch' },
+        { label: 'Engagement Packages', path: '/#packages', desc: 'Website, growth platform and custom SaaS starting lanes' },
       ],
     },
     {
@@ -49,7 +48,7 @@ export const SitemapPage: React.FC<SitemapPageProps> = ({ onBack }) => {
         </button>
 
         <div className="max-w-3xl mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 text-[#F26522] text-xs font-semibold mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-[#2563EB] text-xs font-semibold mb-3">
             <Globe className="w-3.5 h-3.5" />
             <span>SEO &amp; Navigation Directory</span>
           </div>
@@ -57,7 +56,7 @@ export const SitemapPage: React.FC<SitemapPageProps> = ({ onBack }) => {
             HTML Sitemap
           </h1>
           <p className="text-sm sm:text-base text-gray-600 mt-3 leading-relaxed">
-            Direct navigation indexing for all public routes, documentation, legal charters, and service pillars of ASME Digital Studio.
+            Direct navigation indexing for all public routes, documentation, legal charters, and service pillars of Meyvaro Studio.
           </p>
         </div>
 
@@ -65,7 +64,7 @@ export const SitemapPage: React.FC<SitemapPageProps> = ({ onBack }) => {
           {sections.map((sec) => (
             <div key={sec.category} className="bg-gray-50 rounded-3xl p-6 sm:p-8 border border-gray-200">
               <h2 className="text-lg font-bold text-gray-900 mb-6 pb-3 border-b border-gray-200 flex items-center gap-2">
-                <FileCode className="w-4 h-4 text-[#F26522]" />
+                <FileCode className="w-4 h-4 text-[#2563EB]" />
                 <span>{sec.category}</span>
               </h2>
 
@@ -76,7 +75,7 @@ export const SitemapPage: React.FC<SitemapPageProps> = ({ onBack }) => {
                       href={link.path}
                       className="group block"
                     >
-                      <div className="flex items-center justify-between text-sm font-semibold text-gray-900 group-hover:text-[#F26522] transition-colors">
+                      <div className="flex items-center justify-between text-sm font-semibold text-gray-900 group-hover:text-[#2563EB] transition-colors">
                         <span>{link.label}</span>
                         <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>

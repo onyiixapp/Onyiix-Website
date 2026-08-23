@@ -16,17 +16,15 @@ export const ContactModal: React.FC<ContactModalProps> = ({
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [projectDetails, setProjectDetails] = useState('');
-  const [budget, setBudget] = useState('$10k - $25k');
+  const [budget, setBudget] = useState('Need recommendation');
   const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
-    }, 600);
+    const subject = encodeURIComponent(`${initialType} — ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nEngagement: ${initialType}\nScope preference: ${budget}\n\nProject brief:\n${projectDetails}`);
+    window.location.href = `mailto:maazmohammed112@gmail.com?subject=${subject}&body=${body}`;
+    setSubmitted(true);
   };
 
   const handleClose = () => {
@@ -65,8 +63,8 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
             {!submitted ? (
               <div>
-                <span className="text-[12px] font-semibold text-[#F26522] uppercase tracking-wider block mb-1">
-                  AXION STUDIO INTAKE
+                <span className="text-[12px] font-semibold text-[#2563EB] uppercase tracking-wider block mb-1">
+                  MEYVARO STUDIO INTAKE
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-medium text-gray-900 tracking-tight">
                   {initialType.includes('Book') || initialType.includes('Strategy')
@@ -74,7 +72,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     : 'Start Your Project'}
                 </h2>
                 <p className="text-[14px] text-gray-600 mt-1 mb-6 leading-relaxed">
-                  Tell us about your brand goals. We review requirements and reply within 24 hours.
+                  Tell us about the goal. We review the brief and reply within one working day.
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -88,7 +86,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                       placeholder="Alex Rivera"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#F26522] focus:outline-none transition-all"
+                      className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#2563EB] focus:outline-none transition-all"
                     />
                   </div>
 
@@ -102,23 +100,23 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                       placeholder="alex@company.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#F26522] focus:outline-none transition-all"
+                      className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#2563EB] focus:outline-none transition-all"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-semibold text-gray-700 mb-1">
-                      Estimated Budget
+                      Preferred Scope
                     </label>
                     <select
                       value={budget}
                       onChange={(e) => setBudget(e.target.value)}
-                      className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:bg-white focus:border-[#F26522] focus:outline-none transition-all"
+                      className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:bg-white focus:border-[#2563EB] focus:outline-none transition-all"
                     >
-                      <option value="<$10k">&lt; $10k (Small / Phase 1)</option>
-                      <option value="$10k - $25k">$10k - $25k (Standard Build)</option>
-                      <option value="$25k - $50k">$25k - $50k (Full Platform)</option>
-                      <option value="$50k+">$50k+ (Enterprise Architecture)</option>
+                      <option value="Need recommendation">Need a recommendation</option>
+                      <option value="Focused launch">Focused launch</option>
+                      <option value="Growth platform">Growth platform</option>
+                      <option value="Full SaaS or custom system">Full SaaS or custom system</option>
                     </select>
                   </div>
 
@@ -132,36 +130,29 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                       placeholder="Tell us what you are aiming to build, timeline, and vision..."
                       value={projectDetails}
                       onChange={(e) => setProjectDetails(e.target.value)}
-                      className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#F26522] focus:outline-none transition-all"
+                      className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#2563EB] focus:outline-none transition-all"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-[#F26522] hover:bg-[#e05a1a] text-white font-medium text-sm py-3.5 rounded-full transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer disabled:opacity-50 mt-2"
+                    className="w-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-medium text-sm py-3.5 rounded-full transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer mt-2"
                   >
-                    {isSubmitting ? (
-                      'Submitting...'
-                    ) : (
-                      <>
-                        <span>Submit Project Brief</span>
-                        <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-                      </>
-                    )}
+                    <span>Prepare Email Brief</span>
+                    <ArrowRight className="w-4 h-4 stroke-[2.5]" />
                   </button>
                 </form>
               </div>
             ) : (
               <div className="py-8 text-center space-y-4">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-orange-50 text-[#F26522]">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-blue-50 text-[#2563EB]">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
                 <h3 className="text-2xl font-medium text-gray-900">
-                  Brief Received
+                  Email Draft Prepared
                 </h3>
                 <p className="text-sm text-gray-600 max-w-xs mx-auto leading-relaxed">
-                  Thank you, <strong className="text-gray-900">{name}</strong>. Our team will review your brief and reach out to <span className="text-gray-900 font-medium">{email}</span> within 24 hours.
+                  Your email app should now contain the brief, <strong className="text-gray-900">{name}</strong>. Send it when ready and we&rsquo;ll reply to <span className="text-gray-900 font-medium">{email}</span> within one working day.
                 </p>
                 <button
                   type="button"

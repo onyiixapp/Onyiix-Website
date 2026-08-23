@@ -29,7 +29,7 @@ export const SingooHero: React.FC<SingooHeroProps> = ({ onOpenContactModal }) =>
           transition={{ duration: 0.6 }}
           className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-4 py-1.5 text-xs font-semibold text-neutral-800 mb-8 shadow-sm"
         >
-          <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+          <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
           <span>Boutique Software Engineering • Bengaluru, India</span>
         </motion.div>
 
@@ -42,8 +42,8 @@ export const SingooHero: React.FC<SingooHeroProps> = ({ onOpenContactModal }) =>
         >
           Your Data-Driven
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 my-1 sm:my-2">
-            <span className="bg-red-600 text-white px-3 sm:px-4 py-0.5 rounded-xl font-black shadow-md">
-              ASME
+            <span className="bg-blue-600 text-white px-3 sm:px-4 py-0.5 rounded-xl font-black shadow-md">
+              MEYVARO
             </span>
             <div className="h-14 sm:h-20 md:h-24 overflow-hidden inline-flex">
               <div className="animate-scroll-down-hold flex flex-col">
@@ -85,7 +85,7 @@ export const SingooHero: React.FC<SingooHeroProps> = ({ onOpenContactModal }) =>
           <button
             type="button"
             onClick={onOpenContactModal}
-            className="w-full sm:w-auto bg-neutral-950 text-white text-sm sm:text-base font-bold px-8 py-4 rounded-full hover:bg-red-600 hover:scale-105 active:scale-95 transition-all shadow-xl flex items-center justify-center gap-2"
+            className="w-full sm:w-auto bg-neutral-950 text-white text-sm sm:text-base font-bold px-8 py-4 rounded-full hover:bg-blue-600 hover:scale-105 active:scale-95 transition-all shadow-xl flex items-center justify-center gap-2"
           >
             <span>Get In Touch</span>
             <ArrowRight className="w-4 h-4 stroke-[2.5]" />
@@ -107,17 +107,17 @@ export const SingooHero: React.FC<SingooHeroProps> = ({ onOpenContactModal }) =>
           className="mt-12 flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm font-semibold text-neutral-600"
         >
           <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-red-600" />
+            <ShieldCheck className="w-4 h-4 text-blue-600" />
             <span>30-Day Zero-Cost Bug Warranty</span>
           </div>
           <span className="text-neutral-300">•</span>
           <div className="flex items-center gap-2">
-            <Zap className="w-4 h-4 text-red-600" />
+            <Zap className="w-4 h-4 text-blue-600" />
             <span>1-Month Free Maintenance</span>
           </div>
           <span className="text-neutral-300">•</span>
           <div className="flex items-center gap-2">
-            <Globe2 className="w-4 h-4 text-red-600" />
+            <Globe2 className="w-4 h-4 text-blue-600" />
             <span>100% Full Code Ownership</span>
           </div>
         </motion.div>

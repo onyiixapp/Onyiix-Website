@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, PlayCircle } from 'lucide-react';
 
 interface FeaturedVideoSectionProps {
   onOpenEstimatorModal: () => void;
@@ -43,7 +43,7 @@ export const FeaturedVideoSection: React.FC<FeaturedVideoSectionProps> = ({
           {/* Left Liquid Glass Card */}
           <div className="liquid-glass rounded-2xl p-6 md:p-8 max-w-md backdrop-blur-xl">
             <p className="text-white/50 text-xs font-mono tracking-widest uppercase mb-3 flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <PlayCircle className="w-3.5 h-3.5 text-blue-400" />
               <span>02 / Our Approach</span>
             </p>
             <p className="text-white text-sm md:text-base leading-relaxed">

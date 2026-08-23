@@ -84,7 +84,7 @@ export const SingooWork: React.FC<SingooWorkProps> = ({ onOpenContactModal }) =>
         {/* Section Lead Text */}
         <div className="relative -mt-8 sm:-mt-16 lg:-mt-24 mb-12 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
           <div>
-            <span className="text-xs font-bold text-red-600 uppercase tracking-widest block mb-2 font-sans">
+            <span className="text-xs font-bold text-blue-600 uppercase tracking-widest block mb-2 font-sans">
               FEATURED CASE STUDIES
             </span>
             <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-neutral-950 tracking-tight font-sans">
@@ -142,10 +142,10 @@ export const SingooWork: React.FC<SingooWorkProps> = ({ onOpenContactModal }) =>
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 group/title"
                       >
-                        <h4 className="text-2xl font-bold text-neutral-950 group-hover/title:text-red-600 transition-colors font-sans">
+                        <h4 className="text-2xl font-bold text-neutral-950 group-hover/title:text-blue-600 transition-colors font-sans">
                           {project.name}
                         </h4>
-                        <ArrowUpRight className="w-5 h-5 text-neutral-400 group-hover/title:text-red-600 group-hover/title:translate-x-0.5 group-hover/title:-translate-y-0.5 transition-all" />
+                        <ArrowUpRight className="w-5 h-5 text-neutral-400 group-hover/title:text-blue-600 group-hover/title:translate-x-0.5 group-hover/title:-translate-y-0.5 transition-all" />
                       </a>
                     ) : (
                       <h4 className="text-2xl font-bold text-neutral-950 font-sans">
@@ -180,7 +180,7 @@ export const SingooWork: React.FC<SingooWorkProps> = ({ onOpenContactModal }) =>
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-bold text-red-600 hover:text-red-700 flex items-center gap-1 transition-colors"
+                      className="text-xs font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1 transition-colors"
                     >
                       <span>Visit Live Site</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -189,7 +189,7 @@ export const SingooWork: React.FC<SingooWorkProps> = ({ onOpenContactModal }) =>
                     <button
                       type="button"
                       onClick={() => onOpenContactModal(project.name)}
-                      className="text-xs font-bold text-neutral-900 hover:text-red-600 flex items-center gap-1 transition-colors"
+                      className="text-xs font-bold text-neutral-900 hover:text-blue-600 flex items-center gap-1 transition-colors"
                     >
                       <span>Inquire Build</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />

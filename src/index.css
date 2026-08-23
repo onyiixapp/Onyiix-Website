@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -20,6 +18,7 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 88px;
     background-color: #ffffff;
     color: #09090b;
   }
@@ -31,13 +30,19 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overscroll-behavior-y: none;
+  }
+
+  img {
+    display: block;
   }
 }
 
 @layer components {
-  /* Singoo Red Accent Badge */
+  /* Legacy utility kept for route-level pages, now mapped to the blue system. */
   .badge-red {
-    background-color: #dc2626;
+    background-color: #2563EB;
     color: #ffffff;
     font-weight: 800;
     padding: 0.2rem 0.65rem;
@@ -76,6 +81,46 @@
   }
 }
 
+/* Lightweight hero atmosphere (replaces the former WebGL shader bundle). */
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(37, 99, 235, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.055) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: linear-gradient(to bottom, black, transparent 88%);
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(10px);
+  pointer-events: none;
+  will-change: transform;
+  animation: hero-orbit 13s ease-in-out infinite alternate;
+}
+
+.hero-orb--one {
+  right: -12vw;
+  top: 14%;
+  width: min(48vw, 720px);
+  aspect-ratio: 1;
+  background: radial-gradient(circle at 35% 35%, rgba(147, 197, 253, 0.72), rgba(37, 99, 235, 0.16) 48%, transparent 70%);
+}
+
+.hero-orb--two {
+  bottom: -28%;
+  left: -14vw;
+  width: min(42vw, 620px);
+  aspect-ratio: 1;
+  background: radial-gradient(circle at 50% 50%, rgba(191, 219, 254, 0.72), rgba(96, 165, 250, 0.14) 50%, transparent 72%);
+  animation-delay: -5s;
+}
+
+@keyframes hero-orbit {
+  from { transform: translate3d(-1%, -1%, 0) scale(0.98); }
+  to { transform: translate3d(3%, 2%, 0) scale(1.04); }
+}
+
 /* Vertical Text Scroll Down Hold Animation (Singoo Hero exact vertical ticker) */
 @keyframes scrollDownHold {
   0%, 20% {
@@ -97,4 +142,159 @@
 
 .animate-scroll-down-hold {
   animation: scrollDownHold 10s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* Scroll-driven Bengaluru service journey */
+.journey-grade {
+  background:
+    linear-gradient(180deg, rgba(5, 7, 6, 0.62) 0%, rgba(5, 7, 6, 0.03) 30%, rgba(5, 7, 6, 0.02) 54%, rgba(5, 7, 6, 0.74) 100%),
+    linear-gradient(90deg, rgba(5, 7, 6, 0.28) 0%, transparent 38%, rgba(5, 7, 6, 0.08) 70%, rgba(5, 7, 6, 0.25) 100%);
+}
+
+.journey-grain {
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.journey-copy {
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.journey-plaque {
+  transform: perspective(700px) rotateY(4deg) rotateZ(-0.4deg);
+}
+
+.journey-road {
+  background:
+    linear-gradient(180deg, rgba(29, 30, 27, 0) 0%, rgba(23, 24, 22, 0.56) 17%, rgba(10, 11, 10, 0.94) 100%),
+    repeating-linear-gradient(96deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 9px);
+  clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 100%);
+}
+
+.journey-road__shine {
+  background: linear-gradient(100deg, transparent 8%, rgba(96, 165, 250, 0.1) 42%, rgba(255, 255, 255, 0.08) 54%, transparent 76%);
+  filter: blur(10px);
+}
+
+.journey-road__lane {
+  background: repeating-linear-gradient(90deg, transparent 0 6vw, rgba(241, 232, 203, 0.72) 6vw 13vw, transparent 13vw 19vw);
+  box-shadow: 0 2px 8px rgba(255, 247, 218, 0.16);
+  transform: perspective(260px) rotateX(62deg);
+}
+
+.journey-auto__chassis {
+  transform-origin: 50% 82%;
+  animation: journey-engine-idle 560ms ease-in-out infinite alternate;
+}
+
+.journey-wheel {
+  position: absolute;
+  top: 72.8%;
+  z-index: 20;
+  width: 14.45%;
+  height: auto;
+  overflow: visible;
+  opacity: 0.72;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.75));
+  transform-origin: center;
+}
+
+.journey-wheel--rear {
+  left: 8.25%;
+}
+
+.journey-wheel--front {
+  left: 84.05%;
+}
+
+.tech-mark {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 2.65rem;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.72);
+  padding: 0.55rem 0.4rem;
+  color: #334155;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.045);
+  font-size: 0.58rem;
+  font-weight: 800;
+  line-height: 1;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  backdrop-filter: blur(14px);
+}
+
+.tech-mark:hover {
+  transform: translateY(-2px);
+  border-color: rgba(147, 197, 253, 0.9);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.1);
+}
+
+@media (min-width: 640px) {
+  .tech-mark {
+    min-height: 3rem;
+    font-size: 0.65rem;
+  }
+}
+
+.journey-wheel__spokes {
+  fill: none;
+  stroke: rgba(207, 211, 209, 0.9);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.1;
+}
+
+.journey-wheel__rim {
+  stroke: rgba(238, 241, 246, 0.92);
+  stroke-width: 3.2;
+}
+
+.journey-wheel__spokes circle:last-child {
+  fill: rgba(22, 24, 23, 0.92);
+  stroke: rgba(224, 226, 223, 0.95);
+  stroke-width: 2.6;
+}
+
+@keyframes journey-engine-idle {
+  from {
+    transform: translate3d(0, -0.5px, 0);
+  }
+  to {
+    transform: translate3d(0, 0.7px, 0);
+  }
+}
+
+@media (max-width: 767px) {
+  .journey-grade {
+    background:
+      linear-gradient(180deg, rgba(5, 7, 6, 0.72) 0%, rgba(5, 7, 6, 0.03) 28%, rgba(5, 7, 6, 0.04) 50%, rgba(5, 7, 6, 0.82) 100%),
+      linear-gradient(90deg, rgba(5, 7, 6, 0.2), transparent 60%);
+  }
+
+  .journey-copy {
+    background: rgba(13, 15, 13, 0.76);
+  }
+
+  .journey-road__lane {
+    background: repeating-linear-gradient(90deg, transparent 0 12vw, rgba(241, 232, 203, 0.68) 12vw 28vw, transparent 28vw 40vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-orb,
+  .journey-auto__chassis,
+  .journey-stage * {
+    animation: none !important;
+  }
 }

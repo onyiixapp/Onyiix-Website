@@ -85,7 +85,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenServiceM
             3
           </div>
           <div className="text-[12px] sm:text-[13px] font-medium border border-gray-200 bg-gray-50 rounded-full px-3.5 sm:px-4 py-1 sm:py-1.5 text-gray-900 shadow-sm flex items-center gap-1.5">
-            <Layers className="w-3.5 h-3.5 text-[#F26522]" />
+            <Layers className="w-3.5 h-3.5 text-[#2563EB]" />
             <span>Core Capabilities</span>
           </div>
         </motion.div>
@@ -124,7 +124,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenServiceM
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-bold text-[#F26522] bg-orange-50 px-3 py-1 rounded-full border border-orange-100/60">
+                    <span className="text-xs font-bold text-[#2563EB] bg-blue-50 px-3 py-1 rounded-full border border-blue-100/60">
                       Pillar {pillar.num}
                     </span>
                   </div>
@@ -133,7 +133,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenServiceM
                     {pillar.title}
                   </h3>
 
-                  <p className="text-sm font-semibold text-[#F26522] mb-3">
+                  <p className="text-sm font-semibold text-[#2563EB] mb-3">
                     &ldquo;{pillar.outcome}&rdquo;
                   </p>
 
@@ -152,7 +152,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenServiceM
                     <span>{isExpanded ? 'Hide Technical Scope' : 'View Technical Inclusions'}</span>
                     <ChevronDown
                       className={`w-4 h-4 transition-transform duration-300 stroke-[2.5] ${
-                        isExpanded ? 'rotate-180 text-[#F26522]' : ''
+                        isExpanded ? 'rotate-180 text-[#2563EB]' : ''
                       }`}
                     />
                   </button>
@@ -168,7 +168,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenServiceM
                       >
                         {pillar.inclusions.map((item) => (
                           <div key={item} className="flex items-start gap-2 text-xs text-gray-600">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-[#F26522] mt-0.5 shrink-0" />
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[#2563EB] mt-0.5 shrink-0" />
                             <span>{item}</span>
                           </div>
                         ))}
@@ -181,7 +181,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenServiceM
                     <button
                       type="button"
                       onClick={() => onOpenServiceModal(pillar.title)}
-                      className="text-xs font-bold text-gray-900 hover:text-[#F26522] flex items-center gap-1 transition-colors"
+                      className="text-xs font-bold text-gray-900 hover:text-[#2563EB] flex items-center gap-1 transition-colors"
                     >
                       <span>Inquire Scope</span>
                       <ArrowRight className="w-3.5 h-3.5" />

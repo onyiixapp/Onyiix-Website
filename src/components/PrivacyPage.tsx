@@ -19,14 +19,14 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onBack }) => {
         </button>
 
         <div className="mb-10">
-          <span className="text-xs font-semibold text-[#F26522] uppercase tracking-wider block mb-2">
+          <span className="text-xs font-semibold text-[#2563EB] uppercase tracking-wider block mb-2">
             PRIVACY &amp; DATA PROTECTION
           </span>
           <h1 className="text-3xl sm:text-5xl font-medium tracking-tight text-gray-900">
             Privacy Policy
           </h1>
           <p className="text-xs text-gray-500 mt-2">
-            Last Updated: August 2026 • ASME Digital Studio, Bengaluru, India
+            Last Updated: August 2026 • Meyvaro Studio, Bengaluru, India
           </p>
         </div>
 
@@ -34,7 +34,7 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onBack }) => {
           <section>
             <h2 className="text-lg font-bold text-gray-900 mb-2">1. Information We Collect</h2>
             <p>
-              ASME Studio collects information directly from you when you submit project briefs, book strategy calls, or contact our engineering leads. This includes your name, work email, company name, project requirements, and communication preferences.
+              MEYVARO Studio collects information directly from you when you submit project briefs, book strategy calls, or contact our engineering leads. This includes your name, work email, company name, project requirements, and communication preferences.
             </p>
           </section>
 
@@ -55,7 +55,7 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onBack }) => {
           <section>
             <h2 className="text-lg font-bold text-gray-900 mb-2">4. Contacting Data Officer</h2>
             <p>
-              For privacy inquiries or data removal requests, contact Mohammed Maaz A at <a href="mailto:maazmohammed112@gmail.com" className="text-[#F26522] underline">maazmohammed112@gmail.com</a>.
+              For privacy inquiries or data removal requests, contact Mohammed Maaz A at <a href="mailto:maazmohammed112@gmail.com" className="text-[#2563EB] underline">maazmohammed112@gmail.com</a>.
             </p>
           </section>
         </div>

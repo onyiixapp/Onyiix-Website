@@ -93,7 +93,7 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
             4
           </div>
           <div className="text-[12px] sm:text-[13px] font-medium border border-gray-300 bg-white rounded-full px-3.5 sm:px-4 py-1 sm:py-1.5 text-gray-900 shadow-sm flex items-center gap-1.5">
-            <Sliders className="w-3.5 h-3.5 text-[#F26522]" />
+            <Sliders className="w-3.5 h-3.5 text-[#2563EB]" />
             <span>Interactive Decision Tool</span>
           </div>
         </motion.div>
@@ -127,11 +127,11 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
             >
               {/* Step Indicators */}
               <div className="flex items-center gap-2 mb-8 text-xs font-semibold text-gray-400">
-                <span className={step >= 1 ? 'text-[#F26522] font-bold' : ''}>1. Project Nature</span>
+                <span className={step >= 1 ? 'text-[#2563EB] font-bold' : ''}>1. Project Nature</span>
                 <span>&rarr;</span>
-                <span className={step >= 2 ? 'text-[#F26522] font-bold' : ''}>2. Scope &amp; Scale</span>
+                <span className={step >= 2 ? 'text-[#2563EB] font-bold' : ''}>2. Scope &amp; Scale</span>
                 <span>&rarr;</span>
-                <span className={step === 3 ? 'text-[#F26522] font-bold' : ''}>3. Recommendation</span>
+                <span className={step === 3 ? 'text-[#2563EB] font-bold' : ''}>3. Recommendation</span>
               </div>
 
               <AnimatePresence mode="wait">
@@ -163,9 +163,9 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
                             setProjectType(opt.id);
                             setStep(2);
                           }}
-                          className="p-5 rounded-2xl border border-gray-200/90 text-left hover:border-[#F26522] hover:bg-orange-50/40 hover:shadow-md transition-all group cursor-pointer"
+                          className="p-5 rounded-2xl border border-gray-200/90 text-left hover:border-[#2563EB] hover:bg-blue-50/40 hover:shadow-md transition-all group cursor-pointer"
                         >
-                          <span className="block text-sm font-bold text-gray-900 group-hover:text-[#F26522] transition-colors">
+                          <span className="block text-sm font-bold text-gray-900 group-hover:text-[#2563EB] transition-colors">
                             {opt.label}
                           </span>
                           <span className="block text-xs text-gray-500 mt-1">
@@ -205,9 +205,9 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
                             setScale(opt.scale);
                             setStep(3);
                           }}
-                          className="p-5 rounded-2xl border border-gray-200/90 text-left hover:border-[#F26522] hover:bg-orange-50/40 hover:shadow-md transition-all group cursor-pointer"
+                          className="p-5 rounded-2xl border border-gray-200/90 text-left hover:border-[#2563EB] hover:bg-blue-50/40 hover:shadow-md transition-all group cursor-pointer"
                         >
-                          <span className="block text-sm font-bold text-gray-900 group-hover:text-[#F26522] transition-colors">
+                          <span className="block text-sm font-bold text-gray-900 group-hover:text-[#2563EB] transition-colors">
                             {opt.label}
                           </span>
                           <span className="block text-xs text-gray-500 mt-1">
@@ -237,8 +237,8 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
                     transition={{ duration: 0.3 }}
                     className="space-y-6"
                   >
-                    <div className="p-6 sm:p-7 rounded-2xl bg-orange-50/70 border border-orange-200/90 shadow-sm">
-                      <div className="flex items-center gap-2 text-xs font-bold text-[#F26522] mb-2">
+                    <div className="p-6 sm:p-7 rounded-2xl bg-blue-50/70 border border-blue-200/90 shadow-sm">
+                      <div className="flex items-center gap-2 text-xs font-bold text-[#2563EB] mb-2">
                         <CheckCircle2 className="w-4 h-4" />
                         <span>Recommended Architectural Package</span>
                       </div>
@@ -250,7 +250,7 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
                         {rec.desc}
                       </p>
 
-                      <div className="mt-4 pt-4 border-t border-orange-200/80 flex flex-wrap gap-4 text-xs font-medium text-gray-800">
+                      <div className="mt-4 pt-4 border-t border-blue-200/80 flex flex-wrap gap-4 text-xs font-medium text-gray-800">
                         <span>Estimated Velocity: <strong>{rec.timeline}</strong></span>
                         <span>•</span>
                         <span>Includes: <strong>1-Month Free Maintenance SLA</strong></span>
@@ -261,7 +261,7 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
                       <button
                         type="button"
                         onClick={() => onSelectPackage(rec.pkg)}
-                        className="w-full sm:w-auto bg-[#F26522] hover:bg-[#e05a1a] text-white text-xs sm:text-sm font-semibold px-7 py-3.5 rounded-full flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
+                        className="w-full sm:w-auto bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs sm:text-sm font-semibold px-7 py-3.5 rounded-full flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
                       >
                         <span>Proceed with {rec.pkg}</span>
                         <ArrowRight className="w-4 h-4" />
@@ -282,7 +282,7 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
             </motion.div>
           </div>
 
-          {/* RIGHT: What's Always Included in All ASME Builds (lg:col-span-5) */}
+          {/* RIGHT: What's Always Included in All MEYVARO Builds (lg:col-span-5) */}
           <div className="lg:col-span-5">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -292,14 +292,14 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
             >
               <div className="flex items-center justify-between pb-5 border-b border-neutral-800 mb-6">
                 <div>
-                  <span className="text-[11px] font-bold text-red-500 uppercase tracking-widest block mb-1">
-                    ASME STANDARD
+                  <span className="text-[11px] font-bold text-blue-500 uppercase tracking-widest block mb-1">
+                    MEYVARO STANDARD
                   </span>
                   <h3 className="text-xl font-bold tracking-tight text-white">
                     Included in All Builds
                   </h3>
                 </div>
-                <div className="w-9 h-9 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center font-bold text-xs">
+                <div className="w-9 h-9 rounded-xl bg-blue-600/20 text-blue-500 flex items-center justify-center font-bold text-xs">
                   SLA
                 </div>
               </div>
@@ -309,7 +309,7 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
                   const Icon = item.icon;
                   return (
                     <div key={item.title} className="flex items-start gap-3.5">
-                      <div className="w-7 h-7 rounded-lg bg-neutral-900 border border-neutral-800 text-red-500 flex items-center justify-center shrink-0 mt-0.5">
+                      <div className="w-7 h-7 rounded-lg bg-neutral-900 border border-neutral-800 text-blue-500 flex items-center justify-center shrink-0 mt-0.5">
                         <Icon className="w-3.5 h-3.5 stroke-[2.5]" />
                       </div>
                       <div>

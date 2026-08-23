@@ -22,24 +22,24 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
 
         {/* Header */}
         <div className="max-w-4xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-50 text-red-600 text-xs font-semibold mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-semibold mb-4">
             <Heart className="w-3.5 h-3.5" />
             <span>Our Genesis &amp; Philosophy</span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-neutral-950 leading-tight">
-            About ASME Digital Studio
+            About Meyvaro Studio
           </h1>
 
           <p className="text-base sm:text-lg text-neutral-600 mt-6 leading-relaxed">
-            Founded in <strong>2024</strong> during our academic journey by two relentless friends, <strong>Mohammed Maaz A</strong> and <strong>Suman Kumar Singh</strong>, ASME Studio was born with a singular purpose: to craft high-converting websites, scalable multi-tenant SaaS platforms, and automated AI systems with sub-second performance.
+            Founded in <strong>2024</strong> during our academic journey by two relentless friends, <strong>Mohammed Maaz A</strong> and <strong>Suman Kumar Singh</strong>, MEYVARO Studio was born with a singular purpose: to craft high-converting websites, scalable multi-tenant SaaS platforms, and automated AI systems with sub-second performance.
           </p>
         </div>
 
         {/* Key Values */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
           <div className="bg-neutral-50 rounded-3xl p-8 border border-neutral-200/80">
-            <ShieldCheck className="w-8 h-8 text-red-600 mb-4" />
+            <ShieldCheck className="w-8 h-8 text-blue-600 mb-4" />
             <h3 className="text-lg font-bold text-neutral-950 mb-2">Zero-Compromise Velocity</h3>
             <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
               Every site is built with modern server components and zero-bloat styling, targeting ≤ 2.5s LCP on real-world mobile networks.
@@ -47,7 +47,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
           </div>
 
           <div className="bg-neutral-50 rounded-3xl p-8 border border-neutral-200/80">
-            <ShieldCheck className="w-8 h-8 text-red-600 mb-4" />
+            <ShieldCheck className="w-8 h-8 text-blue-600 mb-4" />
             <h3 className="text-lg font-bold text-neutral-950 mb-2">Full Code Ownership</h3>
             <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
               100% intellectual property transfer upon delivery. No hidden monthly runtime locks or proprietary code lock-in.
@@ -55,7 +55,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
           </div>
 
           <div className="bg-neutral-50 rounded-3xl p-8 border border-neutral-200/80">
-            <ShieldCheck className="w-8 h-8 text-red-600 mb-4" />
+            <ShieldCheck className="w-8 h-8 text-blue-600 mb-4" />
             <h3 className="text-lg font-bold text-neutral-950 mb-2">1-Month Free Maintenance SLA</h3>
             <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
               Every project comes with 30 days of proactive support, uptime checks, and minor adjustments at zero extra cost.
@@ -74,9 +74,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
             <div className="bg-neutral-50 rounded-3xl p-7 sm:p-9 border border-neutral-200/80 flex flex-col justify-between hover:shadow-xl transition-all duration-300 group">
               <div>
                 <div className="flex flex-col sm:flex-row sm:items-center gap-5 mb-6">
-                  <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden bg-neutral-900 border-2 border-red-600/30 shrink-0 shadow-lg group-hover:scale-105 transition-transform">
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden bg-neutral-900 border-2 border-blue-600/30 shrink-0 shadow-lg group-hover:scale-105 transition-transform">
                     <img
-                      src="/founders/maaz.png"
+                      src="/founders/suman.png"
                       alt="Mohammed Maaz A"
                       className="w-full h-full object-cover"
                     />
@@ -84,7 +84,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
 
                   <div>
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-[11px] font-bold text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-100">
+                      <span className="text-[11px] font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
                         Co-Founder &amp; Principal Architect
                       </span>
                     </div>
@@ -93,7 +93,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
                       Mohammed Maaz A
                     </h3>
                     <p className="text-xs text-neutral-500 mt-1 flex items-center gap-1">
-                      <MapPin className="w-3 h-3 text-red-600" />
+                      <MapPin className="w-3 h-3 text-blue-600" />
                       <span>Bengaluru, Karnataka, India</span>
                     </p>
                   </div>
@@ -111,9 +111,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
               <div className="pt-4 border-t border-neutral-200/60 flex items-center justify-between">
                 <a
                   href="mailto:maazmohammed112@gmail.com"
-                  className="text-xs font-semibold text-neutral-900 hover:text-red-600 flex items-center gap-1.5 transition-colors"
+                  className="text-xs font-semibold text-neutral-900 hover:text-blue-600 flex items-center gap-1.5 transition-colors"
                 >
-                  <Mail className="w-3.5 h-3.5 text-red-600" />
+                  <Mail className="w-3.5 h-3.5 text-blue-600" />
                   <span>maazmohammed112@gmail.com</span>
                 </a>
 
@@ -146,9 +146,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
             <div className="bg-neutral-50 rounded-3xl p-7 sm:p-9 border border-neutral-200/80 flex flex-col justify-between hover:shadow-xl transition-all duration-300 group">
               <div>
                 <div className="flex flex-col sm:flex-row sm:items-center gap-5 mb-6">
-                  <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden bg-neutral-900 border-2 border-red-600/30 shrink-0 shadow-lg group-hover:scale-105 transition-transform">
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden bg-neutral-900 border-2 border-blue-600/30 shrink-0 shadow-lg group-hover:scale-105 transition-transform">
                     <img
-                      src="/founders/suman.png"
+                      src="/founders/maaz.png"
                       alt="Suman Kumar Singh"
                       className="w-full h-full object-cover"
                     />
@@ -156,7 +156,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
 
                   <div>
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-[11px] font-bold text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-100">
+                      <span className="text-[11px] font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
                         Co-Founder &amp; Systems Engineer
                       </span>
                     </div>
@@ -165,7 +165,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
                       Suman Kumar Singh
                     </h3>
                     <p className="text-xs text-neutral-500 mt-1 flex items-center gap-1">
-                      <MapPin className="w-3 h-3 text-red-600" />
+                      <MapPin className="w-3 h-3 text-blue-600" />
                       <span>Delhi, India</span>
                     </p>
                   </div>
@@ -183,9 +183,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
               <div className="pt-4 border-t border-neutral-200/60 flex items-center justify-between">
                 <a
                   href="mailto:sumansingh.np13@gmail.com"
-                  className="text-xs font-semibold text-neutral-900 hover:text-red-600 flex items-center gap-1.5 transition-colors"
+                  className="text-xs font-semibold text-neutral-900 hover:text-blue-600 flex items-center gap-1.5 transition-colors"
                 >
-                  <Mail className="w-3.5 h-3.5 text-red-600" />
+                  <Mail className="w-3.5 h-3.5 text-blue-600" />
                   <span>sumansingh.np13@gmail.com</span>
                 </a>
 
@@ -216,7 +216,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
           <button
             type="button"
             onClick={onOpenProject}
-            className="bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-bold px-8 py-3.5 rounded-full transition-colors self-start sm:self-auto cursor-pointer"
+            className="bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold px-8 py-3.5 rounded-full transition-colors self-start sm:self-auto cursor-pointer"
           >
             Start a Project
           </button>

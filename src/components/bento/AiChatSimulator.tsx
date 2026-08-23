@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Bot, Sparkles, Terminal, FileCode2 } from 'lucide-react';
+import { Bot, Workflow, Terminal, FileCode2 } from 'lucide-react';
 
 const demoResponses: Record<string, { answer: string; code?: string; sources: string[] }> = {
   'How does the 30-day warranty work?': {
@@ -88,7 +88,7 @@ export const AiChatSimulator: React.FC = () => {
       {/* Chat Streaming Bubble */}
       <div className="rounded-lg border border-white/10 bg-surface-elevated/70 p-3 text-xs">
         <div className="flex items-start gap-2">
-          <Sparkles className="mt-0.5 h-3.5 w-3.5 text-accent-violet shrink-0" />
+          <Workflow className="mt-0.5 h-3.5 w-3.5 text-accent-violet shrink-0" />
           <div className="flex-1 space-y-2">
             <p className="text-ink-primary leading-relaxed">
               {displayedText}

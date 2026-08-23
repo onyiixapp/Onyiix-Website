@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { HeroSection } from './components/HeroSection';
 import { AboutSection } from './components/AboutSection';
 import { CaseStudiesSection } from './components/CaseStudiesSection';
-import { ServicesSection } from './components/ServicesSection';
-import { InteractiveSelector } from './components/InteractiveSelector';
+import { AutoJourneySection } from './components/AutoJourneySection';
 import { ProcessSection } from './components/ProcessSection';
 import { PackagesSection } from './components/PackagesSection';
 import { TrustAndFaqSection } from './components/TrustAndFaqSection';
@@ -26,6 +25,68 @@ export function App() {
     const handleLocation = () => setCurrentPath(window.location.pathname);
     window.addEventListener('popstate', handleLocation);
     return () => window.removeEventListener('popstate', handleLocation);
+  }, []);
+
+  useEffect(() => {
+    const routeMeta: Record<string, { title: string; description: string }> = {
+      '/': {
+        title: 'Meyvaro Studio | Web, SaaS & AI Product Engineering',
+        description: 'Founder-led web, SaaS, AI workflow and digital-system engineering from Bengaluru for India and global teams.',
+      },
+      '/about': {
+        title: 'About Meyvaro Studio | Founder-Led Product Engineering',
+        description: 'Meet Maaz and Suman, the Bengaluru founders behind Meyvaro Studio and its web, SaaS and automation work.',
+      },
+      '/careers': {
+        title: 'Careers at Meyvaro Studio',
+        description: 'View current opportunities and future collaboration options at Meyvaro Studio in Bengaluru.',
+      },
+      '/terms': {
+        title: 'Terms of Service | Meyvaro Studio',
+        description: 'Meyvaro Studio project terms, ownership, warranties and delivery commitments.',
+      },
+      '/privacy': {
+        title: 'Privacy Policy | Meyvaro Studio',
+        description: 'How Meyvaro Studio handles project inquiries and client information.',
+      },
+      '/sitemap': {
+        title: 'HTML Sitemap | Meyvaro Studio',
+        description: 'Navigate Meyvaro Studio services, work, company pages and legal information.',
+      },
+    };
+
+    const meta = routeMeta[currentPath];
+    const descriptionTag = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    const robotsTag = document.querySelector<HTMLMetaElement>('meta[name="robots"]');
+    const canonicalTag = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+
+    if (meta) {
+      document.title = meta.title;
+      descriptionTag?.setAttribute('content', meta.description);
+      robotsTag?.setAttribute('content', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+      canonicalTag?.setAttribute('href', `https://asme.studio${currentPath === '/' ? '/' : currentPath}`);
+    } else {
+      document.title = 'Page Not Found | Meyvaro Studio';
+      robotsTag?.setAttribute('content', 'noindex, follow');
+    }
+  }, [currentPath]);
+
+  useEffect(() => {
+    const handleAnchorNavigation = (event: MouseEvent) => {
+      const anchor = (event.target as Element | null)?.closest<HTMLAnchorElement>('a[href^="#"]');
+      const hash = anchor?.getAttribute('href');
+      if (!hash || hash === '#') return;
+
+      const target = document.querySelector(hash);
+      if (!target) return;
+
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.history.replaceState({}, '', hash);
+    };
+
+    document.addEventListener('click', handleAnchorNavigation);
+    return () => document.removeEventListener('click', handleAnchorNavigation);
   }, []);
 
   const navigateTo = (path: string) => {
@@ -129,15 +190,17 @@ export function App() {
 
   // Main Landing Page with All Sections
   return (
-    <div className="min-h-screen bg-[#EFEFEF] text-gray-900 font-sans selection:bg-[#F26522]/20 selection:text-[#F26522] relative">
+    <div className="min-h-screen bg-[#F4F7FC] text-gray-900 font-sans selection:bg-[#2563EB]/20 selection:text-[#1D4ED8] relative">
       <main className="w-full">
-        {/* SECTION 1: HERO (Full viewport height with shaders overlay, pill nav & live Bengaluru clock) */}
+        {/* SECTION 1: lightweight animated title and navigation */}
         <HeroSection
           onOpenBooking={handleOpenBooking}
           onOpenProject={() => handleOpenProject('Start a Project')}
         />
 
-        {/* SECTION 2: ABOUT (White background, responsive 3-col desktop layout, exact images & founder cards) */}
+        {/* The cinematic service story is intentionally the first experience after the title. */}
+        <AutoJourneySection />
+
         <AboutSection
           onOpenAboutModal={() => handleOpenProject('About Studio Inquiry')}
         />
@@ -145,16 +208,6 @@ export function App() {
         {/* SECTION 3: CASE STUDIES (Light gray background, Narrativ, Luminar, primkart.app, Workshop SaaS) */}
         <CaseStudiesSection
           onSelectProject={(projectTitle) => handleOpenProject(`Case Study: ${projectTitle}`)}
-        />
-
-        {/* SECTION 4: 4-PILLAR SERVICES ARCHITECTURE */}
-        <ServicesSection
-          onOpenServiceModal={(svc) => handleOpenProject(`Service Inquiry: ${svc}`)}
-        />
-
-        {/* SECTION 5: INTERACTIVE PACKAGE SELECTOR TOOL */}
-        <InteractiveSelector
-          onSelectPackage={(pkg) => handleOpenProject(`Package Selected: ${pkg}`)}
         />
 
         {/* SECTION 6: 8-STAGE ENGINEERING PIPELINE */}

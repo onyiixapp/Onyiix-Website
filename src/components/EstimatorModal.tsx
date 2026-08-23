@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Sparkles, ShieldCheck, Zap, ArrowRight } from 'lucide-react';
+import { X, Target, ShieldCheck, Zap, ArrowRight } from 'lucide-react';
 
 interface EstimatorModalProps {
   isOpen: boolean;
@@ -125,7 +125,7 @@ export const EstimatorModal: React.FC<EstimatorModalProps> = ({
             {/* Header */}
             <div className="mb-6">
               <span className="text-amber-400 font-mono text-xs font-semibold uppercase tracking-wider flex items-center gap-1 mb-1">
-                <Sparkles className="w-3.5 h-3.5" />
+                <Target className="w-3.5 h-3.5" />
                 <span>Scope &amp; Investment Estimator</span>
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">

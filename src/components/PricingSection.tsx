@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { ArrowRight, Sparkles, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Layers, ShieldCheck } from 'lucide-react';
 
 interface PricingSectionProps {
   onOpenContactModal: () => void;
@@ -27,7 +27,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenContactMod
 
         {/* Tag */}
         <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-mono text-white/80 mb-6">
-          <Sparkles className="w-3.5 h-3.5 text-white" />
+          <Layers className="w-3.5 h-3.5 text-white" />
           <span>03 / Transparent Investment</span>
         </div>
 

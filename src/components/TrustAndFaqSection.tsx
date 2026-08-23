@@ -1,200 +1,45 @@
 import React, { useState } from 'react';
-import { ChevronDown, ShieldCheck, Lock, Code2, Users, HelpCircle } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronDown, Code2, Lock, ShieldCheck, Users } from 'lucide-react';
+
+const faqs = [
+  { q: 'What happens after launch?', a: 'We include one month of technical oversight and minor agreed adjustments, plus a 30-day warranty for defects inside the delivered scope.' },
+  { q: 'Do we own the code?', a: 'Yes. After final settlement, the agreed source code, design assets and documentation are transferred to you. There is no proprietary platform lock-in.' },
+  { q: 'Can you work with teams outside India?', a: 'Yes. We work from Bengaluru and plan overlap for teams in India, the UK, Germany, France, the US, Canada and other global time zones.' },
+  { q: 'What technology do you use?', a: 'The stack follows the problem. Our common foundation is React and TypeScript with modern server, database, cloud and automation tools selected for maintainability.' },
+];
+
+const commitments = [
+  { Icon: Code2, title: 'Code ownership' }, { Icon: ShieldCheck, title: 'Scoped bug warranty' },
+  { Icon: Users, title: 'Direct founder access' }, { Icon: Lock, title: 'Private project handling' },
+];
 
 export const TrustAndFaqSection: React.FC = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-
-  const trustPoints = [
-    {
-      icon: Code2,
-      title: '100% Code Ownership',
-      desc: 'Upon project completion, you receive full intellectual property ownership and repository access. Zero proprietary lock-in.',
-    },
-    {
-      icon: ShieldCheck,
-      title: '30-Day Zero-Cost Bug Warranty',
-      desc: 'If any functional defect arises within 30 days post-launch within the scoped deliverables, we patch it at zero cost.',
-    },
-    {
-      icon: Users,
-      title: 'Direct Founder Access',
-      desc: 'You communicate directly with our principal architects—no bureaucratic middle layers or lost requirements.',
-    },
-    {
-      icon: Lock,
-      title: '1-Month Free Maintenance SLA',
-      desc: 'Enjoy one month of complimentary technical oversight, security checks, and minor adjustments with every build.',
-    },
-  ];
-
-  const faqs = [
-    {
-      q: 'What is included in the 1–Month Free Website Maintenance SLA?',
-      a: 'Our 1–Month Free Maintenance SLA includes continuous uptime monitoring, security updates, technical SEO verification, minor copy/image modifications, and Core Web Vitals checks to ensure your website operates flawlessly after launch.',
-    },
-    {
-      q: 'Do I own 100% of the code and intellectual property after completion?',
-      a: 'Yes. Upon final settlement, all source code, design assets, Figma files, database schemas, and documentation are transferred 100% to you. We do not retain proprietary locks or vendor traps.',
-    },
-    {
-      q: 'How does your 30–Day Zero–Cost Bug Warranty work?',
-      a: 'If any functional defect, responsive visual bug, or broken link arises within 30 days of launch that falls within the scoped agreement, we diagnose and deploy the fix immediately with no billing.',
-    },
-    {
-      q: 'Can you build custom Telegram bot integrations for ordering and alerts?',
-      a: 'Yes! As demonstrated in our live client delivery for primkart.app in Bengaluru, we build automated Telegram bots that dispatch instant order tickets, alerts, and customer notifications directly to your management chat groups.',
-    },
-    {
-      q: 'What technologies do you use for SaaS and full-stack development?',
-      a: 'We specialize in Next.js 15, React 19, TypeScript, Tailwind CSS, PostgreSQL, Prisma ORM, Node.js microservices, Docker, Redis, and modern vector RAG AI workflows.',
-    },
-    {
-      q: 'Where is ASME Studio located and what hours do you work?',
-      a: 'ASME Studio is founded and headquartered in Bengaluru, Karnataka, India (with co-engineering in Delhi, India). We operate on IST and comfortably overlap with US, European (France, UK), and Asia-Pacific timezones.',
-    },
-  ];
-
   return (
-    <section
-      id="faqs"
-      className="bg-white pt-20 sm:pt-28 pb-20 sm:pb-32 overflow-hidden relative"
-    >
-      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
-        {/* CENTERED FAQ HEADER */}
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          {/* Centered Badge Row */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-3 mb-6"
-          >
-            <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gray-900 text-white text-[11px] sm:text-[12px] font-semibold flex items-center justify-center shadow-sm">
-              7
-            </div>
-            <div className="text-[12px] sm:text-[13px] font-medium border border-gray-200 bg-gray-50 rounded-full px-3.5 sm:px-4 py-1 sm:py-1.5 text-gray-900 shadow-sm flex items-center gap-1.5">
-              <HelpCircle className="w-3.5 h-3.5 text-[#F26522]" />
-              <span>Trust Charter &amp; FAQs</span>
-            </div>
-          </motion.div>
-
-          {/* Heading H2 */}
-          <motion.h2
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-[clamp(2rem,5vw,3.8rem)] font-medium leading-[1.12] tracking-[-0.03em] text-gray-900"
-          >
-            Frequently Asked Questions
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-sm sm:text-base text-gray-600 mt-4 max-w-xl leading-relaxed"
-          >
-            Clear answers on our engineering process, warranties, maintenance SLA, and code ownership policies.
-          </motion.p>
+    <section id="faqs" className="overflow-hidden bg-white px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+      <div className="mx-auto grid max-w-[1280px] gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+        <div>
+          <span className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-blue-700">Clear commitments</span>
+          <h2 className="mt-3 text-[clamp(2.2rem,4.8vw,4.6rem)] font-medium leading-[0.98] tracking-[-0.055em] text-[#0B1020]">The useful answers, upfront.</h2>
+          <p className="mt-4 max-w-md text-sm leading-7 text-slate-600">A short trust charter so ownership, support and collaboration are clear before the first sprint.</p>
+          <div className="mt-8 grid grid-cols-2 gap-3">
+            {commitments.map(({ Icon, title }) => <div key={title} className="rounded-2xl border border-slate-200 bg-[#F8FAFF] p-4"><span className="mb-4 flex h-9 w-9 items-center justify-center rounded-xl bg-white text-blue-600 shadow-[0_8px_22px_rgba(37,99,235,0.12)]"><Icon className="h-4 w-4" /></span><p className="text-xs font-extrabold text-slate-800">{title}</p></div>)}
+          </div>
         </div>
 
-        {/* CENTERED FAQ ACCORDION CONTAINER */}
-        <div className="max-w-3xl mx-auto space-y-3.5 mb-24">
-          {faqs.map((faq, idx) => {
-            const isOpen = openFaq === idx;
-
+        <div className="space-y-3">
+          {faqs.map((faq, index) => {
+            const isOpen = openFaq === index;
             return (
-              <motion.div
-                key={faq.q}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
-                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
-                  isOpen
-                    ? 'border-gray-300 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.06)]'
-                    : 'border-gray-200/90 bg-white/80 hover:border-gray-300 hover:bg-white hover:shadow-[0_4px_20px_rgba(0,0,0,0.03)]'
-                }`}
-              >
-                <button
-                  type="button"
-                  onClick={() => setOpenFaq(isOpen ? null : idx)}
-                  className="w-full px-6 py-5 sm:px-8 sm:py-6 text-left flex items-center justify-between gap-4 font-semibold text-sm sm:text-[15px] text-gray-900 cursor-pointer group"
-                >
-                  <span className="transition-colors group-hover:text-[#F26522] leading-snug">
-                    {faq.q}
-                  </span>
-                  <div
-                    className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
-                      isOpen ? 'bg-orange-50 text-[#F26522] rotate-180' : 'bg-gray-100 text-gray-400 group-hover:text-gray-700'
-                    }`}
-                  >
-                    <ChevronDown className="w-4 h-4 transition-transform duration-300 stroke-[2.5]" />
-                  </div>
+              <motion.div key={faq.q} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.04 }} className={`overflow-hidden rounded-2xl border transition ${isOpen ? 'border-blue-200 bg-blue-50/50 shadow-[0_12px_35px_rgba(37,99,235,0.08)]' : 'border-slate-200 bg-white'}`}>
+                <button type="button" onClick={() => setOpenFaq(isOpen ? null : index)} aria-expanded={isOpen} className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left text-sm font-extrabold text-slate-950 sm:px-6">
+                  {faq.q}<span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition ${isOpen ? 'rotate-180 bg-blue-600 text-white' : 'bg-slate-100 text-slate-500'}`}><ChevronDown className="h-4 w-4" /></span>
                 </button>
-
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-                      className="overflow-hidden px-6 sm:px-8 pb-6 text-xs sm:text-sm text-gray-600 leading-relaxed"
-                    >
-                      <div className="pt-2 border-t border-gray-100">
-                        <p>{faq.a}</p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <AnimatePresence initial={false}>{isOpen && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.25 }} className="overflow-hidden"><p className="px-5 pb-6 text-sm leading-7 text-slate-600 sm:px-6">{faq.a}</p></motion.div>}</AnimatePresence>
               </motion.div>
             );
           })}
-        </div>
-
-        {/* TRUST CHARTER CARDS (4-Column Grid) */}
-        <div className="pt-16 border-t border-gray-100">
-          <div className="text-center max-w-xl mx-auto mb-10">
-            <span className="text-xs font-semibold text-[#F26522] uppercase tracking-wider block mb-1">
-              ENGINEERING GUARANTEES
-            </span>
-            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
-              Our Non-Negotiable Commitments
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {trustPoints.map((tp, idx) => {
-              const Icon = tp.icon;
-              return (
-                <motion.div
-                  key={tp.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  whileHover={{ y: -4 }}
-                  className="bg-gray-50/80 hover:bg-white rounded-2xl p-6 sm:p-7 border border-gray-200/80 hover:border-gray-300 hover:shadow-lg transition-all duration-300"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-orange-50 text-[#F26522] flex items-center justify-center mb-4 shadow-sm">
-                    <Icon className="w-5 h-5 stroke-[2.2]" />
-                  </div>
-
-                  <h4 className="text-base font-bold text-gray-900 mb-2 tracking-tight">
-                    {tp.title}
-                  </h4>
-
-                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                    {tp.desc}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
         </div>
       </div>
     </section>

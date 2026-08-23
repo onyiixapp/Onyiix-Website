@@ -72,7 +72,7 @@ export const SingooServices: React.FC<SingooServicesProps> = ({ onOpenContactMod
         {/* Section Header */}
         <div className="relative -mt-8 sm:-mt-16 lg:-mt-24 mb-16 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
           <div>
-            <span className="text-xs font-bold text-red-500 uppercase tracking-widest block mb-2 font-sans">
+            <span className="text-xs font-bold text-blue-500 uppercase tracking-widest block mb-2 font-sans">
               WHAT WE DO
             </span>
             <h3 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight font-sans">
@@ -83,7 +83,7 @@ export const SingooServices: React.FC<SingooServicesProps> = ({ onOpenContactMod
           <button
             type="button"
             onClick={() => onOpenContactModal()}
-            className="bg-white text-black text-xs sm:text-sm font-bold px-6 py-3 rounded-full hover:bg-red-600 hover:text-white transition-all shadow-md self-start sm:self-auto flex items-center gap-1.5"
+            className="bg-white text-black text-xs sm:text-sm font-bold px-6 py-3 rounded-full hover:bg-blue-600 hover:text-white transition-all shadow-md self-start sm:self-auto flex items-center gap-1.5"
           >
             <span>Request Scoped Proposal</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -98,14 +98,14 @@ export const SingooServices: React.FC<SingooServicesProps> = ({ onOpenContactMod
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="p-8 sm:p-10 rounded-3xl border border-neutral-800 bg-neutral-950/60 flex flex-col justify-between hover:border-red-600/50 hover:bg-neutral-900/80 transition-all duration-300 group"
+              className="p-8 sm:p-10 rounded-3xl border border-neutral-800 bg-neutral-950/60 flex flex-col justify-between hover:border-blue-600/50 hover:bg-neutral-900/80 transition-all duration-300 group"
             >
               <div>
                 <span className="text-neutral-500 text-base font-bold font-sans">
                   ({svc.num})
                 </span>
 
-                <h4 className="text-2xl sm:text-3xl font-extrabold text-red-500 mt-4 mb-4 leading-tight font-sans tracking-tight">
+                <h4 className="text-2xl sm:text-3xl font-extrabold text-blue-500 mt-4 mb-4 leading-tight font-sans tracking-tight">
                   {svc.title}
                 </h4>
 
@@ -129,7 +129,7 @@ export const SingooServices: React.FC<SingooServicesProps> = ({ onOpenContactMod
                 <button
                   type="button"
                   onClick={() => onOpenContactModal(svc.title)}
-                  className="text-xs font-bold text-white group-hover:text-red-500 flex items-center gap-1 transition-colors"
+                  className="text-xs font-bold text-white group-hover:text-blue-500 flex items-center gap-1 transition-colors"
                 >
                   <span>Select</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, CheckCircle2, RefreshCw, Send, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ListChecks, RefreshCw, Send, ShieldCheck } from 'lucide-react';
 
 export const FormSimulator: React.FC = () => {
   const [step, setStep] = useState(1);
@@ -18,7 +18,7 @@ export const FormSimulator: React.FC = () => {
       {/* Top simulated browser bar */}
       <div className="mb-4 flex items-center justify-between border-b border-white/5 pb-3">
         <div className="flex items-center gap-1.5">
-          <div className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
+          <div className="h-2.5 w-2.5 rounded-full bg-blue-500/80" />
           <div className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
           <div className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
           <span className="ml-2 font-mono text-[11px] text-ink-tertiary">
@@ -44,7 +44,7 @@ export const FormSimulator: React.FC = () => {
           >
             <div className="flex items-center justify-between text-xs font-medium text-ink-muted">
               <span className="flex items-center gap-1 text-accent-cyan">
-                <Sparkles className="h-3 w-3" /> Step {step} of 2
+                <ListChecks className="h-3 w-3" /> Step {step} of 2
               </span>
               <span className="text-ink-tertiary font-mono">0ms State Transition</span>
             </div>
