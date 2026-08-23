@@ -166,8 +166,8 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
         <div aria-hidden="true" className="journey-grain absolute inset-0 opacity-[0.08]" />
 
         <div className="absolute inset-x-0 top-0 z-30 flex items-start justify-between px-4 pt-20 sm:px-8 sm:pt-24 lg:px-12">
-          <div><div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-white/80 sm:text-xs"><span className="h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_18px_rgba(96,165,250,0.9)]" />Bengaluru streets · global builds</div><p className="mt-2 hidden text-xs text-white/55 sm:block">Four neighbourhoods. Products built for ambitious teams everywhere.</p></div>
-          <div className="rounded-full border border-white/15 bg-slate-950/35 px-3 py-2 text-[9px] font-bold uppercase tracking-[0.14em] text-white/75 backdrop-blur-xl sm:px-4 sm:text-[11px]">MEYVARO / {destination.area} / {destination.number}</div>
+          <div><div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-white/80 sm:text-xs"><span className="h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_18px_rgba(96,165,250,0.9)]" />Global builds</div><p className="mt-2 hidden text-xs text-white/55 sm:block">Four neighbourhoods. Products built for ambitious teams everywhere.</p></div>
+          <div className="rounded-full border border-white/15 bg-slate-950/35 px-3 py-2 text-[9px] font-bold uppercase tracking-[0.14em] text-white/75 backdrop-blur-xl sm:px-4 sm:text-[11px]">{destination.area} / {destination.number}</div>
         </div>
 
         <div className="absolute inset-y-0 right-3 z-40 hidden items-center sm:flex lg:right-7">
