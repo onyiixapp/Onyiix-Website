@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Shader, Swirl, ChromaFlow, FlutedGlass, FilmGrain } from 'shaders/react';
 import { Clock, ArrowRight, Menu, X, ArrowUpRight, ShieldCheck, Zap, Globe2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { AsmeLogo } from './AsmeLogo';
 
 interface HeroSectionProps {
   onOpenBooking: () => void;
@@ -82,17 +83,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onOpenP
       {/* FLOATING PILL NAVBAR (z-40, fixed) */}
       <header className="fixed top-0 left-0 right-0 z-40 p-3 sm:p-4 pointer-events-none">
         <div className="max-w-[1440px] w-full mx-auto flex items-center justify-between pointer-events-auto">
-          {/* LEFT: Logo */}
+          {/* LEFT: Clean Geometric Logo */}
           <div className="flex items-center">
-            <a href="/" className="flex items-center gap-2.5 group">
-              <img
-                src="/logo.jpg"
-                alt="ASME Studio Logo"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl object-cover shadow-md group-hover:scale-105 transition-transform border border-neutral-200"
-              />
-              <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-neutral-950">
-                ASME
-              </span>
+            <a href="/" className="flex items-center group">
+              <AsmeLogo symbolSize={34} textColor="text-neutral-950" />
             </a>
           </div>
 

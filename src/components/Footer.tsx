@@ -1,5 +1,6 @@
 import React from 'react';
 import { MapPin, Globe, Mail } from 'lucide-react';
+import { AsmeLogo } from './AsmeLogo';
 
 export const Footer: React.FC = () => {
   return (
@@ -8,14 +9,7 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-neutral-800">
           {/* Col 1: Brand & Bio */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-2.5">
-              <img
-                src="/logo.jpg"
-                alt="ASME Studio Logo"
-                className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl object-cover shadow-md border border-neutral-700"
-              />
-              <span className="font-extrabold text-xl tracking-tight">ASME Studio</span>
-            </div>
+            <AsmeLogo symbolSize={32} textColor="text-white" />
 
             <p className="text-xs sm:text-sm text-neutral-400 max-w-sm leading-relaxed">
               A boutique software engineering studio founded in Bengaluru, India. Building high-converting websites, multi-tenant SaaS platforms, and automated digital systems.
