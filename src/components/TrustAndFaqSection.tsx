@@ -6,6 +6,7 @@ const faqs = [
   { q: 'What happens after launch?', a: 'We include one month of technical oversight and minor agreed adjustments, plus a 30-day warranty for defects inside the delivered scope.' },
   { q: 'Do we own the code?', a: 'Yes. After final settlement, the agreed source code, design assets and documentation are transferred to you. There is no proprietary platform lock-in.' },
   { q: 'Can you work with teams outside India?', a: 'Yes. We work from Bengaluru and plan overlap for teams in India, the UK, Germany, France, the US, Canada and other global time zones.' },
+  { q: 'Can you support digital marketing after launch?', a: 'Yes. We can support technical SEO, analytics, conversion-focused landing pages, content structure and campaign measurement. Paid-media management is scoped separately when required.' },
   { q: 'What technology do you use?', a: 'The stack follows the problem. Our common foundation is React and TypeScript with modern server, database, cloud and automation tools selected for maintainability.' },
 ];
 

@@ -1,5 +1,12 @@
 import React from 'react';
 import { ArrowLeft, Mail, Globe, MapPin, ShieldCheck, Heart } from 'lucide-react';
+import { siGithub } from 'simple-icons';
+
+const GithubMark = () => (
+  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+    <path d={siGithub.path} />
+  </svg>
+);
 
 interface AboutPageProps {
   onBack: () => void;
@@ -32,7 +39,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
           </h1>
 
           <p className="text-base sm:text-lg text-neutral-600 mt-6 leading-relaxed">
-            Founded in <strong>2024</strong> during our academic journey by two relentless friends, <strong>Mohammed Maaz A</strong> and <strong>Suman Kumar Singh</strong>, MEYVARO Studio was born with a singular purpose: to craft high-converting websites, scalable multi-tenant SaaS platforms, and automated AI systems with sub-second performance.
+            Founded in <strong>2024</strong> during our academic journey by two relentless friends, <strong>Mohammed Maaz A</strong> and <strong>Suman Kumar Singh</strong>, MEYVARO Studio was born with a singular purpose: to craft high-converting websites, scalable SaaS platforms, automated AI systems, and measurable digital growth experiences.
           </p>
         </div>
 
@@ -64,7 +71,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
         </div>
 
         {/* Detailed Founder Profiles */}
-        <div className="space-y-10">
+        <div id="founders" className="scroll-mt-28 space-y-10">
           <h2 className="text-2xl sm:text-3xl font-black text-neutral-950 tracking-tight">
             Meet the Founders &amp; Architects
           </h2>
@@ -104,41 +111,51 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
                 </p>
 
                 <p className="text-sm text-neutral-600 leading-relaxed mb-6">
-                  Specialized in multi-tenant SaaS architecture, Next.js server components, distributed database design, and autonomous AI token-streaming systems.
+                  Specialized in multi-tenant SaaS architecture, Next.js server components, distributed database design, analytics measurement, and autonomous AI systems.
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-neutral-200/60 flex items-center justify-between">
+              <div className="flex items-center justify-end gap-2 border-t border-neutral-200/60 pt-4">
                 <a
                   href="mailto:maazmohammed112@gmail.com"
-                  className="text-xs font-semibold text-neutral-900 hover:text-blue-600 flex items-center gap-1.5 transition-colors"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600"
+                  aria-label="Email Mohammed Maaz A"
+                  title="Email Maaz"
                 >
-                  <Mail className="w-3.5 h-3.5 text-blue-600" />
-                  <span>maazmohammed112@gmail.com</span>
+                  <Mail className="h-4 w-4" />
                 </a>
-
-                <div className="flex items-center gap-2">
+                <a
+                  href="https://github.com/maazmohammed112"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600"
+                  aria-label="Mohammed Maaz A on GitHub"
+                  title="Maaz on GitHub"
+                >
+                  <GithubMark />
+                </a>
                   <a
                     href="https://maazprofile.tech"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-full bg-white border border-neutral-200 text-neutral-700 hover:text-black shadow-sm transition-colors"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600"
                     aria-label="Maaz Portfolio"
+                    title="Maaz portfolio"
                   >
-                    <Globe className="w-3.5 h-3.5" />
+                    <Globe className="h-4 w-4" />
                   </a>
                   <a
                     href="https://linkedin.com/in/mohammed-maaz-a-0aa730217/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-full bg-white border border-neutral-200 text-neutral-700 hover:text-black shadow-sm transition-colors"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600"
                     aria-label="Maaz LinkedIn"
+                    title="Maaz on LinkedIn"
                   >
                     <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
                       <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.65 1.65 0 0 0 1.66-1.66 1.66 1.66 0 0 0-3.32 0c0 .92.74 1.66 1.66 1.66m1.39 9.74v-8.37H5.07v8.37h2.78z" />
                     </svg>
                   </a>
-                </div>
               </div>
             </div>
 
@@ -176,26 +193,29 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
                 </p>
 
                 <p className="text-sm text-neutral-600 leading-relaxed mb-6">
-                  Specialized in zero-downtime deployment pipelines, headless commerce architectures, technical SEO structure, and high-availability database engines.
+                  Specialized in zero-downtime deployment pipelines, headless commerce, technical SEO, conversion tracking, and high-availability database engines.
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-neutral-200/60 flex items-center justify-between">
+              <div className="flex items-center justify-end gap-2 border-t border-neutral-200/60 pt-4">
                 <a
                   href="mailto:sumansingh.np13@gmail.com"
-                  className="text-xs font-semibold text-neutral-900 hover:text-blue-600 flex items-center gap-1.5 transition-colors"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600"
+                  aria-label="Email Suman Kumar Singh"
+                  title="Email Suman"
                 >
-                  <Mail className="w-3.5 h-3.5 text-blue-600" />
-                  <span>sumansingh.np13@gmail.com</span>
+                  <Mail className="h-4 w-4" />
                 </a>
 
                 <a
                   href="https://github.com/sumansingh13"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-bold text-neutral-700 hover:text-black bg-white px-3 py-1.5 rounded-full border border-neutral-200 shadow-sm transition-colors"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600"
+                  aria-label="Suman Kumar Singh on GitHub"
+                  title="Suman on GitHub"
                 >
-                  GitHub: @sumansingh13
+                  <GithubMark />
                 </a>
               </div>
             </div>

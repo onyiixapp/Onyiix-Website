@@ -5,8 +5,8 @@ import { ArrowRight, CheckCircle2, ShieldCheck } from 'lucide-react';
 interface PackagesSectionProps { onSelectTier: (tierName: string) => void; }
 
 const tiers = [
-  { name: 'Website Launch', tagline: 'For a focused, credible digital presence.', delivery: '1–3 weeks', features: ['Custom responsive website', 'CMS or lead capture', 'Technical SEO foundation', 'Launch + analytics'], highlight: false },
-  { name: 'Growth Platform', tagline: 'For commerce and operational workflows.', delivery: '3–6 weeks', features: ['Multi-page product experience', 'Accounts or commerce workflows', 'Business tool integrations', 'Performance and QA'], highlight: true },
+  { name: 'Website Launch', tagline: 'For a focused, credible digital presence.', delivery: '1–3 weeks', features: ['Custom responsive website', 'CMS or lead capture', 'Technical SEO + analytics', 'Campaign-ready launch'], highlight: false },
+  { name: 'Growth Platform', tagline: 'For commerce and measurable customer journeys.', delivery: '3–6 weeks', features: ['Multi-page product experience', 'Conversion journeys + analytics', 'CRM and marketing integrations', 'Performance and QA'], highlight: true },
   { name: 'SaaS / Custom System', tagline: 'For products with deeper logic and scale.', delivery: '6–12+ weeks', features: ['Product and architecture sprint', 'Roles, data and dashboards', 'Billing or workflow automation', 'Phased production releases'], highlight: false },
 ];
 

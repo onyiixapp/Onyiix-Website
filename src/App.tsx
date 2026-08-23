@@ -30,8 +30,8 @@ export function App() {
   useEffect(() => {
     const routeMeta: Record<string, { title: string; description: string }> = {
       '/': {
-        title: 'Meyvaro Studio | Web, SaaS & AI Product Engineering',
-        description: 'Founder-led web, SaaS, AI workflow and digital-system engineering from Bengaluru for India and global teams.',
+        title: 'Meyvaro Studio | Web, SaaS, AI & Digital Marketing',
+        description: 'Founder-led web, SaaS, AI, technical SEO and digital marketing systems from Bengaluru for India and global teams.',
       },
       '/about': {
         title: 'About Meyvaro Studio | Founder-Led Product Engineering',

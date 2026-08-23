@@ -14,6 +14,7 @@ import { ArrowDown, Bot, Code2, Cpu, Database, type LucideIcon } from 'lucide-re
 
 export interface JourneyDestination {
   number: string;
+  area: string;
   eyebrow: string;
   title: string;
   line: string;
@@ -30,25 +31,25 @@ export interface AutoJourneySectionProps {
 
 const DEFAULT_JOURNEY_DESTINATIONS: readonly JourneyDestination[] = [
   {
-    number: '01', eyebrow: 'First stop', title: 'Web Development', line: 'Sites with street presence.',
+    number: '01', area: 'Jayanagar', eyebrow: 'Launch stop', title: 'Web Development', line: 'Websites with more pull than filter coffee.',
     description: 'Conversion-led websites and commerce experiences engineered to feel immediate on every screen.',
     details: ['CMS & commerce', 'Core Web Vitals', 'Search foundations'],
     image: '/journey/destination-web-development.jpg', Icon: Code2,
   },
   {
-    number: '02', eyebrow: 'Next destination', title: 'SaaS Platforms', line: 'Products built for the long route.',
+    number: '02', area: 'Koramangala', eyebrow: 'Startup district', title: 'SaaS Platforms', line: 'SaaS built for the startup district.',
     description: 'Thoughtful multi-tenant products with resilient architecture, secure access and room to scale.',
     details: ['Multi-tenant', 'Role-based access', 'Subscription-ready'],
     image: '/journey/destination-saas-platforms.jpg', Icon: Database,
   },
   {
-    number: '03', eyebrow: 'Innovation district', title: 'AI Workflows', line: 'Make busywork miss the bus.',
+    number: '03', area: 'Whitefield', eyebrow: 'AI tech park', title: 'AI Workflows', line: 'AI workflows without the Whitefield commute.',
     description: 'Practical agents and connected workflows that move data safely while keeping people in control.',
     details: ['Agent workflows', 'Integrations', 'Human oversight'],
     image: '/journey/destination-ai-automation.jpg', Icon: Bot,
   },
   {
-    number: '04', eyebrow: 'Final stop', title: 'Digital Systems', line: 'One dependable operating layer.',
+    number: '04', area: 'Silk Board', eyebrow: 'Systems junction', title: 'Digital Systems', line: 'Systems that keep moving—even at Silk Board.',
     description: 'Secure dashboards and internal tools that turn scattered operations into one clear source of truth.',
     details: ['Cloud architecture', 'Operations dashboards', 'Long-term support'],
     image: '/journey/destination-digital-systems.jpg', Icon: Cpu,
@@ -165,15 +166,15 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
         <div aria-hidden="true" className="journey-grain absolute inset-0 opacity-[0.08]" />
 
         <div className="absolute inset-x-0 top-0 z-30 flex items-start justify-between px-4 pt-20 sm:px-8 sm:pt-24 lg:px-12">
-          <div><div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-white/80 sm:text-xs"><span className="h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_18px_rgba(96,165,250,0.9)]" />Bengaluru service line</div><p className="mt-2 hidden text-xs text-white/55 sm:block">Scroll to drive Maaz and Suman through what we build.</p></div>
-          <div className="rounded-full border border-white/15 bg-slate-950/35 px-3 py-2 text-[10px] font-bold tracking-[0.18em] text-white/75 backdrop-blur-xl sm:px-4 sm:text-xs">MEYVARO / {destination.number}</div>
+          <div><div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-white/80 sm:text-xs"><span className="h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_18px_rgba(96,165,250,0.9)]" />Bengaluru streets · global builds</div><p className="mt-2 hidden text-xs text-white/55 sm:block">Four neighbourhoods. Products built for ambitious teams everywhere.</p></div>
+          <div className="rounded-full border border-white/15 bg-slate-950/35 px-3 py-2 text-[9px] font-bold uppercase tracking-[0.14em] text-white/75 backdrop-blur-xl sm:px-4 sm:text-[11px]">MEYVARO / {destination.area} / {destination.number}</div>
         </div>
 
         <div className="absolute inset-y-0 right-3 z-40 hidden items-center sm:flex lg:right-7">
           <nav aria-label="Service destinations" className="flex flex-col gap-2 rounded-full border border-white/15 bg-slate-950/35 p-2 backdrop-blur-xl">
             {journeyStops.map((item, index) => (
               <button key={item.number} type="button" onClick={() => goToStage(index)} aria-label={`Go to ${item.title}`} aria-current={index === activeStage ? 'step' : undefined} className={`group relative flex h-9 w-9 items-center justify-center rounded-full text-[10px] font-bold transition-colors ${index === activeStage ? 'bg-blue-500 text-white' : 'text-white/60 hover:bg-white/10 hover:text-white'}`}>
-                {item.number}<span className="pointer-events-none absolute right-12 w-max translate-x-2 rounded-full bg-slate-950/[0.85] px-3 py-1.5 text-[10px] text-white opacity-0 backdrop-blur-md transition-all group-hover:translate-x-0 group-hover:opacity-100">{item.title}</span>
+                {item.number}<span className="pointer-events-none absolute right-12 w-max translate-x-2 rounded-full bg-slate-950/[0.85] px-3 py-1.5 text-[10px] text-white opacity-0 backdrop-blur-md transition-all group-hover:translate-x-0 group-hover:opacity-100">{item.area} · {item.title}</span>
               </button>
             ))}
           </nav>
@@ -182,7 +183,7 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
         <div className={`absolute left-4 right-4 top-[17%] z-30 sm:left-auto sm:right-auto sm:top-[22%] sm:w-[min(430px,37vw)] ${cardOnLeft ? 'sm:left-8 lg:left-20' : 'sm:right-20 lg:right-28'}`}>
           <AnimatePresence initial={false} mode="wait">
             <motion.article key={`${journeyCycle}-${destination.number}`} initial={{ opacity: 0, x: cardOnLeft ? -26 : 26, y: 8 }} animate={{ opacity: 1, x: 0, y: 0 }} exit={{ opacity: 0, x: cardOnLeft ? 18 : -18, y: -4 }} transition={{ duration: 0.46, delay: 0.08, ease: [0.22, 1, 0.36, 1] }} className="journey-copy rounded-[1.4rem] border border-white/15 bg-[#0B1020]/[0.82] p-4 shadow-2xl backdrop-blur-xl sm:rounded-[2rem] sm:p-7">
-              <div className="flex items-center justify-between gap-4"><p className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-300 sm:text-xs">{destination.eyebrow}</p><span className="flex h-8 w-8 items-center justify-center rounded-xl border border-blue-300/20 bg-blue-400/10 text-blue-300"><ActiveIcon className="h-4 w-4" /></span></div>
+              <div className="flex items-center justify-between gap-4"><p className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-300 sm:text-xs">{destination.area} · {destination.eyebrow}</p><span className="flex h-8 w-8 items-center justify-center rounded-xl border border-blue-300/20 bg-blue-400/10 text-blue-300"><ActiveIcon className="h-4 w-4" /></span></div>
               <h2 className="mt-2 text-[clamp(1.65rem,3.4vw,4rem)] font-medium leading-[0.94] tracking-[-0.05em] sm:mt-3">{destination.title}</h2>
               <p className="mt-2 text-xs font-semibold text-white/90 sm:mt-3 sm:text-base">{destination.line}</p>
               <p className="mt-3 hidden text-sm leading-relaxed text-white/60 sm:block">{destination.description}</p>
@@ -196,13 +197,13 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
         <motion.div className="journey-auto absolute bottom-[4.5%] left-0 z-20 w-[82vw] max-w-[640px] will-change-transform sm:bottom-[2.5%] sm:w-[39vw] sm:min-w-[430px]" style={{ x: autoX }}>
           <div aria-hidden="true" className="absolute bottom-[1%] left-[8%] right-[4%] h-[13%] rounded-[50%] bg-black/60 blur-xl" />
           <motion.div className="journey-auto__chassis relative" style={{ rotate: vehicleTilt, y: vehicleLift }}>
-            <img src={autoImageSrc} alt="Maaz driving a green and yellow Bengaluru auto rickshaw with Suman as passenger" className="relative z-10 block h-auto w-full select-none" draggable={false} fetchPriority="high" />
+            <img src={autoImageSrc} alt="Suman driving a green and yellow Bengaluru auto rickshaw with Maaz as passenger" className="relative z-10 block h-auto w-full select-none" draggable={false} fetchPriority="high" />
             <WheelSpinner className="journey-wheel--rear" rotation={wheelRotation} />
             <WheelSpinner className="journey-wheel--front" rotation={wheelRotation} />
           </motion.div>
         </motion.div>
 
-        <div className="absolute inset-x-4 bottom-4 z-40 flex items-end justify-between gap-3 sm:inset-x-8 sm:bottom-6 lg:inset-x-12"><div className="rounded-full border border-white/15 bg-slate-950/40 px-3 py-2 text-[9px] font-semibold text-white/70 backdrop-blur-xl sm:px-4 sm:text-[10px]"><span className="text-white">Maaz</span> at the wheel&nbsp; • &nbsp;<span className="text-white">Suman</span> on board</div><div className="hidden items-center gap-2 text-[10px] font-bold uppercase tracking-[0.17em] text-white/60 sm:flex">Keep scrolling <ArrowDown className="h-3.5 w-3.5 animate-bounce" /></div></div>
+        <div className="absolute inset-x-4 bottom-4 z-40 flex items-end justify-between gap-3 sm:inset-x-8 sm:bottom-6 lg:inset-x-12"><div className="rounded-full border border-white/15 bg-slate-950/40 px-3 py-2 text-[9px] font-semibold text-white/70 backdrop-blur-xl sm:px-4 sm:text-[10px]"><span className="text-white">Suman</span> at the wheel&nbsp; • &nbsp;<span className="text-white">Maaz</span> on board</div><div className="hidden items-center gap-2 text-[10px] font-bold uppercase tracking-[0.17em] text-white/60 sm:flex">Keep scrolling <ArrowDown className="h-3.5 w-3.5 animate-bounce" /></div></div>
         <motion.div aria-hidden="true" className="absolute bottom-0 left-0 z-40 h-1 origin-left bg-blue-500" style={{ scaleX: smoothProgress, width: '100%' }} />
         <ol className="sr-only">{journeyStops.map((item) => <li key={`accessible-${item.number}`}>{item.title}: {item.description}</li>)}</ol>
       </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowDown, ArrowRight, ArrowUpRight, Clock, Globe2, Menu, ShieldCheck, X, Zap } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { siClaude, siFirebase, siMongodb, siSupabase, siWordpress } from 'simple-icons';
+import { siClaude, siFirebase, siMongodb, siNodedotjs, siSupabase, siWordpress } from 'simple-icons';
 import { AsmeLogo } from './AsmeLogo';
 
 interface HeroSectionProps {
@@ -9,16 +9,16 @@ interface HeroSectionProps {
   onOpenProject: () => void;
 }
 
-const CYCLING_WORDS = ['websites', 'SaaS platforms', 'AI workflows', 'digital systems'];
+const CYCLING_WORDS = ['websites', 'SaaS platforms', 'AI workflows', 'growth engines', 'digital systems'];
 const GLOBAL_QUOTES = [
-  { language: 'EN', text: 'Every idea deserves a place in the digital world.' },
-  { language: 'KN', text: 'ಪ್ರತಿ ಆಲೋಚನೆಗೂ ಡಿಜಿಟಲ್ ಜಗತ್ತಿನಲ್ಲಿ ಸ್ಥಾನವಿದೆ.' },
-  { language: 'HI', text: 'हर विचार को डिजिटल दुनिया में जगह मिलनी चाहिए।' },
-  { language: 'FR', text: 'Chaque idée mérite sa place dans le monde numérique.' },
-  { language: 'DE', text: 'Jede Idee verdient einen Platz in der digitalen Welt.' },
-  { language: 'ES', text: 'Cada idea merece un lugar en el mundo digital.' },
+  { language: 'EN', text: 'Every idea deserves a place in the digital world.', font: "'Kalam', cursive" },
+  { language: 'KN', text: 'ಪ್ರತಿ ಆಲೋಚನೆಗೂ ಡಿಜಿಟಲ್ ಜಗತ್ತಿನಲ್ಲಿ ಸ್ಥಾನವಿದೆ.', font: "'Baloo Tamma 2', sans-serif" },
+  { language: 'HI', text: 'हर विचार को डिजिटल दुनिया में जगह मिलनी चाहिए।', font: "'Kalam', cursive" },
+  { language: 'FR', text: 'Chaque idée mérite sa place dans le monde numérique.', font: "'Kalam', cursive" },
+  { language: 'DE', text: 'Jede Idee verdient einen Platz in der digitalen Welt.', font: "'Kalam', cursive" },
+  { language: 'ES', text: 'Cada idea merece un lugar en el mundo digital.', font: "'Kalam', cursive" },
 ];
-const STACK_MARKS = [siClaude, siSupabase, siFirebase, siMongodb, siWordpress];
+const STACK_MARKS = [siClaude, siSupabase, siFirebase, siMongodb, siWordpress, siNodedotjs];
 const NAVIGATION = [
   { label: 'Journey', href: '#journey' },
   { label: 'Studio', href: '#studio' },
@@ -137,12 +137,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onOpenP
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55 }}
-          className="mb-6 flex min-h-12 w-full max-w-2xl items-center justify-center gap-2.5 rounded-2xl border border-blue-200/80 bg-white/75 px-4 py-2.5 text-[11px] font-bold text-slate-700 shadow-sm backdrop-blur-xl sm:rounded-full sm:text-xs"
+          className="mb-6 flex min-h-12 w-full max-w-2xl items-center justify-center rounded-2xl border border-blue-200/80 bg-white/75 px-4 py-2.5 text-slate-700 shadow-sm backdrop-blur-xl sm:rounded-full"
           aria-label={`${activeQuote.language}: ${activeQuote.text}`}
         >
-          <span className="h-2 w-2 rounded-full bg-blue-600 shadow-[0_0_16px_rgba(37,99,235,0.7)]" />
-          <span className="shrink-0 rounded-full bg-blue-50 px-2 py-0.5 text-[9px] font-black tracking-[0.14em] text-blue-700" aria-hidden="true">{activeQuote.language}</span>
-          <span className="text-balance leading-5" aria-hidden="true">
+          <span className="text-balance text-lg font-normal leading-6 sm:text-xl" style={{ fontFamily: activeQuote.font }} aria-hidden="true">
             {activeQuote.text.slice(0, visibleCharacters)}
             <span className="ml-0.5 inline-block h-[1em] w-px animate-pulse bg-blue-600 align-[-0.1em]" />
           </span>
@@ -161,7 +159,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onOpenP
         </motion.h1>
 
         <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.18 }} className="mt-7 max-w-2xl text-sm font-medium leading-7 text-slate-600 sm:text-base">
-          Meyvaro Studio turns ambitious ideas and messy operations into clear, fast and dependable digital products—with direct founder access and full code ownership.
+          Meyvaro Studio turns ambitious ideas into fast, search-ready digital products and measurable growth experiences—with direct founder access and full code ownership.
         </motion.p>
 
         <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.26 }} className="mt-8 flex w-full flex-col justify-center gap-3 sm:w-auto sm:flex-row">
@@ -193,7 +191,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onOpenP
         className="relative z-10 mx-auto mt-3 w-full max-w-2xl"
       >
         <p className="mb-2 text-center text-[9px] font-black uppercase tracking-[0.2em] text-slate-400">Selected tools we build with</p>
-        <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-7 sm:gap-2">
+        <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-8 sm:gap-2">
           <div className="tech-mark" title="ChatGPT">
             <img src="/brands/chatgpt.png" alt="ChatGPT" className="h-6 w-6 object-contain" />
           </div>

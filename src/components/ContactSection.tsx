@@ -23,7 +23,7 @@ export const ContactSection: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.35 }}
+          viewport={{ once: true, amount: 0.12 }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="mx-auto max-w-4xl"
         >
@@ -93,6 +93,7 @@ export const ContactSection: React.FC = () => {
                         <option value="Web Development">Web Development</option>
                         <option value="SaaS Platform">SaaS Platform</option>
                         <option value="AI Workflow">AI Workflow</option>
+                        <option value="Digital Marketing & SEO">Digital Marketing &amp; SEO</option>
                         <option value="Digital System">Digital System</option>
                       </select>
                     </div>

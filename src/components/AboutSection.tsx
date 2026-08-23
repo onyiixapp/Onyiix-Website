@@ -25,10 +25,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenAboutModal }) 
 
         <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ delay: 0.1 }} className="lg:pt-10">
           <p className="text-lg font-semibold leading-relaxed text-slate-800 sm:text-xl">
-            Meyvaro is the product studio of Maaz and Suman. We design, engineer and launch websites, SaaS products, AI workflows and internal systems for teams that value clarity and momentum.
+            Meyvaro is the product studio of Maaz and Suman. We design, engineer and grow websites, SaaS products, AI workflows and digital marketing systems for teams that value clarity and momentum.
           </p>
           <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-600">
-            One senior team stays with the work from discovery to launch. Every delivery includes direct founder access, a 30-day scoped bug warranty and one month of post-launch maintenance.
+            One senior team stays with the work from discovery to launch—connecting product design with technical SEO, analytics, conversion journeys and campaign-ready landing experiences.
           </p>
           <button type="button" onClick={onOpenAboutModal} className="group mt-7 inline-flex items-center gap-3 rounded-full bg-blue-600 py-2 pl-5 pr-2 text-sm font-bold text-white shadow-[0_12px_28px_rgba(37,99,235,0.25)] transition hover:bg-blue-700">
             Meet the studio <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-blue-700"><ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" /></span>

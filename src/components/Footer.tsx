@@ -1,4 +1,5 @@
 import React from 'react';
+import { ArrowUpRight, Mail, MapPin } from 'lucide-react';
 import { AsmeLogo } from './AsmeLogo';
 
 export const Footer: React.FC = () => {
@@ -7,13 +8,50 @@ export const Footer: React.FC = () => {
       <div aria-hidden="true" className="absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
       <div aria-hidden="true" className="absolute left-1/2 top-0 h-24 w-72 -translate-x-1/2 rounded-full bg-blue-600/10 blur-3xl" />
 
-      <div className="relative mx-auto flex max-w-[1440px] flex-col items-center text-center">
-        <AsmeLogo symbolSize={40} textColor="text-white" />
-        <p className="mt-4 max-w-md text-xs leading-5 text-neutral-400 sm:text-sm">
-          Useful digital products, thoughtfully designed and engineered to last.
-        </p>
-        <div className="mt-7 w-full border-t border-neutral-800/90 pt-5 text-[11px] font-medium tracking-wide text-neutral-500 sm:text-xs">
-          &copy; 2026 Meyvaro Studio. All rights reserved.
+      <div className="relative mx-auto max-w-[1440px]">
+        <div className="grid gap-9 pb-10 sm:grid-cols-2 lg:grid-cols-[1.65fr_1fr_1fr_1fr] lg:gap-12">
+          <div>
+            <AsmeLogo symbolSize={42} textColor="text-white" />
+            <p className="mt-4 max-w-sm text-xs leading-5 text-neutral-400 sm:text-sm">
+              Useful digital products, thoughtfully designed and engineered to last.
+            </p>
+            <div className="mt-5 space-y-2.5 text-xs text-neutral-400">
+              <div className="flex items-center gap-2"><MapPin className="h-4 w-4 shrink-0 text-blue-400" /><span>Bengaluru, Karnataka, India</span></div>
+              <a href="mailto:maazmohammed112@gmail.com" className="flex items-center gap-2 break-all transition-colors hover:text-white"><Mail className="h-4 w-4 shrink-0 text-blue-400" /><span>maazmohammed112@gmail.com</span></a>
+            </div>
+          </div>
+
+          <div>
+            <p className="mb-4 text-[10px] font-black uppercase tracking-[0.2em] text-neutral-500">Studio</p>
+            <nav aria-label="Studio links" className="flex flex-col items-start gap-3 text-sm font-medium text-neutral-300">
+              <a href="/about" className="transition-colors hover:text-blue-400">About the studio</a>
+              <a href="/about#founders" className="transition-colors hover:text-blue-400">Founder profiles</a>
+              <a href="/careers" className="transition-colors hover:text-blue-400">Careers</a>
+            </nav>
+          </div>
+
+          <div>
+            <p className="mb-4 text-[10px] font-black uppercase tracking-[0.2em] text-neutral-500">Explore</p>
+            <nav aria-label="Explore links" className="flex flex-col items-start gap-3 text-sm font-medium text-neutral-300">
+              <a href="#journey" className="transition-colors hover:text-blue-400">Services</a>
+              <a href="#projects" className="transition-colors hover:text-blue-400">Selected work</a>
+              <a href="/sitemap" className="transition-colors hover:text-blue-400">Sitemap</a>
+            </nav>
+          </div>
+
+          <div>
+            <p className="mb-4 text-[10px] font-black uppercase tracking-[0.2em] text-neutral-500">Connect</p>
+            <nav aria-label="Connect and legal links" className="flex flex-col items-start gap-3 text-sm font-medium text-neutral-300">
+              <a href="#contact" className="inline-flex items-center gap-1.5 transition-colors hover:text-blue-400">Start a project <ArrowUpRight className="h-3.5 w-3.5" /></a>
+              <a href="/terms" className="transition-colors hover:text-blue-400">Terms of service</a>
+              <a href="/privacy" className="transition-colors hover:text-blue-400">Privacy policy</a>
+            </nav>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-2 border-t border-neutral-800/90 pt-5 text-center text-[11px] font-medium tracking-wide text-neutral-500 sm:flex-row sm:items-center sm:justify-between sm:text-left sm:text-xs">
+          <span>&copy; 2026 Meyvaro Studio. All rights reserved.</span>
+          <span>Founder-led in Bengaluru. Built for everywhere.</span>
         </div>
       </div>
     </footer>
