@@ -1,234 +1,274 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { ArrowRight, Globe, Mail, Layers, ShieldCheck } from 'lucide-react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { Shader, Swirl, ChromaFlow, FlutedGlass, FilmGrain } from 'shaders/react';
+import { Clock, ArrowRight, Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface HeroSectionProps {
-  onOpenContactModal: (service?: string) => void;
+  onOpenBooking: () => void;
+  onOpenProject: () => void;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContactModal }) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [emailInput, setEmailInput] = useState('');
+export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onOpenProject }) => {
+  const [londonTime, setLondonTime] = useState('');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Seamless Crossfade Video Controller
+  // Live London Clock
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    let fadeReq: number;
-
-    const fade = (start: number, end: number, duration: number, onDone?: () => void) => {
-      const startTime = performance.now();
-      const step = (now: number) => {
-        const progress = Math.min((now - startTime) / duration, 1);
-        video.style.opacity = (start + (end - start) * progress).toString();
-        if (progress < 1) {
-          fadeReq = requestAnimationFrame(step);
-        } else if (onDone) {
-          onDone();
-        }
-      };
-      fadeReq = requestAnimationFrame(step);
+    const updateTime = () => {
+      const timeString = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Europe/London',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      }).format(new Date());
+      setLondonTime(timeString);
     };
 
-    const handleCanPlay = () => {
-      video.play().catch(() => {});
-      fade(0, 1, 500);
-    };
-
-    let fadingOut = false;
-    const handleTimeUpdate = () => {
-      if (video.duration && video.duration - video.currentTime <= 0.55 && !fadingOut) {
-        fadingOut = true;
-        fade(parseFloat(video.style.opacity || '1'), 0, 500);
-      }
-    };
-
-    const handleEnded = () => {
-      video.style.opacity = '0';
-      setTimeout(() => {
-        video.currentTime = 0;
-        fadingOut = false;
-        video.play().catch(() => {});
-        fade(0, 1, 500);
-      }, 100);
-    };
-
-    video.addEventListener('canplay', handleCanPlay);
-    video.addEventListener('timeupdate', handleTimeUpdate);
-    video.addEventListener('ended', handleEnded);
-
-    return () => {
-      video.removeEventListener('canplay', handleCanPlay);
-      video.removeEventListener('timeupdate', handleTimeUpdate);
-      video.removeEventListener('ended', handleEnded);
-      cancelAnimationFrame(fadeReq);
-    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!emailInput.trim()) return;
-    onOpenContactModal(emailInput);
-  };
-
   return (
-    <section className="min-h-screen overflow-hidden relative flex flex-col justify-between pt-28 sm:pt-36">
-      {/* Background Video */}
-      <video
-        ref={videoRef}
-        muted
-        autoPlay
-        playsInline
-        preload="auto"
-        className="absolute inset-0 w-full h-full object-cover object-bottom pointer-events-none z-0"
-        style={{ opacity: 0 }}
-      >
-        <source
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_074625_a81f018a-956b-43fb-9aee-4d1508e30e6a.mp4"
-          type="video/mp4"
-        />
-      </video>
-
-      {/* Luminous Ambient Blue / Vignette Overlay */}
-      <div className="absolute inset-0 pointer-events-none z-0 bg-gradient-to-b from-sky-950/30 via-transparent to-[#030712]/95" />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-sky-500/10 blur-[120px] pointer-events-none z-0" />
-
-      {/* Hero Content */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-8 text-center max-w-5xl mx-auto -translate-y-[4%] sm:-translate-y-[8%]">
-        {/* Core Positioning Statement (Star icon replaced with clean dot) */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="liquid-glass rounded-full px-5 py-2 flex items-center gap-2 mb-6 backdrop-blur-xl border border-white/15 shadow-xl"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
-          <span className="text-white/90 text-xs sm:text-sm font-sans tracking-wide">
-            Every business deserves a powerful{' '}
-            <span className="font-serif italic text-sky-300">digital presence</span> in the modern world.
-          </span>
-        </motion.div>
-
-        {/* Instrument Serif Main Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-white tracking-tight whitespace-nowrap font-serif leading-[1.05]"
-        >
-          Know it then <em className="italic text-white/85">all</em>.
-        </motion.h1>
-
-        {/* Dual-Literacy Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-6 text-white/80 text-sm sm:text-base md:text-lg leading-relaxed px-4 max-w-2xl font-sans"
-        >
-          We engineer high-converting <strong className="text-white">CMS Websites</strong>, distributed <strong className="text-white">SaaS Platforms</strong>, and bespoke <strong className="text-white">Full-Stack Systems</strong> backed by our 1-Month Free Maintenance SLA.
-        </motion.p>
-
-        {/* Email / Brief Pill */}
-        <motion.form
-          onSubmit={handleSubmit}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="max-w-xl w-full mt-7 liquid-glass rounded-full pl-6 pr-2 py-2 flex items-center gap-3 shadow-2xl backdrop-blur-xl border border-white/15"
-        >
-          <input
-            type="email"
-            placeholder="Enter your email to start your project..."
-            value={emailInput}
-            onChange={(e) => setEmailInput(e.target.value)}
-            className="flex-1 bg-transparent text-white placeholder:text-white/40 text-xs sm:text-base focus:outline-none font-sans"
+    <section className="min-h-screen relative bg-[#EFEFEF] flex flex-col justify-between overflow-hidden">
+      {/* SECTION 1 SHADER BACKGROUND OVERLAY */}
+      <div className="absolute inset-0 z-10 pointer-events-none w-full h-full">
+        <Shader className="w-full h-full">
+          <Swirl colorA="#ffffff" colorB="#f0f0f0" detail={1.7} />
+          <ChromaFlow
+            baseColor="#ffffff"
+            downColor="#ff5f03"
+            leftColor="#ff5f03"
+            rightColor="#ff5f03"
+            upColor="#ff5f03"
+            momentum={13}
+            radius={3.5}
           />
-          <button
-            type="submit"
-            aria-label="Submit email"
-            className="bg-white rounded-full p-3 text-black hover:scale-105 active:scale-95 transition-transform shrink-0 flex items-center justify-center shadow-lg"
-          >
-            <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 stroke-[2.5]" />
-          </button>
-        </motion.form>
-
-        {/* Action Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-6 flex flex-wrap items-center justify-center gap-3"
-        >
-          <a
-            href="#selector"
-            className="liquid-glass rounded-full px-6 sm:px-8 py-3 text-white text-xs sm:text-sm font-medium hover:bg-white/10 transition-all flex items-center gap-2 shadow-lg border border-white/15"
-          >
-            <Layers className="w-4 h-4 text-sky-400" />
-            <span>Interactive Package Selector</span>
-          </a>
-
-          <a
-            href="#portfolio"
-            className="liquid-glass rounded-full px-5 sm:px-7 py-3 text-white/80 text-xs sm:text-sm font-medium hover:text-white hover:bg-white/5 transition-all border border-white/10"
-          >
-            Explore Portfolio ↗
-          </a>
-        </motion.div>
-
-        {/* Value Micro-Pills (All star icons removed) */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs font-sans text-white/70"
-        >
-          <span className="flex items-center gap-1.5 bg-white/5 px-3.5 py-1.5 rounded-full border border-white/10 backdrop-blur-md">
-            <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
-            <span>1-Month Free Maintenance</span>
-          </span>
-          <span className="flex items-center gap-1.5 bg-white/5 px-3.5 py-1.5 rounded-full border border-white/10 backdrop-blur-md">
-            <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
-            <span>100% Code Ownership</span>
-          </span>
-          <span className="flex items-center gap-1.5 bg-white/5 px-3.5 py-1.5 rounded-full border border-white/10 backdrop-blur-md">
-            <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
-            <span>Dual-Literacy Architecture</span>
-          </span>
-        </motion.div>
+          <FlutedGlass
+            aberration={0.61}
+            angle={31}
+            frequency={8}
+            highlight={0.12}
+            highlightSoftness={0}
+            lightAngle={-90}
+            refraction={4}
+            shape="rounded"
+            softness={1}
+            speed={0.15}
+          />
+          <FilmGrain strength={0.05} />
+        </Shader>
       </div>
 
-      {/* Social Links Footer */}
-      <div className="relative z-10 flex items-center justify-center gap-4 pb-10">
-        <a
-          href="https://linkedin.com/in/mohammed-maaz-a-0aa730217/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-          className="liquid-glass rounded-full p-3.5 text-white/80 hover:text-white hover:bg-white/10 hover:scale-110 transition-all shadow-lg border border-white/10"
-        >
-          <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.65 1.65 0 0 0 1.66-1.66 1.66 1.66 0 0 0-3.32 0c0 .92.74 1.66 1.66 1.66m1.39 9.74v-8.37H5.07v8.37h2.78z" />
-          </svg>
-        </a>
+      {/* NAVIGATION (z-20, relative) */}
+      <div className="max-w-[1440px] w-full mx-auto p-2 sm:p-3 relative z-20">
+        <nav className="bg-white rounded-full p-[5px] flex items-center justify-between shadow-sm">
+          {/* LEFT: Logo + Nav Links */}
+          <div className="flex items-center">
+            {/* Dark Circle Logo "AX" */}
+            <a
+              href="#"
+              className="w-9 h-9 sm:w-10 sm:h-10 bg-gray-900 rounded-full flex items-center justify-center transition-transform duration-300 hover:scale-105"
+            >
+              <span className="text-[10px] sm:text-[11px] font-bold tracking-tight text-white">
+                AX
+              </span>
+            </a>
 
-        <a
-          href="https://maazprofile.tech"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Portfolio"
-          className="liquid-glass rounded-full p-3.5 text-white/80 hover:text-white hover:bg-white/10 hover:scale-110 transition-all shadow-lg border border-white/10"
-        >
-          <Globe className="w-4 h-4" />
-        </a>
+            {/* Nav Links (hidden on mobile, shown md+) */}
+            <div className="hidden md:flex items-center gap-6 ml-4 sm:ml-6">
+              {['Projects', 'Studio', 'Journal', 'Connect'].map((link) => (
+                <a
+                  key={link}
+                  href={`#${link.toLowerCase()}`}
+                  className="text-[14px] text-gray-900 hover:text-gray-500 transition-colors duration-300 font-normal"
+                >
+                  {link}
+                </a>
+              ))}
+            </div>
+          </div>
 
-        <a
-          href="mailto:maazmohammed112@gmail.com"
-          aria-label="Email"
-          className="liquid-glass rounded-full p-3.5 text-white/80 hover:text-white hover:bg-white/10 hover:scale-110 transition-all shadow-lg border border-white/10"
-        >
-          <Mail className="w-4 h-4" />
-        </a>
+          {/* RIGHT (hidden on mobile, shown md+) */}
+          <div className="hidden md:flex items-center gap-4 lg:gap-6">
+            <span className="text-[13px] text-gray-600 hidden lg:inline-block font-normal">
+              Taking on projects for Q1 2026
+            </span>
+
+            <div className="flex items-center gap-1.5 text-[13px] text-gray-600 font-normal">
+              <Clock className="w-3.5 h-3.5 text-gray-600 stroke-[2]" />
+              <span>{londonTime ? `${londonTime} in London` : 'London'}</span>
+            </div>
+
+            {/* CTA Button: Book a strategy call with Text-Roll Animation */}
+            <button
+              type="button"
+              onClick={onOpenBooking}
+              className="bg-gray-900 text-white text-[13px] font-medium rounded-full pl-5 pr-2 py-2 flex items-center gap-2 group cursor-pointer shadow-sm hover:bg-gray-800 transition-colors"
+            >
+              <div className="overflow-hidden h-[20px] flex flex-col justify-start">
+                <span className="transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-translate-y-full">
+                  Book a strategy call
+                </span>
+                <span className="transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-translate-y-full">
+                  Book a strategy call
+                </span>
+              </div>
+
+              <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-rotate-45">
+                <ArrowRight className="w-3.5 h-3.5 text-gray-900 stroke-[2.5]" />
+              </div>
+            </button>
+          </div>
+
+          {/* MOBILE TOGGLE (md:hidden) */}
+          <div className="md:hidden flex items-center pr-1">
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="bg-gray-900 text-white rounded-full p-2.5 flex items-center justify-center transition-colors"
+              aria-label="Toggle Menu"
+            >
+              {mobileMenuOpen ? (
+                <X className="w-4 h-4 text-white" />
+              ) : (
+                <Menu className="w-4 h-4 text-white" />
+              )}
+            </button>
+          </div>
+        </nav>
+      </div>
+
+      {/* MOBILE MENU OVERLAY (Fixed inset-0, z-50) */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <div className="fixed inset-0 z-50 flex flex-col justify-end">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+            />
+
+            <motion.div
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+              className="relative z-10 bg-white rounded-2xl mx-3 mb-3 p-6 sm:p-8 flex flex-col gap-6 shadow-2xl"
+            >
+              {/* Close Button Header */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">
+                  <Clock className="w-3.5 h-3.5 text-gray-700" />
+                  <span>{londonTime ? `${londonTime} in London` : 'London'}</span>
+                  <span>•</span>
+                  <span>Q1 2026</span>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-2 rounded-full bg-gray-100 text-gray-900"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Large Nav Links */}
+              <div className="flex flex-col gap-3 py-2 text-[28px] sm:text-[32px] font-medium text-gray-900">
+                {['Projects', 'Studio', 'Journal', 'Connect'].map((link) => (
+                  <a
+                    key={link}
+                    href={`#${link.toLowerCase()}`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="hover:text-gray-500 transition-colors"
+                  >
+                    {link}
+                  </a>
+                ))}
+              </div>
+
+              {/* Action Button */}
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenProject();
+                }}
+                className="w-full bg-[#F26522] text-white text-[15px] font-medium rounded-full py-3.5 px-6 flex items-center justify-between group shadow-md"
+              >
+                <span>Start a project</span>
+                <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center">
+                  <ArrowRight className="w-4 h-4 text-[#F26522] stroke-[2.5]" />
+                </div>
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* HERO CONTENT (z-20, Bottom of viewport) */}
+      <div className="flex-1 flex flex-col justify-end max-w-[1440px] w-full mx-auto px-5 sm:px-8 lg:px-12 pb-14 sm:pb-16 lg:pb-20 relative z-20">
+        {/* Small Label */}
+        <div className="text-[13px] sm:text-[14px] text-gray-900 tracking-wide mb-5 sm:mb-8 font-medium">
+          Axion Studio
+        </div>
+
+        {/* Headline H1 */}
+        <h1 className="text-[clamp(1.75rem,7vw,4.2rem)] sm:text-[clamp(2.5rem,5vw,4.2rem)] font-medium leading-[1.08] tracking-[-0.03em] text-gray-900 max-w-5xl">
+          We craft digital experiences
+          <br className="hidden sm:block" />
+          <span className="sm:hidden"> </span>
+          for brands ready to dominate
+          <br className="hidden sm:block" />
+          <span className="sm:hidden"> </span>
+          their category online.
+        </h1>
+
+        {/* CTA ROW */}
+        <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5">
+          {/* Orange Button: Start a project with Text-Roll */}
+          <button
+            type="button"
+            onClick={onOpenProject}
+            className="bg-[#F26522] hover:bg-[#e05a1a] text-white text-[13px] sm:text-[14px] rounded-full pl-5 sm:pl-6 pr-2 py-2 flex items-center gap-3 group transition-colors duration-300 cursor-pointer shadow-sm"
+          >
+            <div className="overflow-hidden h-[20px] flex flex-col justify-start">
+              <span className="transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-translate-y-full font-medium">
+                Start a project
+              </span>
+              <span className="transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-translate-y-full font-medium">
+                Start a project
+              </span>
+            </div>
+
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-rotate-45">
+              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#F26522] stroke-[2.5]" />
+            </div>
+          </button>
+
+          {/* Partner Badge */}
+          <div className="bg-white rounded-[4px] px-3 py-2 sm:px-3.5 sm:py-2 flex items-center gap-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)] transition-shadow duration-300 border border-gray-100/50 cursor-pointer">
+            {/* Exact SVG Starburst Icon */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 100 100"
+              className="w-5 h-5 sm:w-6 sm:h-6 fill-current text-[#E8704E] shrink-0"
+            >
+              <path d="m19.6 66.5 19.7-11 .3-1-.3-.5h-1l-3.3-.2-11.2-.3L14 53l-9.5-.5-2.4-.5L0 49l.2-1.5 2-1.3 2.9.2 6.3.5 9.5.6 6.9.4L38 49.1h1.6l.2-.7-.5-.4-.4-.4L29 41l-10.6-7-5.6-4.1-3-2-1.5-2-.6-4.2 2.7-3 3.7.3.9.2 3.7 2.9 8 6.1L37 36l1.5 1.2.6-.4.1-.3-.7-1.1L33 25l-6-10.4-2.7-4.3-.7-2.6c-.3-1-.4-2-.4-3l3-4.2L28 0l4.2.6L33.8 2l2.6 6 4.1 9.3L47 29.9l2 3.8 1 3.4.3 1h.7v-.5l.5-7.2 1-8.7 1-11.2.3-3.2 1.6-3.8 3-2L61 2.6l2 2.9-.3 1.8-1.1 7.7L59 27.1l-1.5 8.2h.9l1-1.1 4.1-5.4 6.9-8.6 3-3.5L77 13l2.3-1.8h4.3l3.1 4.7-1.4 4.9-4.4 5.6-3.7 4.7-5.3 7.1-3.2 5.7.3.4h.7l12-2.6 6.4-1.1 7.6-1.3 3.5 1.6.4 1.6-1.4 3.4-8.2 2-9.6 2-14.3 3.3-.2.1.2.3 6.4.6 2.8.2h6.8l12.6 1 3.3 2 1.9 2.7-.3 2-5.1 2.6-6.8-1.6-16-3.8-5.4-1.3h-.8v.4l4.6 4.5 8.3 7.5L89 80.1l.5 2.4-1.3 2-1.4-.2-9.2-7-3.6-3-8-6.8h-.5v.7l1.8 2.7 9.8 14.7.5 4.5-.7 1.4-2.6 1-2.7-.6-5.8-8-6-9-4.7-8.2-.5.4-2.9 30.2-1.3 1.5-3 1.2-2.5-2-1.4-3 1.4-6.2 1.6-8 1.3-6.4 1.2-7.9.7-2.6v-.2H49L43 72l-9 12.3-7.2 7.6-1.7.7-3-1.5.3-2.8L24 86l10-12.8 6-7.9 4-4.6-.1-.5h-.3L17.2 77.4l-4.7.6-2-2 .2-3 1-1 8-5.5Z" />
+            </svg>
+
+            <span className="text-[13px] sm:text-[14px] font-medium text-gray-900">
+              Certified Partner
+            </span>
+
+            <span className="text-[10px] sm:text-[11px] bg-gray-900 text-white px-1.5 sm:px-2 py-0.5 rounded font-medium">
+              Featured
+            </span>
+          </div>
+        </div>
       </div>
     </section>
   );
