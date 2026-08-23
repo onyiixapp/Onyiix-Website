@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Mail, Globe, MapPin } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Zap, Globe2 } from 'lucide-react';
 
 interface AboutSectionProps {
   onOpenAboutModal: () => void;
@@ -35,13 +35,13 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenAboutModal }) 
           results in digital and beyond.
         </h2>
 
-        {/* Story Narrative */}
+        {/* Studio Philosophy Narrative */}
         <div className="px-5 sm:px-8 lg:px-12 max-w-4xl mb-12 text-sm sm:text-base text-gray-700 leading-relaxed space-y-4">
           <p>
-            Founded in <strong className="text-gray-900 font-semibold">2024</strong> during our academic journey by two relentless friends, <strong className="text-gray-900 font-semibold">Mohammed Maaz A</strong> &amp; <strong className="text-gray-900 font-semibold">Suman Kumar Singh</strong>, ASME Studio was forged on an ambition: to build high-converting websites, scalable multi-tenant SaaS platforms, and automated AI systems with sub-second performance.
+            ASME Studio is a boutique software engineering and product design practice founded in <strong>Bengaluru, India</strong>. We specialize in turning high-friction business operations into fluid, high-converting digital products, multi-tenant SaaS platforms, and automated workflow engines.
           </p>
           <p>
-            Handcrafted in Bengaluru, India, we partner with founders and enterprises across India, France, and globally. Every platform we deploy is backed by our <strong>30-Day Zero-Cost Bug Warranty</strong>, <strong>1-Month Free Maintenance</strong>, and <strong>100% Code Ownership guarantee</strong>.
+            Every system we deploy is backed by our <strong>30-Day Zero-Cost Bug Warranty</strong>, <strong>1-Month Free Website Maintenance SLA</strong>, and <strong>100% Code Ownership guarantee</strong>.
           </p>
         </div>
 
@@ -116,90 +116,36 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenAboutModal }) 
           </div>
         </div>
 
-        {/* Founder Profiles Grid */}
-        <div className="px-5 sm:px-8 lg:px-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Mohammed Maaz A */}
-          <div className="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200/80 flex flex-col justify-between hover:border-gray-300 transition-colors">
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-[11px] font-semibold uppercase tracking-wider text-[#F26522] bg-orange-50 px-3 py-1 rounded-full">
-                  Co-Founder &amp; Principal Architect
-                </span>
-                <MapPin className="w-4 h-4 text-gray-400" />
-              </div>
-
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900">
-                Mohammed Maaz A
-              </h3>
-              <p className="text-xs text-gray-500 mt-1 mb-4">
-                Bengaluru, India • BCA, MCA (Pursuing) • Analyst @ Cognizant
-              </p>
-
-              <p className="text-sm text-gray-600 leading-relaxed mb-6">
-                Full-stack software architect specializing in ultra-fast React/Next.js platforms, distributed API engines, and autonomous token-streaming AI workflows.
-              </p>
-            </div>
-
-            <div className="pt-4 border-t border-gray-200 flex items-center justify-between">
-              <span className="text-xs text-gray-500">Founder Channels</span>
-              <div className="flex items-center gap-2">
-                <a
-                  href="mailto:maazmohammed112@gmail.com"
-                  aria-label="Email Maaz"
-                  className="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-700 hover:text-black hover:border-gray-400 transition-colors shadow-sm"
-                >
-                  <Mail className="w-3.5 h-3.5" />
-                </a>
-                <a
-                  href="https://maazprofile.tech"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Maaz Portfolio"
-                  className="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-700 hover:text-black hover:border-gray-400 transition-colors shadow-sm"
-                >
-                  <Globe className="w-3.5 h-3.5" />
-                </a>
-                <a
-                  href="https://linkedin.com/in/mohammed-maaz-a-0aa730217/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Maaz LinkedIn"
-                  className="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-700 hover:text-black hover:border-gray-400 transition-colors shadow-sm"
-                >
-                  <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.65 1.65 0 0 0 1.66-1.66 1.66 1.66 0 0 0-3.32 0c0 .92.74 1.66 1.66 1.66m1.39 9.74v-8.37H5.07v8.37h2.78z" />
-                  </svg>
-                </a>
-              </div>
-            </div>
+        {/* Architectural Pillars Cards */}
+        <div className="px-5 sm:px-8 lg:px-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200/80">
+            <ShieldCheck className="w-6 h-6 text-[#F26522] mb-3" />
+            <h3 className="text-base font-bold text-gray-900 mb-1">
+              Engineering Rigor
+            </h3>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              Clean TypeScript architecture with zero bloat and verified sub-second rendering across all device viewports.
+            </p>
           </div>
 
-          {/* Suman Kumar Singh */}
-          <div className="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200/80 flex flex-col justify-between hover:border-gray-300 transition-colors">
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-[11px] font-semibold uppercase tracking-wider text-[#F26522] bg-orange-50 px-3 py-1 rounded-full">
-                  Co-Founder &amp; Systems Engineer
-                </span>
-                <MapPin className="w-4 h-4 text-gray-400" />
-              </div>
+          <div className="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200/80">
+            <Zap className="w-6 h-6 text-[#F26522] mb-3" />
+            <h3 className="text-base font-bold text-gray-900 mb-1">
+              Performance First
+            </h3>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              Strict adherence to Core Web Vitals (≤ 2.5s LCP) ensuring high search visibility and instant customer conversions.
+            </p>
+          </div>
 
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900">
-                Suman Kumar Singh
-              </h3>
-              <p className="text-xs text-gray-500 mt-1 mb-4">
-                Delhi, India • BCA Graduate • Systems &amp; Next.js Specialist
-              </p>
-
-              <p className="text-sm text-gray-600 leading-relaxed mb-6">
-                Systems engineer focused on edge caching, headless checkout velocity, scalable database schemas, and zero-downtime client deployments.
-              </p>
-            </div>
-
-            <div className="pt-4 border-t border-gray-200 flex items-center justify-between text-xs text-gray-500">
-              <span>Location: Delhi, India</span>
-              <span className="font-semibold text-gray-900">100% SLA Delivery</span>
-            </div>
+          <div className="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-200/80">
+            <Globe2 className="w-6 h-6 text-[#F26522] mb-3" />
+            <h3 className="text-base font-bold text-gray-900 mb-1">
+              Global Delivery
+            </h3>
+            <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              Serving fast-growing businesses across India, France, and worldwide with full intellectual property transfer.
+            </p>
           </div>
         </div>
       </div>

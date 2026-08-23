@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
             </div>
 
             <p className="text-xs sm:text-sm text-gray-400 max-w-sm leading-relaxed">
-              A boutique software engineering studio founded in 2024 by Mohammed Maaz A &amp; Suman Kumar Singh. Building high-converting websites, multi-tenant SaaS platforms, and automated digital systems.
+              A boutique software engineering studio founded in Bengaluru, India. Building high-converting websites, multi-tenant SaaS platforms, and automated digital systems.
             </p>
 
             <div className="flex items-center gap-2 text-xs text-gray-400 pt-2">
@@ -64,7 +64,7 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Col 3: Company & Pages */}
+          {/* Col 3: Company & Dedicated Pages */}
           <div>
             <span className="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-4">
               Company
@@ -76,8 +76,11 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="/careers" className="hover:text-white transition-colors">
-                  Careers &amp; Openings
+                <a href="/careers" className="hover:text-white transition-colors flex items-center gap-1.5">
+                  <span>Careers</span>
+                  <span className="text-[10px] bg-gray-800 text-gray-400 px-2 py-0.5 rounded-full">
+                    No Openings
+                  </span>
                 </a>
               </li>
               <li>
@@ -98,7 +101,7 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Col 4: Featured Deliveries */}
+          {/* Col 4: Delivered Work */}
           <div>
             <span className="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-4">
               Delivered Work
