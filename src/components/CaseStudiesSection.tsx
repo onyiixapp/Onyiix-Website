@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, ShoppingBag, Wrench, Cpu, Layers } from 'lucide-react';
 
 interface CaseStudiesSectionProps {
@@ -70,55 +71,69 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
   return (
     <section
       id="projects"
-      className="bg-[#F5F5F5] pt-16 sm:pt-20 lg:pt-28 pb-16 sm:pb-20 lg:pb-28"
+      className="bg-[#F5F5F5] pt-20 sm:pt-28 pb-20 sm:pb-32 overflow-hidden relative"
     >
-      <div className="max-w-[1440px] mx-auto">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
         {/* Badge row */}
-        <div className="px-5 sm:px-8 lg:px-12 flex items-center gap-3 mb-6 sm:mb-8">
-          <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gray-900 text-white text-[11px] sm:text-[12px] font-semibold flex items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex items-center gap-3 mb-6 sm:mb-8"
+        >
+          <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gray-900 text-white text-[11px] sm:text-[12px] font-semibold flex items-center justify-center shadow-sm">
             2
           </div>
-          <div className="text-[12px] sm:text-[13px] font-medium border border-gray-300 rounded-full px-3 sm:px-4 py-1 sm:py-1.5 text-gray-900">
+          <div className="text-[12px] sm:text-[13px] font-medium border border-gray-300 bg-white rounded-full px-3.5 sm:px-4 py-1 sm:py-1.5 text-gray-900 shadow-sm">
             Featured Client Work
           </div>
-        </div>
+        </motion.div>
 
         {/* Heading H2 */}
-        <div className="px-5 sm:px-8 lg:px-12 mb-10 sm:mb-14 lg:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div>
-            <h2 className="text-[clamp(1.75rem,7vw,4.2rem)] sm:text-[clamp(2.5rem,5vw,4.2rem)] font-medium leading-[1.08] tracking-[-0.03em] text-gray-900 max-w-4xl">
+        <div className="mb-12 sm:mb-16 lg:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+          >
+            <h2 className="text-[clamp(2rem,5vw,3.8rem)] font-medium leading-[1.08] tracking-[-0.03em] text-gray-900 max-w-4xl">
               Our delivered projects.
             </h2>
-            <p className="text-sm sm:text-base text-gray-600 mt-2 max-w-xl">
+            <p className="text-sm sm:text-base text-gray-600 mt-3 max-w-xl leading-relaxed">
               Real-world systems engineered for measurable operational outcomes, sub-second performance, and client growth.
             </p>
-          </div>
+          </motion.div>
         </div>
 
         {/* 2x2 Project Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 px-5 sm:px-8 lg:px-12">
-          {projects.map((project) => {
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-7 sm:gap-9 lg:gap-10">
+          {projects.map((project, idx) => {
             const Icon = project.icon;
             const hasError = imageError[project.id];
 
             return (
-              <div
+              <motion.div
                 key={project.id}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                whileHover={{ y: -6 }}
                 onClick={() => !project.link && onSelectProject && onSelectProject(project.name)}
-                className="bg-white rounded-3xl overflow-hidden border border-gray-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group cursor-pointer"
+                className="bg-white rounded-3xl overflow-hidden border border-gray-200/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:border-gray-300 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
               >
                 {/* Media Header Container with Image & Fallback */}
-                <div className="aspect-[16/10] overflow-hidden bg-gray-900 relative">
+                <div className="aspect-[16/10] overflow-hidden bg-gray-950 relative">
                   {!hasError ? (
                     <img
                       src={project.image}
                       alt={project.name}
                       loading="lazy"
                       onError={() => handleImageError(project.id)}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
                   ) : (
-                    /* Elegant UI Card Fallback if image not loaded */
                     <div className="w-full h-full flex flex-col items-center justify-center p-8 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-950 text-white text-center">
                       <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center mb-3">
                         <Icon className="w-7 h-7 text-[#F26522]" />
@@ -130,13 +145,13 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
 
                   {/* Top Left: Category Tag */}
                   <div className="absolute top-4 left-4">
-                    <span className="bg-white/95 backdrop-blur-md text-gray-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
+                    <span className="bg-white/95 backdrop-blur-md text-gray-900 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-md">
                       {project.category}
                     </span>
                   </div>
 
                   {/* Top Right: Status Badge */}
-                  <div className="absolute top-4 right-4 flex items-center gap-1.5 bg-gray-950/85 backdrop-blur-md text-white text-xs font-semibold px-3 py-1.5 rounded-full">
+                  <div className="absolute top-4 right-4 flex items-center gap-1.5 bg-gray-950/85 backdrop-blur-md text-white text-xs font-semibold px-3.5 py-1.5 rounded-full shadow-md">
                     <span className={`w-2 h-2 rounded-full ${project.badgeColor} animate-pulse`} />
                     <span>{project.status}</span>
                   </div>
@@ -149,7 +164,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="h-9 w-9 group-hover:w-[156px] rounded-full bg-white flex items-center justify-between px-2.5 transition-all duration-300 ease-in-out overflow-hidden shadow-lg"
+                        className="h-9 w-9 group-hover:w-[156px] rounded-full bg-white flex items-center justify-between px-2.5 transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] overflow-hidden shadow-lg"
                       >
                         <span className="text-[13px] font-semibold text-gray-900 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-100 pl-2">
                           Visit primkart.app
@@ -157,7 +172,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
                         <ArrowUpRight className="w-4 h-4 text-gray-900 transition-transform duration-300 -rotate-45 group-hover:rotate-0 shrink-0" />
                       </a>
                     ) : (
-                      <div className="h-9 w-9 group-hover:w-[148px] rounded-full bg-gray-900 flex items-center justify-between px-2.5 transition-all duration-300 ease-in-out overflow-hidden shadow-lg">
+                      <div className="h-9 w-9 group-hover:w-[148px] rounded-full bg-gray-900 flex items-center justify-between px-2.5 transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] overflow-hidden shadow-lg">
                         <span className="text-[13px] font-semibold text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-100 pl-2">
                           View details
                         </span>
@@ -177,18 +192,18 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-1.5 text-xl sm:text-2xl font-bold text-gray-900 hover:text-[#F26522] transition-colors"
+                          className="inline-flex items-center gap-1.5 text-xl sm:text-2xl font-bold text-gray-900 hover:text-[#F26522] transition-colors group/link"
                         >
                           <span>{project.name}</span>
-                          <ArrowUpRight className="w-5 h-5" />
+                          <ArrowUpRight className="w-5 h-5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
                         </a>
                       ) : (
-                        <h3 className="text-xl sm:text-2xl font-bold text-gray-900">
+                        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
                           {project.name}
                         </h3>
                       )}
 
-                      <span className="text-xs font-medium text-gray-500">
+                      <span className="text-xs font-semibold text-gray-400 bg-gray-100 px-2.5 py-1 rounded-md">
                         {project.client}
                       </span>
                     </div>
@@ -234,7 +249,7 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
                     )}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
