@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { ArrowRight, Globe, Mail, Sparkles, Layers, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Globe, Mail, Layers, ShieldCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface HeroSectionProps {
@@ -96,13 +96,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContactModal }) 
 
       {/* Hero Content */}
       <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-8 text-center max-w-5xl mx-auto -translate-y-[4%] sm:-translate-y-[8%]">
-        {/* Core Positioning Statement */}
+        {/* Core Positioning Statement (Star icon replaced with clean dot) */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           className="liquid-glass rounded-full px-5 py-2 flex items-center gap-2 mb-6 backdrop-blur-xl border border-white/15 shadow-xl"
         >
-          <Sparkles className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+          <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
           <span className="text-white/90 text-xs sm:text-sm font-sans tracking-wide">
             Every business deserves a powerful{' '}
             <span className="font-serif italic text-sky-300">digital presence</span> in the modern world.
@@ -176,7 +176,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContactModal }) 
           </a>
         </motion.div>
 
-        {/* Premium Sans-Serif Value Micro-Pills (Image 3 fix) */}
+        {/* Value Micro-Pills (All star icons removed) */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -188,11 +188,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContactModal }) 
             <span>1-Month Free Maintenance</span>
           </span>
           <span className="flex items-center gap-1.5 bg-white/5 px-3.5 py-1.5 rounded-full border border-white/10 backdrop-blur-md">
-            <span className="text-sky-400">✦</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
             <span>100% Code Ownership</span>
           </span>
           <span className="flex items-center gap-1.5 bg-white/5 px-3.5 py-1.5 rounded-full border border-white/10 backdrop-blur-md">
-            <span className="text-sky-400">✦</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
             <span>Dual-Literacy Architecture</span>
           </span>
         </motion.div>

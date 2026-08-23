@@ -30,7 +30,7 @@ export const ShowcaseStrip: React.FC = () => {
               <span className="font-sans text-xs font-semibold tracking-wide text-white/90">
                 {item.text}
               </span>
-              <span className="text-sky-400/40 text-xs ml-4">✦</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-sky-400/50 ml-4"></span>
             </motion.div>
           );
         })}

@@ -61,195 +61,163 @@ export const ProcessSection: React.FC = () => {
       title: 'Zero-Downtime Deployment',
       icon: Rocket,
       duration: '1 Day',
-      agencyHandles: 'Domain DNS configuration, SSL provisioning, CDN asset caching, and production telemetry launch.',
-      clientHandles: 'Domain registrar access or DNS record delegation.',
+      agencyHandles: 'DNS propagation, SSL certificates, edge CDN configuration, production DB migration, and telemetry setup.',
+      clientHandles: 'Final production sign-off and live domain record verification.',
     },
     {
       num: '08',
       title: 'Maintenance & Warranty',
       icon: ShieldCheck,
-      duration: 'Ongoing / 30 Days Included',
-      agencyHandles: '30-Day Zero-Cost Bug Warranty, 1-Month Free Maintenance care, security patching, and uptime monitoring.',
-      clientHandles: 'Submitting any minor content updates or change requests.',
+      duration: '30 Days Free',
+      agencyHandles: 'Active uptime monitoring, zero-cost bug resolution under warranty, content tweaks, and post-launch optimization.',
+      clientHandles: 'Reporting operational feedback and optional transition to recurring care tiers.',
     },
   ];
+
+  const current = steps[activeStep];
 
   return (
     <section id="process" ref={ref} className="bg-black py-24 sm:py-32 px-4 sm:px-6 relative overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center sm:text-left mb-14"
+          className="text-center sm:text-left mb-12 sm:mb-16"
         >
-          <p className="text-sky-400 text-xs font-mono tracking-widest uppercase mb-2">
-            03 / HOW WE WORK
-          </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl text-white tracking-tight font-sans font-normal">
-            8-stage engineering <span className="font-serif italic text-sky-300">pipeline</span>.
+          <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-950/50 px-4 py-1.5 text-xs font-sans font-medium text-sky-300 mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+            <span>03 / 8-STAGE DEVELOPMENT PROCESS</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-normal text-white tracking-tight">
+            Predictable, transparent <br />
+            <span className="font-serif italic text-sky-300">engineering pipeline</span>.
           </h2>
           <p className="text-white/60 text-sm sm:text-base mt-2 max-w-xl font-sans">
-            Transparent breakdown of what we deliver at each milestone versus what we need from you.
+            From initial discovery to continuous post-launch warranty, here is exactly how your platform comes to life.
           </p>
         </motion.div>
 
-        {/* Desktop Interactive Stepper & Detail View */}
-        <div className="hidden lg:grid grid-cols-12 gap-8 items-start">
-          {/* Step Selector List */}
-          <div className="col-span-5 space-y-2">
-            {steps.map((step, idx) => {
-              const Icon = step.icon;
-              const isActive = activeStep === idx;
-              return (
-                <button
-                  key={step.num}
-                  type="button"
-                  onClick={() => setActiveStep(idx)}
-                  className={`w-full p-3.5 rounded-2xl border text-left transition-all flex items-center justify-between ${
-                    isActive
-                      ? 'border-sky-400 bg-sky-950/40 text-white shadow-lg'
-                      : 'border-white/5 bg-white/5 text-white/70 hover:border-white/15'
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="font-mono text-xs text-sky-400">{step.num}</span>
-                    <span className="text-sm font-semibold">{step.title}</span>
-                  </div>
-                  <Icon className="w-4 h-4 text-white/40" />
-                </button>
-              );
-            })}
+        {/* Stepper Timeline for Desktop / iPad */}
+        <div className="hidden lg:grid grid-cols-8 gap-2 mb-8">
+          {steps.map((s, idx) => {
+            const isActive = activeStep === idx;
+            return (
+              <button
+                key={s.num}
+                type="button"
+                onClick={() => setActiveStep(idx)}
+                className={`p-3.5 rounded-2xl border text-left transition-all relative ${
+                  isActive
+                    ? 'border-sky-400 bg-sky-950/50 text-white shadow-lg'
+                    : 'border-white/10 bg-white/5 text-white/50 hover:border-white/20 hover:text-white'
+                }`}
+              >
+                <div className="font-sans text-xs font-semibold text-sky-400 mb-1">{s.num}</div>
+                <div className="font-medium text-xs text-white truncate font-sans">{s.title}</div>
+                <div className="text-[10px] text-white/40 mt-1 font-sans">{s.duration}</div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Mobile / Tablet Step Navigation Bar */}
+        <div className="flex lg:hidden items-center justify-between gap-3 mb-6 bg-white/5 p-3 rounded-2xl border border-white/10">
+          <button
+            type="button"
+            disabled={activeStep === 0}
+            onClick={() => setActiveStep((prev) => Math.max(0, prev - 1))}
+            className="p-2 rounded-xl bg-white/5 text-white/80 disabled:opacity-30"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+
+          <div className="text-center">
+            <span className="text-sky-400 font-sans text-xs font-semibold block">
+              Stage {current.num} of 08
+            </span>
+            <span className="text-white font-bold text-sm font-sans">{current.title}</span>
           </div>
 
-          {/* Active Step Deep Detail Card */}
-          <div className="col-span-7 liquid-glass-elevated rounded-3xl p-8 border border-white/15 shadow-2xl relative">
-            <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
-              <div className="flex items-center gap-3">
-                <span className="w-9 h-9 rounded-xl bg-sky-500/10 border border-sky-400/30 flex items-center justify-center font-mono text-sm text-sky-400 font-bold">
-                  {steps[activeStep].num}
+          <button
+            type="button"
+            disabled={activeStep === steps.length - 1}
+            onClick={() => setActiveStep((prev) => Math.min(steps.length - 1, prev + 1))}
+            className="p-2 rounded-xl bg-white/5 text-white/80 disabled:opacity-30"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+
+        {/* Detailed Stage Interactive Card */}
+        <motion.div
+          key={current.num}
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="liquid-glass-elevated rounded-3xl p-6 sm:p-10 border border-white/15 shadow-2xl"
+        >
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-white/10 mb-8">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-400/30 flex items-center justify-center text-sky-400 shrink-0">
+                <current.icon className="w-6 h-6" />
+              </div>
+              <div>
+                <span className="font-sans text-xs text-sky-400 font-semibold tracking-wider uppercase block">
+                  STAGE {current.num} • EXPECTED DURATION: {current.duration}
                 </span>
-                <div>
-                  <h3 className="text-2xl font-bold text-white tracking-tight">
-                    {steps[activeStep].title}
-                  </h3>
-                  <span className="text-xs font-mono text-white/50">
-                    Typical Duration: {steps[activeStep].duration}
-                  </span>
-                </div>
+                <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight font-sans">
+                  {current.title}
+                </h3>
               </div>
             </div>
 
-            <div className="space-y-6">
-              {/* What Agency Handles */}
-              <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                <div className="text-xs font-mono uppercase tracking-wider text-sky-300 font-semibold mb-1">
-                  ✦ ASME Studio Engineering Delivers
-                </div>
-                <p className="text-sm text-white/80 leading-relaxed font-sans">
-                  {steps[activeStep].agencyHandles}
-                </p>
-              </div>
-
-              {/* What Client Handles */}
-              <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                <div className="text-xs font-mono uppercase tracking-wider text-white/60 font-semibold mb-1">
-                  ✦ Client Input &amp; Approval
-                </div>
-                <p className="text-sm text-white/80 leading-relaxed font-sans">
-                  {steps[activeStep].clientHandles}
-                </p>
-              </div>
-            </div>
-
-            {/* Navigation buttons */}
-            <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
+            <div className="flex items-center gap-2">
               <button
                 type="button"
                 disabled={activeStep === 0}
-                onClick={() => setActiveStep(activeStep - 1)}
-                className="px-4 py-2 rounded-full border border-white/15 text-xs font-mono text-white/70 hover:text-white disabled:opacity-30 disabled:pointer-events-none flex items-center gap-1"
+                onClick={() => setActiveStep((prev) => Math.max(0, prev - 1))}
+                className="p-2.5 rounded-full border border-white/10 hover:bg-white/10 text-white/70 disabled:opacity-20 transition-colors"
+                aria-label="Previous Step"
               >
-                <ChevronLeft className="w-3.5 h-3.5" />
-                <span>Previous Stage</span>
+                <ChevronLeft className="w-4 h-4" />
               </button>
-
               <button
                 type="button"
                 disabled={activeStep === steps.length - 1}
-                onClick={() => setActiveStep(activeStep + 1)}
-                className="px-4 py-2 rounded-full bg-white text-black font-semibold text-xs flex items-center gap-1 shadow-lg hover:scale-105 transition-all disabled:opacity-30 disabled:pointer-events-none"
+                onClick={() => setActiveStep((prev) => Math.min(steps.length - 1, prev + 1))}
+                className="p-2.5 rounded-full border border-white/10 hover:bg-white/10 text-white/70 disabled:opacity-20 transition-colors"
+                aria-label="Next Step"
               >
-                <span>Next Stage</span>
-                <ChevronRight className="w-3.5 h-3.5" />
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
           </div>
-        </div>
 
-        {/* Mobile / Tablet Swipeable Stepper */}
-        <div className="lg:hidden space-y-4">
-          <div className="flex items-center justify-between text-xs font-mono text-white/60 mb-2">
-            <span>Stage {activeStep + 1} of 8</span>
-            <span>{steps[activeStep].duration}</span>
-          </div>
-
-          <div className="liquid-glass-elevated rounded-3xl p-6 border border-white/15 shadow-2xl">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-8 h-8 rounded-lg bg-sky-500/10 border border-sky-400/30 flex items-center justify-center font-mono text-xs text-sky-400 font-bold">
-                {steps[activeStep].num}
-              </span>
-              <h3 className="text-lg font-bold text-white tracking-tight">
-                {steps[activeStep].title}
-              </h3>
+          {/* Dual Column: What Agency Delivers vs What Client Inputs */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            {/* Left Column: ASME Studio Deliverables */}
+            <div className="p-6 rounded-2xl bg-sky-950/20 border border-sky-400/20">
+              <div className="font-sans text-xs text-sky-300 uppercase tracking-wider font-semibold mb-2">
+                WHAT ASME STUDIO DELIVERS
+              </div>
+              <p className="text-sm sm:text-base text-white/90 leading-relaxed font-sans">
+                {current.agencyHandles}
+              </p>
             </div>
 
-            <div className="space-y-4 text-xs">
-              <div className="p-3.5 rounded-xl bg-white/5 border border-white/10">
-                <span className="font-mono text-sky-300 block mb-1 font-semibold">ASME STUDIO DELIVERS:</span>
-                <p className="text-white/80 font-sans leading-relaxed">{steps[activeStep].agencyHandles}</p>
+            {/* Right Column: Client Inputs */}
+            <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+              <div className="font-sans text-xs text-white/50 uppercase tracking-wider font-semibold mb-2">
+                WHAT CLIENT PROVIDES
               </div>
-
-              <div className="p-3.5 rounded-xl bg-white/5 border border-white/10">
-                <span className="font-mono text-white/60 block mb-1 font-semibold">CLIENT INPUT:</span>
-                <p className="text-white/80 font-sans leading-relaxed">{steps[activeStep].clientHandles}</p>
-              </div>
-            </div>
-
-            {/* Mobile Nav Controls */}
-            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
-              <button
-                type="button"
-                disabled={activeStep === 0}
-                onClick={() => setActiveStep(activeStep - 1)}
-                className="px-3.5 py-2 rounded-full border border-white/15 text-xs font-mono text-white/70 disabled:opacity-30"
-              >
-                Previous
-              </button>
-
-              <div className="flex items-center gap-1">
-                {steps.map((_, i) => (
-                  <div
-                    key={i}
-                    className={`w-1.5 h-1.5 rounded-full ${
-                      activeStep === i ? 'bg-sky-400' : 'bg-white/20'
-                    }`}
-                  />
-                ))}
-              </div>
-
-              <button
-                type="button"
-                disabled={activeStep === steps.length - 1}
-                onClick={() => setActiveStep(activeStep + 1)}
-                className="px-3.5 py-2 rounded-full bg-white text-black font-semibold text-xs disabled:opacity-30"
-              >
-                Next
-              </button>
+              <p className="text-sm sm:text-base text-white/80 leading-relaxed font-sans">
+                {current.clientHandles}
+              </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

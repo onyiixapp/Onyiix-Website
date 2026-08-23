@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { CheckCircle2, ArrowRight, Sparkles } from 'lucide-react';
+import { CheckCircle2, ArrowRight } from 'lucide-react';
 
 interface MaintenanceSectionProps {
   onOpenContactModal: (tier?: string) => void;
@@ -63,7 +63,7 @@ export const MaintenanceSection: React.FC<MaintenanceSectionProps> = ({ onOpenCo
       className="bg-black py-24 sm:py-32 px-4 sm:px-6 relative overflow-hidden"
     >
       <div className="max-w-6xl mx-auto">
-        {/* Top Canonical Offer Box */}
+        {/* Top Canonical Offer Box (Star icon removed) */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -74,8 +74,8 @@ export const MaintenanceSection: React.FC<MaintenanceSectionProps> = ({ onOpenCo
 
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 relative z-10">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-950/60 px-4 py-1.5 text-xs font-mono text-sky-300 mb-4">
-                <Sparkles className="w-3.5 h-3.5" />
+              <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-950/60 px-4 py-1.5 text-xs font-sans font-medium text-sky-300 mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
                 <span>06 / RISK-FREE LAUNCH ASSURANCE</span>
               </div>
 
@@ -111,7 +111,7 @@ export const MaintenanceSection: React.FC<MaintenanceSectionProps> = ({ onOpenCo
 
         {/* Post-Free Period Recurring Plans Header */}
         <div className="text-center sm:text-left mb-10">
-          <p className="text-sky-400 text-xs font-mono tracking-widest uppercase mb-2">
+          <p className="text-sky-400 text-xs font-sans font-semibold tracking-wider uppercase mb-2">
             POST-LAUNCH CONTINUITY
           </p>
           <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight font-sans">
@@ -137,10 +137,10 @@ export const MaintenanceSection: React.FC<MaintenanceSectionProps> = ({ onOpenCo
               }`}
             >
               <div>
-                <span className="font-mono text-[10px] text-sky-400 uppercase tracking-wider block mb-1">
+                <span className="font-sans text-[11px] text-sky-400 uppercase tracking-wider font-semibold block mb-1">
                   {tier.tag}
                 </span>
-                <h4 className="text-2xl font-bold text-white mb-2">{tier.name}</h4>
+                <h4 className="text-2xl font-bold text-white mb-2 font-sans">{tier.name}</h4>
                 <p className="text-xs text-white/60 leading-relaxed mb-6 font-sans">{tier.desc}</p>
 
                 <div className="space-y-3 pb-6 border-b border-white/10">

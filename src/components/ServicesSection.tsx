@@ -58,19 +58,19 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenContactM
         'Modern React & Next.js frontend development',
         'High-throughput Node.js & Python backend services',
         'PostgreSQL & Prisma data modeling',
-        'Third-party cloud integrations & Telegram bots',
-        'Zero-downtime CI/CD deployment pipelines',
+        'Cloud infrastructure setup (Vercel, AWS, Cloudflare)',
+        'Fluid 120fps Framer Motion micro-interactions',
       ],
-      packageLink: 'Professional & SaaS Packages',
+      packageLink: 'Business & Professional Packages',
     },
     {
       id: 4,
-      tag: '04 / ONGOING OPTIMIZATION',
+      tag: '04 / ONGOING CARE',
       title: 'Ongoing Support & Optimization',
       outcome: 'Keep your site fast, secure, and growing.',
       icon: Wrench,
-      summary: 'Continuous performance tuning (Core Web Vitals), proactive security monitoring, search engine technical optimization, and direct founder support.',
-      video: 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4',
+      summary: 'Continuous Core Web Vitals maintenance (≤ 2.5s LCP), technical SEO audits, proactive security patching, and our bundled 1-Month Free Website Maintenance SLA.',
+      video: 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260402_054547_9875cfc5-155a-4229-8ec8-b7ba7125cbf8.mp4',
       items: [
         'Website speed & Core Web Vitals optimization (≤ 2.5s LCP)',
         'Technical SEO indexing & structured data markup',
@@ -100,7 +100,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenContactM
         className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 sm:mb-16 gap-4"
       >
         <div>
-          <p className="text-sky-400 text-xs font-mono tracking-widest uppercase mb-2">
+          <p className="text-sky-400 text-xs font-sans font-semibold tracking-wider uppercase mb-2">
             01 / SERVICES ARCHITECTURE
           </p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl text-white tracking-tight font-sans font-normal">
@@ -114,7 +114,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenContactM
         <button
           type="button"
           onClick={() => onOpenContactModal()}
-          className="self-start sm:self-auto flex items-center gap-1.5 text-xs font-mono text-white/70 hover:text-white transition-colors"
+          className="self-start sm:self-auto flex items-center gap-1.5 text-xs font-sans font-medium text-white/70 hover:text-white transition-colors"
         >
           <span>Request Scoped Proposal</span>
           <ArrowUpRight className="w-3.5 h-3.5" />
@@ -142,49 +142,56 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenContactM
                   autoPlay
                   loop
                   playsInline
-                  preload="auto"
-                  className="w-full h-full object-cover opacity-75"
+                  className="w-full h-full object-cover opacity-80"
                 >
                   <source src={p.video} type="video/mp4" />
                 </video>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/30 to-transparent pointer-events-none" />
-
-                {/* Tag Badge */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
-                  <span className="font-mono text-[10px] text-sky-300 bg-sky-950/80 backdrop-blur-md px-3 py-1 rounded-full border border-sky-400/30 uppercase tracking-wider">
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+                
+                {/* Floating Tag */}
+                <div className="absolute top-4 left-4">
+                  <span className="font-sans text-[11px] font-semibold text-white/90 uppercase tracking-wider bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/15">
                     {p.tag}
                   </span>
-                  <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white/80">
-                    <Icon className="w-4 h-4" />
-                  </div>
                 </div>
               </div>
 
-              {/* Card Body */}
-              <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+              {/* Pillar Content */}
+              <div className="p-7 sm:p-8 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2">
-                    {p.title}
-                  </h3>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2 rounded-xl bg-sky-500/10 border border-sky-400/30 text-sky-400">
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight font-sans">
+                      {p.title}
+                    </h3>
+                  </div>
 
-                  <p className="text-sky-300/90 text-sm font-serif italic mb-3">
+                  {/* Outcome statement */}
+                  <p className="text-sky-300 font-sans font-medium text-xs sm:text-sm mb-3">
                     &ldquo;{p.outcome}&rdquo;
                   </p>
 
-                  <p className="text-white/70 text-xs sm:text-sm leading-relaxed mb-5 font-sans">
+                  {/* Plain Language Summary */}
+                  <p className="text-white/70 text-xs sm:text-sm leading-relaxed mb-6 font-sans">
                     {p.summary}
                   </p>
                 </div>
 
-                {/* Expandable Breakdown Toggle */}
-                <div>
+                {/* Expandable Technical Scope */}
+                <div className="pt-4 border-t border-white/10">
                   <button
                     type="button"
                     onClick={() => togglePillar(p.id)}
-                    className="w-full py-2.5 px-4 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between text-xs font-mono text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+                    className="w-full flex items-center justify-between text-xs font-sans text-white/60 hover:text-white transition-colors py-1 font-medium"
                   >
-                    <span>{isExpanded ? 'Hide Specifications' : 'View Included Services'}</span>
-                    <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+                    <span>{isExpanded ? 'Hide Technical Inclusions' : 'View Technical Scope & Deliverables'}</span>
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform duration-300 ${
+                        isExpanded ? 'rotate-180 text-sky-400' : ''
+                      }`}
+                    />
                   </button>
 
                   <AnimatePresence>
@@ -193,10 +200,13 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenContactM
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="overflow-hidden pt-4 space-y-2.5"
+                        className="overflow-hidden pt-3 space-y-2"
                       >
                         {p.items.map((item) => (
-                          <div key={item} className="flex items-start gap-2 text-xs text-white/80 font-sans">
+                          <div
+                            key={item}
+                            className="flex items-start gap-2 text-xs text-white/80 font-sans"
+                          >
                             <CheckCircle2 className="w-3.5 h-3.5 text-sky-400 mt-0.5 shrink-0" />
                             <span>{item}</span>
                           </div>
@@ -205,15 +215,17 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenContactM
                     )}
                   </AnimatePresence>
 
-                  {/* Card Bottom Link */}
-                  <div className="pt-5 mt-5 border-t border-white/10 flex items-center justify-between text-xs font-mono">
-                    <span className="text-white/50">{p.packageLink}</span>
+                  {/* Quick Action Button */}
+                  <div className="mt-5 flex items-center justify-between">
+                    <span className="text-[11px] font-sans text-white/40">
+                      Mapped to {p.packageLink}
+                    </span>
                     <button
                       type="button"
                       onClick={() => onOpenContactModal(p.title)}
-                      className="text-sky-400 hover:text-sky-300 flex items-center gap-1 transition-colors"
+                      className="text-xs font-sans text-sky-400 hover:text-sky-300 font-semibold flex items-center gap-1 transition-colors"
                     >
-                      <span>Inquire</span>
+                      <span>Inquire Pillar</span>
                       <ArrowUpRight className="w-3 h-3" />
                     </button>
                   </div>

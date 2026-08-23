@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { ShieldCheck, Lock, Code2, Users, ChevronDown, Sparkles } from 'lucide-react';
+import { ShieldCheck, Lock, Code2, Users, ChevronDown } from 'lucide-react';
 
 export const TrustAndFaqSection: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -60,7 +60,7 @@ export const TrustAndFaqSection: React.FC = () => {
   return (
     <section id="faq" ref={ref} className="bg-black py-24 sm:py-32 px-4 sm:px-6 relative overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        {/* Trust Badges Grid */}
+        {/* Trust Badges Grid (Star icon removed) */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -68,8 +68,8 @@ export const TrustAndFaqSection: React.FC = () => {
           className="mb-20"
         >
           <div className="text-center sm:text-left mb-10">
-            <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-950/50 px-4 py-1.5 text-xs font-mono text-sky-300 mb-4">
-              <Sparkles className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-950/50 px-4 py-1.5 text-xs font-sans font-medium text-sky-300 mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
               <span>07 / TRUST &amp; CREDIBILITY CHARTER</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-normal text-white tracking-tight">
@@ -90,7 +90,7 @@ export const TrustAndFaqSection: React.FC = () => {
                     <div className="w-10 h-10 rounded-2xl bg-sky-500/10 border border-sky-400/30 flex items-center justify-center text-sky-400 mb-4">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <h3 className="text-lg font-bold text-white tracking-tight mb-2">{tp.title}</h3>
+                    <h3 className="text-lg font-bold text-white tracking-tight mb-2 font-sans">{tp.title}</h3>
                     <p className="text-xs sm:text-sm text-white/70 leading-relaxed font-sans">{tp.desc}</p>
                   </div>
                 </div>
@@ -102,7 +102,7 @@ export const TrustAndFaqSection: React.FC = () => {
         {/* FAQ Accordion */}
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
-            <p className="text-sky-400 text-xs font-mono tracking-widest uppercase mb-2">
+            <p className="text-sky-400 text-xs font-sans font-semibold tracking-wider uppercase mb-2">
               FREQUENTLY ANSWERED QUESTIONS
             </p>
             <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight font-sans">

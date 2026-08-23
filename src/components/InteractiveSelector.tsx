@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Layers, ArrowRight, CheckCircle2, RotateCcw, Sparkles } from 'lucide-react';
+import { Layers, ArrowRight, CheckCircle2, RotateCcw } from 'lucide-react';
 
 interface InteractiveSelectorProps {
   onSelectPackage: (packageName: string, details: string) => void;
@@ -69,10 +69,10 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
   return (
     <section id="selector" className="bg-black py-24 sm:py-32 px-4 sm:px-6 relative overflow-hidden">
       <div className="max-w-4xl mx-auto">
-        {/* Section Header */}
+        {/* Section Header (Star icon removed) */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-950/50 px-4 py-1.5 text-xs font-mono text-sky-300 mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-950/50 px-4 py-1.5 text-xs font-sans font-medium text-sky-300 mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
             <span>02 / INTERACTIVE DECISION TOOL</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-normal text-white tracking-tight">
@@ -87,7 +87,7 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
         <div className="liquid-glass-elevated rounded-3xl p-6 sm:p-10 border border-white/15 shadow-2xl relative">
           {/* Progress Dots */}
           <div className="flex items-center justify-between mb-8 pb-6 border-b border-white/10">
-            <div className="flex items-center gap-2 text-xs font-mono text-white/70">
+            <div className="flex items-center gap-2 text-xs font-sans text-white/70 font-medium">
               <Layers className="w-4 h-4 text-sky-400" />
               <span>Step {step} of 3</span>
             </div>
@@ -107,7 +107,7 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
               <button
                 type="button"
                 onClick={handleReset}
-                className="text-xs font-mono text-white/50 hover:text-white flex items-center gap-1 transition-colors"
+                className="text-xs font-sans text-white/50 hover:text-white flex items-center gap-1 transition-colors font-medium"
               >
                 <RotateCcw className="w-3 h-3" />
                 <span>Reset</span>
@@ -118,7 +118,7 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
           {/* Question 1: What do you need? */}
           {step === 1 && (
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 font-sans">
                 What type of product do you need to build?
               </h3>
               <p className="text-xs sm:text-sm text-white/60 mb-6 font-sans">
@@ -142,7 +142,7 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
                         : 'border-white/10 bg-white/5 text-white/70 hover:border-white/20'
                     }`}
                   >
-                    <div className="font-semibold text-sm sm:text-base text-white">{item.label}</div>
+                    <div className="font-semibold text-sm sm:text-base text-white font-sans">{item.label}</div>
                     <div className="text-xs text-white/50 mt-1 font-sans">{item.desc}</div>
                   </button>
                 ))}
@@ -162,7 +162,7 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
           {/* Question 2: Primary Focus / Key Requirement */}
           {step === 2 && (
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 font-sans">
                 What is your most critical feature requirement?
               </h3>
               <p className="text-xs sm:text-sm text-white/60 mb-6 font-sans">
@@ -186,7 +186,7 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
                         : 'border-white/10 bg-white/5 text-white/70 hover:border-white/20'
                     }`}
                   >
-                    <div className="font-semibold text-sm sm:text-base text-white">{item.label}</div>
+                    <div className="font-semibold text-sm sm:text-base text-white font-sans">{item.label}</div>
                     <div className="text-xs text-white/50 mt-1 font-sans">{item.desc}</div>
                   </button>
                 ))}
@@ -196,7 +196,7 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
                 <button
                   type="button"
                   onClick={() => setStep(1)}
-                  className="px-5 py-3 rounded-full border border-white/15 text-xs font-mono text-white/70 hover:text-white"
+                  className="px-5 py-3 rounded-full border border-white/15 text-xs font-sans font-medium text-white/70 hover:text-white"
                 >
                   Back
                 </button>
@@ -215,7 +215,7 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
           {/* Question 3: Target Timeline & Output */}
           {step === 3 && (
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 font-sans">
                 What is your target launch timeline?
               </h3>
               <p className="text-xs sm:text-sm text-white/60 mb-6 font-sans">
@@ -239,8 +239,8 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
                         : 'border-white/10 bg-white/5 text-white/70 hover:border-white/20'
                     }`}
                   >
-                    <div className="font-semibold text-xs sm:text-sm text-white">{item.label}</div>
-                    <div className="text-[10px] text-sky-400 mt-1 font-mono">{item.note}</div>
+                    <div className="font-semibold text-xs sm:text-sm text-white font-sans">{item.label}</div>
+                    <div className="text-[11px] text-sky-400 mt-1 font-sans font-medium">{item.note}</div>
                   </button>
                 ))}
               </div>
@@ -249,12 +249,12 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
               <div className="rounded-2xl bg-sky-950/30 border border-sky-400/30 p-6 mb-6 relative overflow-hidden">
                 <div className="flex items-center gap-2 mb-2">
                   <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0" />
-                  <span className="font-mono text-xs text-sky-300 uppercase tracking-wider">
+                  <span className="font-sans text-xs font-semibold text-sky-300 uppercase tracking-wider">
                     {rec.badge}
                   </span>
                 </div>
 
-                <h4 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2">
+                <h4 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2 font-sans">
                   {rec.title}
                 </h4>
 
@@ -262,9 +262,9 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
                   {rec.rationale}
                 </p>
 
-                <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-white/60">
-                  <span>✦ Estimated Delivery: {rec.timelineEst}</span>
-                  <span className="text-sky-300">✦ Includes 1-Month Free Maintenance</span>
+                <div className="flex flex-wrap items-center gap-4 text-xs font-sans text-white/70 font-medium">
+                  <span>Estimated Delivery: {rec.timelineEst}</span>
+                  <span className="text-sky-300">• Includes 1-Month Free Maintenance</span>
                 </div>
               </div>
 
@@ -286,7 +286,7 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="px-5 py-3 rounded-full border border-white/15 text-xs font-mono text-white/70 hover:text-white"
+                  className="px-5 py-3 rounded-full border border-white/15 text-xs font-sans font-medium text-white/70 hover:text-white"
                 >
                   Start Over
                 </button>

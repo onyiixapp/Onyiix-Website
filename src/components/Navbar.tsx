@@ -26,8 +26,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
             </span>
           </a>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center gap-6 ml-8 text-xs font-medium text-white/75">
+          {/* Desktop Nav Links (About removed from header as requested) */}
+          <div className="hidden lg:flex items-center gap-6 ml-8 text-xs font-medium text-white/75 font-sans">
             <a href="#services" className="hover:text-white transition-colors">
               Services
             </a>
@@ -49,13 +49,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
             <a href="#faq" className="hover:text-white transition-colors">
               FAQ
             </a>
-            <a href="#about" className="hover:text-white transition-colors">
-              About
-            </a>
           </div>
         </div>
 
-        {/* Right CTA (Unique & High-Converting) */}
+        {/* Right CTA */}
         <div className="hidden sm:flex items-center gap-3">
           <button
             type="button"
@@ -97,7 +94,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
             exit={{ opacity: 0, y: -10 }}
             className="max-w-md mx-auto mt-3 liquid-glass-elevated rounded-2xl p-6 pointer-events-auto lg:hidden space-y-4 border border-white/15 backdrop-blur-2xl"
           >
-            <div className="flex flex-col space-y-3 text-sm font-medium text-white/90">
+            <div className="flex flex-col space-y-3 text-sm font-medium text-white/90 font-sans">
               <a
                 href="#services"
                 onClick={() => setMobileMenuOpen(false)}
@@ -146,13 +143,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
                 className="hover:text-white py-1"
               >
                 07 / FAQ &amp; Code Ownership
-              </a>
-              <a
-                href="#about"
-                onClick={() => setMobileMenuOpen(false)}
-                className="hover:text-white py-1"
-              >
-                08 / About ASME Studio &amp; Founders
               </a>
             </div>
 

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Check, ArrowRight, Sparkles, ShieldCheck } from 'lucide-react';
+import { Check, ArrowRight, ShieldCheck } from 'lucide-react';
 
 interface PackagesSectionProps {
   onOpenContactModal: (packageName?: string) => void;
@@ -113,7 +113,7 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({ onOpenContactM
   return (
     <section id="packages" ref={ref} className="bg-black py-24 sm:py-32 px-4 sm:px-6 relative overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
+        {/* Section Header (Star icon removed) */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -122,7 +122,7 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({ onOpenContactM
         >
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-950/50 px-4 py-1.5 text-xs font-sans font-medium text-sky-300 mb-4">
-              <Sparkles className="w-3.5 h-3.5" />
+              <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
               <span>05 / PACKAGES &amp; OFFERS</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-normal text-white tracking-tight">
@@ -161,9 +161,9 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({ onOpenContactM
           </div>
         </motion.div>
 
-        {/* View 1: 4 Cards Grid */}
+        {/* View 1: 4 Cards Grid (Fixed badge clipping on Tier 2) */}
         {activeTab === 'cards' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch pt-3">
             {packages.map((pkg, idx) => (
               <motion.div
                 key={pkg.name}
@@ -172,20 +172,23 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({ onOpenContactM
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 className={`liquid-glass rounded-3xl p-6 sm:p-7 border flex flex-col justify-between transition-all duration-300 relative ${
                   pkg.popular
-                    ? 'border-sky-400/60 bg-sky-950/20 shadow-2xl shadow-sky-950/50'
+                    ? 'border-sky-400/60 bg-sky-950/25 shadow-2xl shadow-sky-950/50 ring-1 ring-sky-400/30'
                     : 'border-white/10 hover:border-white/20'
                 }`}
               >
-                {pkg.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-sky-400 text-black font-sans text-[10px] uppercase font-bold px-3 py-0.5 rounded-full shadow-lg">
-                    RECOMMENDED
-                  </div>
-                )}
-
                 <div>
-                  <div className="font-sans text-[11px] text-sky-400 font-semibold tracking-wider uppercase mb-1">
-                    {pkg.tag}
+                  {/* Top Badge Row (Clean inside placement, never cut off) */}
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <span className="font-sans text-[11px] text-sky-400 font-semibold tracking-wider uppercase">
+                      {pkg.tag}
+                    </span>
+                    {pkg.popular && (
+                      <span className="bg-sky-400 text-black font-sans text-[10px] uppercase font-bold px-2.5 py-0.5 rounded-full shadow-sm">
+                        Recommended
+                      </span>
+                    )}
                   </div>
+
                   <h3 className="text-2xl font-bold text-white tracking-tight">{pkg.name}</h3>
                   <div className="text-xs text-white/50 mb-3 font-sans">{pkg.subtitle}</div>
                   <p className="text-white/70 text-xs leading-relaxed mb-6 font-sans">{pkg.desc}</p>
@@ -200,7 +203,7 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({ onOpenContactM
                     ))}
                   </div>
 
-                  {/* Clean Sans-Serif Attribute Line Items (Image 4 fix) */}
+                  {/* Clean Sans-Serif Attribute Line Items */}
                   <div className="py-4 space-y-2.5 text-xs font-sans text-white/70">
                     <div className="flex justify-between items-center">
                       <span className="text-white/50">Timeline:</span>

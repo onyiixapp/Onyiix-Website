@@ -9,21 +9,28 @@ import { ProjectsSection } from './components/ProjectsSection';
 import { PackagesSection } from './components/PackagesSection';
 import { MaintenanceSection } from './components/MaintenanceSection';
 import { TrustAndFaqSection } from './components/TrustAndFaqSection';
-import { AboutSection } from './components/AboutSection';
 import { Footer } from './components/Footer';
 import { ContactModal } from './components/ContactModal';
+import { AboutPage } from './components/AboutPage';
+import { CareersPage } from './components/CareersPage';
 import { NotFoundPage } from './components/NotFoundPage';
 
 export function App() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [modalPrefillService, setModalPrefillService] = useState('');
   const [modalPrefillDetails, setModalPrefillDetails] = useState('');
-  const [is404, setIs404] = useState(false);
+  const [currentRoute, setCurrentRoute] = useState<'home' | 'about' | 'careers' | '404'>('home');
 
   useEffect(() => {
-    const path = window.location.pathname;
-    if (path !== '/' && path !== '/index.html' && path !== '') {
-      setIs404(true);
+    const path = window.location.pathname.toLowerCase();
+    if (path === '/' || path === '/index.html' || path === '') {
+      setCurrentRoute('home');
+    } else if (path === '/about' || path === '/about/') {
+      setCurrentRoute('about');
+    } else if (path === '/careers' || path === '/careers/') {
+      setCurrentRoute('careers');
+    } else {
+      setCurrentRoute('404');
     }
   }, []);
 
@@ -33,10 +40,22 @@ export function App() {
     setIsContactModalOpen(true);
   };
 
-  if (is404) {
+  // Route: About Us Dedicated Page
+  if (currentRoute === 'about') {
+    return <AboutPage />;
+  }
+
+  // Route: Careers Dedicated Page
+  if (currentRoute === 'careers') {
+    return <CareersPage />;
+  }
+
+  // Route: 404 / NotFound Page
+  if (currentRoute === '404') {
     return <NotFoundPage />;
   }
 
+  // Route: Home Page
   return (
     <div className="min-h-screen bg-ambient-blue text-white selection:bg-sky-500/20 selection:text-white relative no-scrollbar">
       {/* Fixed Floating Liquid-Glass Navbar on Scroll */}
@@ -72,12 +91,9 @@ export function App() {
 
         {/* Section 9: Trust Charter, Code Ownership & Interactive FAQ */}
         <TrustAndFaqSection />
-
-        {/* Section 10: About Us & Founders (Maaz & Suman, Academic Genesis) */}
-        <AboutSection onOpenContactModal={() => handleOpenContactModal('Founder Consultation')} />
       </main>
 
-      {/* Upgraded Footer */}
+      {/* Upgraded Footer (Housing /about and /careers links) */}
       <Footer onOpenContactModal={() => handleOpenContactModal()} />
 
       {/* Interactive Contact & Project Brief Modal */}

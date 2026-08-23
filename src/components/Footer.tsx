@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
-import { ArrowUpRight, Globe, Mail, ShieldCheck, Briefcase, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { ArrowUpRight, Globe, Mail, ShieldCheck, Briefcase, Users } from 'lucide-react';
 
 interface FooterProps {
   onOpenContactModal: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onOpenContactModal }) => {
-  const [showCareersModal, setShowCareersModal] = useState(false);
-
   return (
     <footer className="bg-black/60 border-t border-white/10 pt-20 pb-14 px-4 sm:px-6 relative overflow-hidden backdrop-blur-xl">
       <div className="max-w-6xl mx-auto">
@@ -34,7 +31,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContactModal }) => {
           </button>
         </div>
 
-        {/* 3-Column Info Grid (Image 1 fix: clean modern sans-serif typography) */}
+        {/* 3-Column Info Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 py-12 border-b border-white/10 text-xs font-sans">
           {/* Col 1: Brand & Icon Action Hub */}
           <div className="md:col-span-5 space-y-4">
@@ -88,7 +85,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContactModal }) => {
             </div>
           </div>
 
-          {/* Col 2: Navigation Links with Careers Tab */}
+          {/* Col 2: Navigation Links with /about & /careers dedicated routes */}
           <div className="md:col-span-3 space-y-3">
             <p className="text-xs uppercase tracking-wider text-white font-bold font-sans">
               Navigation
@@ -124,21 +121,25 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContactModal }) => {
                   06 / 1-Month Free Maintenance
                 </a>
               </li>
+              {/* Dedicated /about tab (Footer only) */}
               <li>
-                <a href="#about" className="hover:text-white transition-colors">
-                  07 / About Studio
+                <a
+                  href="/about"
+                  className="hover:text-sky-300 text-white/90 transition-colors flex items-center gap-1.5 font-medium"
+                >
+                  <Users className="w-3 h-3 text-sky-400" />
+                  <span>07 / About Studio &amp; Founders</span>
                 </a>
               </li>
-              {/* Careers Tab (Added only in footer as requested) */}
+              {/* Dedicated /careers tab (Footer only) */}
               <li>
-                <button
-                  type="button"
-                  onClick={() => setShowCareersModal(true)}
-                  className="hover:text-sky-300 text-white/80 transition-colors flex items-center gap-1.5"
+                <a
+                  href="/careers"
+                  className="hover:text-sky-300 text-white/90 transition-colors flex items-center gap-1.5 font-medium"
                 >
                   <Briefcase className="w-3 h-3 text-sky-400" />
                   <span>08 / Careers</span>
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -170,59 +171,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContactModal }) => {
           </div>
         </div>
       </div>
-
-      {/* Careers Modal */}
-      <AnimatePresence>
-        {showCareersModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowCareersModal(false)}
-              className="fixed inset-0 bg-black/80 backdrop-blur-md"
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="relative z-10 w-full max-w-md liquid-glass-elevated rounded-3xl p-7 border border-white/15 shadow-2xl text-center"
-            >
-              <button
-                type="button"
-                onClick={() => setShowCareersModal(false)}
-                className="absolute top-4 right-4 p-2 text-white/60 hover:text-white"
-              >
-                <X className="w-4 h-4" />
-              </button>
-
-              <div className="w-12 h-12 rounded-full bg-sky-500/10 border border-sky-400/30 flex items-center justify-center mx-auto mb-4 text-sky-400">
-                <Briefcase className="w-6 h-6" />
-              </div>
-
-              <h3 className="text-xl font-bold text-white mb-2 font-sans">
-                Careers at ASME Studio
-              </h3>
-
-              <div className="inline-block bg-white/5 border border-white/10 rounded-full px-3 py-1 text-xs text-white/60 mb-4 font-sans">
-                No active openings currently
-              </div>
-
-              <p className="text-xs sm:text-sm text-white/70 leading-relaxed mb-6 font-sans">
-                We are currently fully staffed with our core architectural team. However, exceptional designers and engineers can always forward their portfolio to:
-              </p>
-
-              <a
-                href="mailto:careers@asme.studio"
-                className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full bg-white text-black font-semibold text-xs hover:scale-105 transition-all shadow-lg"
-              >
-                <Mail className="w-3.5 h-3.5" />
-                <span>careers@asme.studio</span>
-              </a>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </footer>
   );
 };
