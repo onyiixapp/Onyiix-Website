@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, Mail, Phone, MapPin, Send, CheckCircle2, MessageSquare } from 'lucide-react';
+import { ArrowRight, Mail, MapPin, CheckCircle2, Globe } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
   const [name, setName] = useState('');
@@ -21,25 +21,25 @@ export const ContactSection: React.FC = () => {
   return (
     <section
       id="contact"
-      className="bg-[#F5F5F5] pt-16 sm:pt-20 lg:pt-28 pb-16 sm:pb-20 lg:pb-28"
+      className="bg-[#F5F5F5] pt-20 sm:pt-28 pb-20 sm:pb-32 overflow-hidden relative"
     >
-      <div className="max-w-[1440px] mx-auto">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
         {/* Badge row */}
-        <div className="px-5 sm:px-8 lg:px-12 flex items-center gap-3 mb-6 sm:mb-8">
-          <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gray-900 text-white text-[11px] sm:text-[12px] font-semibold flex items-center justify-center">
+        <div className="flex items-center gap-3 mb-6 sm:mb-8">
+          <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gray-900 text-white text-[11px] sm:text-[12px] font-semibold flex items-center justify-center shadow-sm">
             8
           </div>
-          <div className="text-[12px] sm:text-[13px] font-medium border border-gray-300 rounded-full px-3 sm:px-4 py-1 sm:py-1.5 text-gray-900">
+          <div className="text-[12px] sm:text-[13px] font-medium border border-gray-300 bg-white rounded-full px-3.5 sm:px-4 py-1 sm:py-1.5 text-gray-900 shadow-sm">
             Connect With Us
           </div>
         </div>
 
         {/* Heading H2 */}
-        <h2 className="text-[clamp(1.75rem,7vw,4.2rem)] sm:text-[clamp(2.5rem,5vw,4.2rem)] font-medium leading-[1.08] tracking-[-0.03em] text-gray-900 mb-10 sm:mb-14 lg:mb-16 px-5 sm:px-8 lg:px-12 max-w-5xl">
+        <h2 className="text-[clamp(2rem,5vw,3.8rem)] font-medium leading-[1.08] tracking-[-0.03em] text-gray-900 mb-10 sm:mb-14 lg:mb-16 max-w-5xl">
           Let&rsquo;s engineer something extraordinary.
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 px-5 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Left Column: Direct Founder Contacts & Channels */}
           <div className="lg:col-span-5 space-y-6">
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-sm space-y-6">
@@ -56,49 +56,68 @@ export const ContactSection: React.FC = () => {
                 </p>
               </div>
 
+              {/* Direct Founder Email Contacts */}
               <div className="space-y-3 text-xs sm:text-sm">
-                <a
-                  href="mailto:maazmohammed112@gmail.com"
-                  className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors text-gray-800"
-                >
-                  <Mail className="w-4 h-4 text-[#F26522] shrink-0" />
-                  <span>maazmohammed112@gmail.com</span>
-                </a>
-
-                <a
-                  href="tel:+918884949216"
-                  className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors text-gray-800"
-                >
-                  <Phone className="w-4 h-4 text-[#F26522] shrink-0" />
-                  <span>+91 88849 49216</span>
-                </a>
-              </div>
-
-              {/* Direct Instant Channels */}
-              <div className="pt-4 border-t border-gray-100">
-                <span className="text-xs font-semibold text-gray-500 block mb-3">
-                  Direct Founder Chat Channels
-                </span>
-                <div className="flex flex-wrap gap-2">
+                <div className="p-4 rounded-2xl bg-gray-50 border border-gray-200/70">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="font-bold text-gray-900">Mohammed Maaz A</span>
+                    <span className="text-[10px] bg-orange-50 text-[#F26522] px-2 py-0.5 rounded-md font-semibold">
+                      Principal Architect
+                    </span>
+                  </div>
                   <a
-                    href="https://wa.me/918884949216"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold hover:bg-emerald-100 transition-colors border border-emerald-200"
+                    href="mailto:maazmohammed112@gmail.com"
+                    className="flex items-center gap-2 text-gray-600 hover:text-black transition-colors"
                   >
-                    <MessageSquare className="w-3.5 h-3.5" />
-                    <span>WhatsApp Founder</span>
+                    <Mail className="w-3.5 h-3.5 text-[#F26522]" />
+                    <span>maazmohammed112@gmail.com</span>
                   </a>
+                  <div className="flex items-center gap-3 mt-2.5 pt-2 border-t border-gray-200/50 text-xs">
+                    <a
+                      href="https://maazprofile.tech"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-500 hover:text-black flex items-center gap-1"
+                    >
+                      <Globe className="w-3 h-3" />
+                      <span>Portfolio</span>
+                    </a>
+                    <span>•</span>
+                    <a
+                      href="https://linkedin.com/in/mohammed-maaz-a-0aa730217/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-500 hover:text-black"
+                    >
+                      LinkedIn
+                    </a>
+                  </div>
+                </div>
 
+                <div className="p-4 rounded-2xl bg-gray-50 border border-gray-200/70">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="font-bold text-gray-900">Suman Kumar Singh</span>
+                    <span className="text-[10px] bg-orange-50 text-[#F26522] px-2 py-0.5 rounded-md font-semibold">
+                      Systems Engineer
+                    </span>
+                  </div>
                   <a
-                    href="https://t.me/maazmohammed"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-50 text-sky-700 text-xs font-semibold hover:bg-sky-100 transition-colors border border-sky-200"
+                    href="mailto:sumansingh.np13@gmail.com"
+                    className="flex items-center gap-2 text-gray-600 hover:text-black transition-colors"
                   >
-                    <Send className="w-3.5 h-3.5" />
-                    <span>Telegram Channel</span>
+                    <Mail className="w-3.5 h-3.5 text-[#F26522]" />
+                    <span>sumansingh.np13@gmail.com</span>
                   </a>
+                  <div className="flex items-center gap-3 mt-2.5 pt-2 border-t border-gray-200/50 text-xs">
+                    <a
+                      href="https://github.com/sumansingh13"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-500 hover:text-black flex items-center gap-1"
+                    >
+                      <span>GitHub: @sumansingh13</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

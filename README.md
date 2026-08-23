@@ -20,20 +20,21 @@ ASME Studio designs and delivers high-converting CMS websites, multi-tenant SaaS
 │                        ASME STUDIO PLATFORM                            │
 ├────────────────────────────────────────────────────────────────────────┤
 │  🔮 Section 1: Hero (Full Viewport Height)                             │
-│     - Shaders stack (Swirl, ChromaFlow #ff5f03, FlutedGlass, Grain)    │
-│     - Pill-shaped floating navbar with Live Bengaluru Time             │
-│     - Dynamic text-roll CTA button + 1-Month Free Maintenance badge    │
+│     - Shaders stack (Swirl, ChromaFlow #dc2626, FlutedGlass, Grain)    │
+│     - Floating pill navbar + Live Bengaluru Time (Asia/Kolkata)        │
+│     - Non-overlapping animated vertical text rotator + red ASME badge  │
+│     - 1-Month Free Maintenance SLA & Certified Partner badge           │
 │                                                                        │
-│  🏛️ Section 2: About & Founders (White Background)                     │
+│  🏛️ Section 2: About (White Background)                                │
 │     - Numbered badge "1" + "Introducing ASME Studio"                   │
-│     - 2024 academic genesis story & credentials of Maaz & Suman        │
-│     - Responsive 3-column desktop layout + founder direct channels     │
+│     - Studio philosophy & performance architecture                     │
 │                                                                        │
 │  🎬 Section 3: Case Studies & Projects (Light Gray #F5F5F5)            │
 │     - Numbered badge "2" + "Featured client work"                      │
-│     - Narrativ (3D showcase video) & Luminar (Rebrand video)           │
 │     - primkart.app (Live retail & warehouse e-commerce, Bengaluru)     │
 │     - Workshop Management SaaS (Telemetry & repair cards, France)      │
+│     - Apex Engine Portal & NeuralFlow Automation                       │
+│     - Luxury UI fallback cards on image load issues                    │
 │                                                                        │
 │  ⚙️ Section 4: 4-Pillar Services Architecture                          │
 │     - CMS & WordPress Websites, SaaS Platforms, Full-Stack, Ongoing    │
@@ -48,15 +49,15 @@ ASME Studio designs and delivers high-converting CMS websites, multi-tenant SaaS
 │     - Starter, Business (Most Popular), Professional, SaaS / Custom    │
 │     - 1-Month Free Maintenance SLA & 30-Day Zero-Cost Bug Warranty     │
 │                                                                        │
-│  🛡️ Section 8: Trust Charter & FAQ Accordion                           │
-│     - 100% Code Ownership, direct founder access, interactive FAQs     │
+│  🛡️ Section 8: Centered Trust Charter & FAQ Accordion                  │
+│     - Centered layout, 100% Code Ownership, direct founder access      │
 │                                                                        │
-│  📬 Section 9: Connect With Us & Intake                                │
-│     - Scoped brief intake, WhatsApp & Telegram founder channels        │
+│  📬 Section 9: Connect With Us & Direct Email Intake                   │
+│     - Direct email to Maaz & Suman, no phone/whatsapp/telegram spam    │
 │                                                                        │
 │  🌐 Dedicated Routes                                                   │
-│     - /about (About Studio & Founders)                                 │
-│     - /careers (Careers & Speculative Portfolio intake)                │
+│     - /about (Detailed profiles for Mohammed Maaz A & Suman Singh)     │
+│     - /careers (Careers with "No Openings" notice)                     │
 │     - /terms (Terms of Service)                                        │
 │     - /privacy (Privacy Policy)                                        │
 │     - /sitemap (Visual HTML Sitemap)                                   │
@@ -67,23 +68,12 @@ ASME Studio designs and delivers high-converting CMS websites, multi-tenant SaaS
 
 ---
 
-## 🛠️ Technology Stack
-
-- **Framework**: React 18 + TypeScript + Vite
-- **Styling**: Tailwind CSS 3.4
-- **Shader Effects Engine**: `shaders` (`shaders/react` - `Swirl`, `ChromaFlow`, `FlutedGlass`, `FilmGrain`)
-- **Icons**: `lucide-react`
-- **Animations**: Framer Motion 12
-- **SEO & Geo**: Schema.org JSON-LD structured data, Geo meta coordinates for Bengaluru, India (`12.9716° N, 77.5946° E`), XML sitemap (`/sitemap.xml`), and `robots.txt`.
-
----
-
 ## 👨‍💻 Founders & Leadership
 
 | Founder | Role | Background & Specialization | Contact |
 | :--- | :--- | :--- | :--- |
 | **Mohammed Maaz A** | Co-Founder & Principal Architect | Bengaluru, India • BCA, MCA (Pursuing) • Analyst @ Cognizant • Full-Stack Next.js, Distributed DBs, AI Token Streaming | [Email](mailto:maazmohammed112@gmail.com) • [LinkedIn](https://linkedin.com/in/mohammed-maaz-a-0aa730217/) • [Portfolio](https://maazprofile.tech) |
-| **Suman Kumar Singh** | Co-Founder & Systems Engineer | Delhi, India • BCA Graduate • High-Availability Cloud Systems, Headless Commerce, Edge Caching | [LinkedIn](https://linkedin.com) |
+| **Suman Kumar Singh** | Co-Founder & Systems Engineer | Delhi, India • BCA Graduate • High-Availability Cloud Systems, Headless Commerce, Edge Caching | [Email](mailto:sumansingh.np13@gmail.com) • [GitHub](https://github.com/sumansingh13) |
 
 ---
 
@@ -103,15 +93,6 @@ npm run dev
 # 4. Build for production
 npm run build
 ```
-
----
-
-## 📜 Guarantees & SLA Commitments
-
-1. **1-Month Free Website Maintenance SLA**: Zero additional cost for 30 days post-launch.
-2. **30-Day Zero-Cost Bug Warranty**: Rapid diagnosis and resolution of any scoped defects.
-3. **100% Full Code Ownership**: Zero proprietary locks; all intellectual property transferred upon project handover.
-4. **Sub-Second Performance**: Engineered for ≤ 2.5s Largest Contentful Paint (LCP).
 
 ---
 

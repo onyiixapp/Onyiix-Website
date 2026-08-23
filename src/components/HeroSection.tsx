@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Shader, Swirl, ChromaFlow, FlutedGlass, FilmGrain } from 'shaders/react';
-import { Clock, ArrowRight, Menu, X, ShieldCheck } from 'lucide-react';
+import { Clock, ArrowRight, Menu, X, ArrowUpRight, ShieldCheck, Zap, Globe2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface HeroSectionProps {
@@ -8,9 +8,17 @@ interface HeroSectionProps {
   onOpenProject: () => void;
 }
 
+const CYCLING_WORDS = [
+  'Websites',
+  'SaaS Platforms',
+  'AI Automations',
+  'Digital Systems',
+];
+
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onOpenProject }) => {
   const [bengaluruTime, setBengaluruTime] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [wordIndex, setWordIndex] = useState(0);
 
   // Live Bengaluru Clock
   useEffect(() => {
@@ -29,18 +37,29 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onOpenP
     return () => clearInterval(interval);
   }, []);
 
+  // Smooth rotating word timer
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % CYCLING_WORDS.length);
+    }, 2400);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section className="min-h-screen relative bg-[#EFEFEF] flex flex-col justify-between overflow-hidden">
-      {/* SECTION 1 SHADER BACKGROUND OVERLAY */}
-      <div className="absolute inset-0 z-10 pointer-events-none w-full h-full">
+    <section
+      id="home"
+      className="min-h-[96vh] relative bg-white flex flex-col justify-between overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-24"
+    >
+      {/* FULL-SCREEN SHADER BACKGROUND OVERLAY */}
+      <div className="absolute inset-0 z-10 pointer-events-none w-full h-full opacity-90">
         <Shader className="w-full h-full">
-          <Swirl colorA="#ffffff" colorB="#f0f0f0" detail={1.7} />
+          <Swirl colorA="#ffffff" colorB="#f8f8f8" detail={1.7} />
           <ChromaFlow
             baseColor="#ffffff"
-            downColor="#ff5f03"
-            leftColor="#ff5f03"
-            rightColor="#ff5f03"
-            upColor="#ff5f03"
+            downColor="#dc2626"
+            leftColor="#dc2626"
+            rightColor="#dc2626"
+            upColor="#dc2626"
             momentum={13}
             radius={3.5}
           />
@@ -56,99 +75,107 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onOpenP
             softness={1}
             speed={0.15}
           />
-          <FilmGrain strength={0.05} />
+          <FilmGrain strength={0.04} />
         </Shader>
       </div>
 
-      {/* NAVIGATION (z-20, relative) */}
-      <div className="max-w-[1440px] w-full mx-auto p-2 sm:p-3 relative z-20">
-        <nav className="bg-white rounded-full p-[5px] flex items-center justify-between shadow-sm">
-          {/* LEFT: Logo + Nav Links */}
+      {/* FLOATING PILL NAVBAR (z-40, fixed) */}
+      <header className="fixed top-0 left-0 right-0 z-40 p-3 sm:p-4 pointer-events-none">
+        <div className="max-w-[1440px] w-full mx-auto flex items-center justify-between pointer-events-auto">
+          {/* LEFT: Logo */}
           <div className="flex items-center">
-            {/* Dark Circle Logo "AS" */}
-            <a
-              href="/"
-              className="w-9 h-9 sm:w-10 sm:h-10 bg-gray-900 rounded-full flex items-center justify-center transition-transform duration-300 hover:scale-105"
-            >
-              <span className="text-[10px] sm:text-[11px] font-bold tracking-tight text-white">
+            <a href="/" className="flex items-center gap-2 group">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 bg-red-600 rounded-xl flex items-center justify-center text-white font-extrabold text-xs shadow-md group-hover:scale-105 transition-transform">
                 AS
+              </div>
+              <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-neutral-950">
+                ASME
               </span>
             </a>
+          </div>
 
-            {/* Nav Links (hidden on mobile, shown md+) */}
-            <div className="hidden md:flex items-center gap-6 ml-4 sm:ml-6">
+          {/* CENTER: Floating Pill Navigation (md+) */}
+          <div className="hidden md:flex items-center">
+            <nav className="flex items-center space-x-1 rounded-full p-1.5 shadow-lg bg-white/95 backdrop-blur-md border border-neutral-200/80">
               {[
-                { label: 'Projects', href: '#projects' },
+                { label: 'Work', href: '#projects' },
                 { label: 'Services', href: '#services' },
                 { label: 'Selector', href: '#selector' },
                 { label: 'Process', href: '#process' },
                 { label: 'Packages', href: '#packages' },
-                { label: 'Studio', href: '#studio' },
-                { label: 'Connect', href: '#contact' },
+                { label: 'FAQs', href: '#faqs' },
+                { label: 'Contact', href: '#contact' },
               ].map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
-                  className="text-[14px] text-gray-900 hover:text-gray-500 transition-colors duration-300 font-medium"
+                  className="text-xs sm:text-sm font-semibold transition-colors px-4 sm:px-5 py-2 rounded-full text-neutral-800 hover:text-red-600 hover:bg-neutral-50"
                 >
                   {item.label}
                 </a>
               ))}
-            </div>
+            </nav>
           </div>
 
-          {/* RIGHT (hidden on mobile, shown md+) */}
-          <div className="hidden md:flex items-center gap-4 lg:gap-6">
-            <span className="text-[13px] text-gray-600 hidden lg:inline-block font-normal">
-              Taking on projects for Q1 2026
-            </span>
-
-            {/* Live Bengaluru Time */}
-            <div className="flex items-center gap-1.5 text-[13px] text-gray-600 font-normal">
-              <Clock className="w-3.5 h-3.5 text-gray-600 stroke-[2]" />
-              <span>{bengaluruTime ? `${bengaluruTime} in Bengaluru` : 'Bengaluru, India'}</span>
+          {/* RIGHT: Live Clock + Social Links + Inquire Button */}
+          <div className="hidden md:flex items-center gap-4">
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-600 bg-white/90 backdrop-blur-md px-3.5 py-2 rounded-full border border-neutral-200/80 shadow-sm">
+              <Clock className="w-3.5 h-3.5 text-red-600" />
+              <span>{bengaluruTime ? `${bengaluruTime} IST` : 'Bengaluru'}</span>
             </div>
 
-            {/* CTA Button: Book a strategy call with Text-Roll Animation */}
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="text-xs font-bold text-neutral-800 hover:text-red-600 transition-colors uppercase tracking-wider"
+              href="https://linkedin.com/in/mohammed-maaz-a-0aa730217/"
+            >
+              Ln
+            </a>
+
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Portfolio"
+              className="text-xs font-bold text-neutral-800 hover:text-red-600 transition-colors uppercase tracking-wider"
+              href="https://maazprofile.tech"
+            >
+              Pf
+            </a>
+
             <button
               type="button"
               onClick={onOpenBooking}
-              className="bg-gray-900 text-white text-[13px] font-medium rounded-full pl-5 pr-2 py-2 flex items-center gap-2 group cursor-pointer shadow-sm hover:bg-gray-800 transition-colors"
+              className="bg-neutral-950 text-white text-xs font-bold px-4 py-2.5 rounded-full hover:bg-red-600 transition-all flex items-center gap-1.5 shadow-sm cursor-pointer"
             >
-              <div className="overflow-hidden h-[20px] flex flex-col justify-start">
-                <span className="transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-translate-y-full">
-                  Book a strategy call
-                </span>
-                <span className="transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-translate-y-full">
-                  Book a strategy call
-                </span>
-              </div>
-
-              <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-rotate-45">
-                <ArrowRight className="w-3.5 h-3.5 text-gray-900 stroke-[2.5]" />
-              </div>
+              <span>Inquire</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
           {/* MOBILE TOGGLE (md:hidden) */}
-          <div className="md:hidden flex items-center pr-1">
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              type="button"
+              onClick={onOpenBooking}
+              className="bg-neutral-950 text-white text-xs font-bold px-3 py-1.5 rounded-full"
+            >
+              Inquire
+            </button>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="bg-gray-900 text-white rounded-full p-2.5 flex items-center justify-center transition-colors"
+              className="bg-white text-neutral-950 rounded-full p-2 border border-neutral-200 shadow-sm"
               aria-label="Toggle Menu"
             >
-              {mobileMenuOpen ? (
-                <X className="w-4 h-4 text-white" />
-              ) : (
-                <Menu className="w-4 h-4 text-white" />
-              )}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
-        </nav>
-      </div>
+        </div>
+      </header>
 
-      {/* MOBILE MENU OVERLAY (Fixed inset-0, z-50) */}
+      {/* MOBILE MENU OVERLAY */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <div className="fixed inset-0 z-50 flex flex-col justify-end">
@@ -164,121 +191,172 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onOpenP
               initial={{ y: '100%' }}
               animate={{ y: 0 }}
               exit={{ y: '100%' }}
-              transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
-              className="relative z-10 bg-white rounded-2xl mx-3 mb-3 p-6 sm:p-8 flex flex-col gap-6 shadow-2xl"
+              transition={{ duration: 0.45, ease: [0.32, 0.72, 0, 1] }}
+              className="relative z-10 bg-white rounded-3xl mx-3 mb-3 p-6 sm:p-8 flex flex-col gap-6 shadow-2xl"
             >
-              {/* Close Button Header */}
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">
-                  <Clock className="w-3.5 h-3.5 text-gray-700" />
-                  <span>{bengaluruTime ? `${bengaluruTime} in Bengaluru` : 'Bengaluru'}</span>
-                  <span>•</span>
-                  <span>Q1 2026</span>
+                <div className="flex items-center gap-2 text-xs font-semibold text-neutral-700 bg-neutral-100 px-3 py-1.5 rounded-full">
+                  <Clock className="w-3.5 h-3.5 text-red-600" />
+                  <span>{bengaluruTime ? `${bengaluruTime} Bengaluru` : 'Bengaluru'}</span>
                 </div>
 
                 <button
                   type="button"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-2 rounded-full bg-gray-100 text-gray-900"
+                  className="p-2 rounded-full bg-neutral-100 text-neutral-900"
                 >
                   <X className="w-4 h-4" />
                 </button>
               </div>
 
-              {/* Large Nav Links */}
-              <div className="flex flex-col gap-3 py-2 text-[26px] sm:text-[30px] font-medium text-gray-900">
+              <div className="flex flex-col gap-3 py-2 text-2xl font-bold text-neutral-900">
                 {[
-                  { label: 'Projects', href: '#projects' },
+                  { label: 'Work', href: '#projects' },
                   { label: 'Services', href: '#services' },
                   { label: 'Selector', href: '#selector' },
                   { label: 'Process', href: '#process' },
                   { label: 'Packages', href: '#packages' },
-                  { label: 'Studio', href: '#studio' },
+                  { label: 'FAQs', href: '#faqs' },
                   { label: 'Contact', href: '#contact' },
                 ].map((item) => (
                   <a
                     key={item.label}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="hover:text-gray-500 transition-colors"
+                    className="hover:text-red-600 transition-colors"
                   >
                     {item.label}
                   </a>
                 ))}
               </div>
 
-              {/* Action Button */}
               <button
                 type="button"
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onOpenProject();
                 }}
-                className="w-full bg-[#F26522] text-white text-[15px] font-medium rounded-full py-3.5 px-6 flex items-center justify-between group shadow-md"
+                className="w-full bg-red-600 text-white text-sm font-bold rounded-full py-3.5 px-6 flex items-center justify-between group shadow-md"
               >
                 <span>Start a project</span>
-                <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center">
-                  <ArrowRight className="w-4 h-4 text-[#F26522] stroke-[2.5]" />
-                </div>
+                <ArrowRight className="w-4 h-4" />
               </button>
             </motion.div>
           </div>
         )}
       </AnimatePresence>
 
-      {/* HERO CONTENT (z-20, Bottom of viewport) */}
-      <div className="flex-1 flex flex-col justify-end max-w-[1440px] w-full mx-auto px-5 sm:px-8 lg:px-12 pb-14 sm:pb-16 lg:pb-20 relative z-20">
-        {/* Small Label */}
-        <div className="text-[13px] sm:text-[14px] text-gray-900 tracking-wide mb-5 sm:mb-8 font-medium">
-          ASME Studio
-        </div>
+      {/* HERO MAIN CONTENT */}
+      <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center flex-1 flex flex-col justify-center items-center">
+        {/* Micro-Pill Tag */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="inline-flex items-center gap-2 rounded-full border border-neutral-200/90 bg-white/90 backdrop-blur-md px-4 py-1.5 text-xs font-bold text-neutral-800 mb-6 sm:mb-8 shadow-sm"
+        >
+          <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+          <span>Boutique Software Engineering • Bengaluru, India</span>
+        </motion.div>
 
-        {/* Headline H1 */}
-        <h1 className="text-[clamp(1.75rem,7vw,4.2rem)] sm:text-[clamp(2.5rem,5vw,4.2rem)] font-medium leading-[1.08] tracking-[-0.03em] text-gray-900 max-w-5xl">
-          We craft digital experiences
-          <br className="hidden sm:block" />
-          <span className="sm:hidden"> </span>
-          for brands ready to dominate
-          <br className="hidden sm:block" />
-          <span className="sm:hidden"> </span>
-          their category online.
-        </h1>
+        {/* Polished, Crisp, Non-Overlapping Hero Headline */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="w-full max-w-4xl mx-auto flex flex-col items-center"
+        >
+          {/* Top Line */}
+          <span className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-neutral-950 leading-tight">
+            Your Data-Driven
+          </span>
 
-        {/* CTA ROW */}
-        <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5">
-          {/* Orange Button: Start a project with Text-Roll */}
+          {/* Middle Line: ASME Badge + Animated Cycling Word */}
+          <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 my-2 sm:my-3">
+            <span className="bg-red-600 text-white px-3 sm:px-5 py-0.5 sm:py-1 rounded-xl sm:rounded-2xl text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black shadow-md tracking-tight">
+              ASME
+            </span>
+
+            {/* Clean, Visible Rotating Word Container */}
+            <div className="relative h-10 sm:h-14 md:h-16 lg:h-20 min-w-[200px] sm:min-w-[340px] md:min-w-[420px] flex items-center justify-center sm:justify-start overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={wordIndex}
+                  initial={{ y: 35, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -35, opacity: 0 }}
+                  transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
+                  className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-neutral-950 tracking-tight whitespace-nowrap"
+                >
+                  {CYCLING_WORDS[wordIndex]}
+                </motion.span>
+              </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Bottom Line */}
+          <span className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-neutral-950 leading-tight">
+            Transformation partner
+          </span>
+        </motion.div>
+
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="mt-6 sm:mt-8 text-sm sm:text-base md:text-lg leading-relaxed text-neutral-600 max-w-2xl mx-auto font-medium"
+        >
+          A creative software engineering studio that designs and develops high-converting, functional, and user-centric digital experiences with <strong>1-Month Free Maintenance</strong>.
+        </motion.p>
+
+        {/* Action Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 w-full sm:w-auto"
+        >
+          {/* Get In Touch Pill Button */}
           <button
             type="button"
             onClick={onOpenProject}
-            className="bg-[#F26522] hover:bg-[#e05a1a] text-white text-[13px] sm:text-[14px] rounded-full pl-5 sm:pl-6 pr-2 py-2 flex items-center gap-3 group transition-colors duration-300 cursor-pointer shadow-sm"
+            className="w-full sm:w-auto bg-neutral-950 hover:bg-red-600 text-white text-sm sm:text-base font-bold px-8 py-4 rounded-full transition-all duration-300 shadow-xl flex items-center justify-center gap-2 cursor-pointer group hover:scale-105 active:scale-95"
           >
-            <div className="overflow-hidden h-[20px] flex flex-col justify-start">
-              <span className="transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-translate-y-full font-medium">
-                Start a project
-              </span>
-              <span className="transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-translate-y-full font-medium">
-                Start a project
-              </span>
-            </div>
-
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-rotate-45">
-              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#F26522] stroke-[2.5]" />
-            </div>
+            <span>Get In Touch</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </button>
 
-          {/* Certified Partner & Free Month Badge */}
-          <div className="bg-white rounded-[4px] px-3 py-2 sm:px-3.5 sm:py-2 flex items-center gap-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)] transition-shadow duration-300 border border-gray-100/50 cursor-pointer">
-            <ShieldCheck className="w-5 h-5 text-[#F26522] shrink-0" />
+          <a
+            href="#projects"
+            className="w-full sm:w-auto bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-sm sm:text-base font-bold px-7 py-4 rounded-full transition-colors flex items-center justify-center gap-1.5"
+          >
+            <span>Explore Case Studies</span>
+          </a>
+        </motion.div>
 
-            <span className="text-[13px] sm:text-[14px] font-medium text-gray-900">
-              1-Month Free Maintenance Included
-            </span>
-
-            <span className="text-[10px] sm:text-[11px] bg-gray-900 text-white px-1.5 sm:px-2 py-0.5 rounded font-medium">
-              Warranty
-            </span>
+        {/* Trust Badges */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="mt-12 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm font-semibold text-neutral-600"
+        >
+          <div className="flex items-center gap-1.5">
+            <ShieldCheck className="w-4 h-4 text-red-600" />
+            <span>30-Day Zero-Cost Warranty</span>
           </div>
-        </div>
+          <span className="text-neutral-300">•</span>
+          <div className="flex items-center gap-1.5">
+            <Zap className="w-4 h-4 text-red-600" />
+            <span>1-Month Free Maintenance</span>
+          </div>
+          <span className="text-neutral-300">•</span>
+          <div className="flex items-center gap-1.5">
+            <Globe2 className="w-4 h-4 text-red-600" />
+            <span>100% Full Code Ownership</span>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
