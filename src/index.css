@@ -215,17 +215,13 @@
   min-width: 0;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
-  min-height: 2.65rem;
+  min-height: 3.15rem;
   border: 1px solid rgba(226, 232, 240, 0.9);
-  border-radius: 0.9rem;
+  border-radius: 1rem;
   background: rgba(255, 255, 255, 0.72);
-  padding: 0.55rem 0.4rem;
+  padding: 0.65rem;
   color: #334155;
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.045);
-  font-size: 0.58rem;
-  font-weight: 800;
-  line-height: 1;
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
   backdrop-filter: blur(14px);
 }
@@ -238,8 +234,7 @@
 
 @media (min-width: 640px) {
   .tech-mark {
-    min-height: 3rem;
-    font-size: 0.65rem;
+    min-height: 3.5rem;
   }
 }
 

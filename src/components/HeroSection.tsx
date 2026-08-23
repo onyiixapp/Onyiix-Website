@@ -190,23 +190,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onOpenP
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.42 }}
-        className="relative z-10 mx-auto mt-3 w-full max-w-5xl"
+        className="relative z-10 mx-auto mt-3 w-full max-w-2xl"
       >
         <p className="mb-2 text-center text-[9px] font-black uppercase tracking-[0.2em] text-slate-400">Selected tools we build with</p>
         <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-7 sm:gap-2">
-          <div className="tech-mark">
-            <img src="/brands/openai-wordmark.webp" alt="OpenAI" className="h-5 w-[4.3rem] object-contain" />
+          <div className="tech-mark" title="ChatGPT">
+            <img src="/brands/chatgpt.png" alt="ChatGPT" className="h-6 w-6 object-contain" />
           </div>
-          <div className="tech-mark">
-            <img src="/brands/antigravity.png" alt="Google Antigravity" className="h-5 w-5 object-contain" />
-            <span>Antigravity</span>
+          <div className="tech-mark" title="Google Antigravity">
+            <img src="/brands/antigravity.png" alt="Google Antigravity" className="h-7 w-7 object-contain" />
           </div>
           {STACK_MARKS.map((mark) => (
-            <div key={mark.title} className="tech-mark">
-              <svg role="img" aria-label={`${mark.title} logo`} viewBox="0 0 24 24" className="h-4 w-4 shrink-0" style={{ color: `#${mark.hex}` }}>
+            <div key={mark.title} className="tech-mark" title={mark.title}>
+              <svg role="img" aria-label={`${mark.title} logo`} viewBox="0 0 24 24" className="h-5 w-5 shrink-0 sm:h-6 sm:w-6" style={{ color: `#${mark.hex}` }}>
                 <path d={mark.path} fill="currentColor" />
               </svg>
-              <span>{mark.title}</span>
             </div>
           ))}
         </div>
