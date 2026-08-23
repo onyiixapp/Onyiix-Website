@@ -59,17 +59,24 @@ export const ContactSection: React.FC = () => {
               {/* Direct Founder Email Contacts */}
               <div className="space-y-3 text-xs sm:text-sm">
                 <div className="p-4 rounded-2xl bg-gray-50 border border-gray-200/70">
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-bold text-gray-900">Mohammed Maaz A</span>
-                    <span className="text-[10px] bg-orange-50 text-[#F26522] px-2 py-0.5 rounded-md font-semibold">
-                      Principal Architect
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2.5">
+                      <img
+                        src="/founders/maaz.png"
+                        alt="Mohammed Maaz A"
+                        className="w-8 h-8 rounded-full object-cover border border-neutral-300"
+                      />
+                      <span className="font-bold text-gray-900">Mohammed Maaz A</span>
+                    </div>
+                    <span className="text-[10px] bg-red-50 text-red-600 px-2 py-0.5 rounded-md font-semibold">
+                      Architect
                     </span>
                   </div>
                   <a
                     href="mailto:maazmohammed112@gmail.com"
-                    className="flex items-center gap-2 text-gray-600 hover:text-black transition-colors"
+                    className="flex items-center gap-2 text-gray-600 hover:text-black transition-colors pl-1"
                   >
-                    <Mail className="w-3.5 h-3.5 text-[#F26522]" />
+                    <Mail className="w-3.5 h-3.5 text-red-600" />
                     <span>maazmohammed112@gmail.com</span>
                   </a>
                   <div className="flex items-center gap-3 mt-2.5 pt-2 border-t border-gray-200/50 text-xs">
@@ -95,17 +102,24 @@ export const ContactSection: React.FC = () => {
                 </div>
 
                 <div className="p-4 rounded-2xl bg-gray-50 border border-gray-200/70">
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-bold text-gray-900">Suman Kumar Singh</span>
-                    <span className="text-[10px] bg-orange-50 text-[#F26522] px-2 py-0.5 rounded-md font-semibold">
-                      Systems Engineer
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2.5">
+                      <img
+                        src="/founders/suman.png"
+                        alt="Suman Kumar Singh"
+                        className="w-8 h-8 rounded-full object-cover border border-neutral-300"
+                      />
+                      <span className="font-bold text-gray-900">Suman Kumar Singh</span>
+                    </div>
+                    <span className="text-[10px] bg-red-50 text-red-600 px-2 py-0.5 rounded-md font-semibold">
+                      Systems Lead
                     </span>
                   </div>
                   <a
                     href="mailto:sumansingh.np13@gmail.com"
-                    className="flex items-center gap-2 text-gray-600 hover:text-black transition-colors"
+                    className="flex items-center gap-2 text-gray-600 hover:text-black transition-colors pl-1"
                   >
-                    <Mail className="w-3.5 h-3.5 text-[#F26522]" />
+                    <Mail className="w-3.5 h-3.5 text-red-600" />
                     <span>sumansingh.np13@gmail.com</span>
                   </a>
                   <div className="flex items-center gap-3 mt-2.5 pt-2 border-t border-gray-200/50 text-xs">

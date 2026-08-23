@@ -84,10 +84,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onOpenP
         <div className="max-w-[1440px] w-full mx-auto flex items-center justify-between pointer-events-auto">
           {/* LEFT: Logo */}
           <div className="flex items-center">
-            <a href="/" className="flex items-center gap-2 group">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 bg-red-600 rounded-xl flex items-center justify-center text-white font-extrabold text-xs shadow-md group-hover:scale-105 transition-transform">
-                AS
-              </div>
+            <a href="/" className="flex items-center gap-2.5 group">
+              <img
+                src="/logo.jpg"
+                alt="ASME Studio Logo"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl object-cover shadow-md group-hover:scale-105 transition-transform border border-neutral-200"
+              />
               <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-neutral-950">
                 ASME
               </span>

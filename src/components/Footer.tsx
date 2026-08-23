@@ -9,9 +9,11 @@ export const Footer: React.FC = () => {
           {/* Col 1: Brand & Bio */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-red-600 flex items-center justify-center font-black text-xs text-white shadow-md">
-                AS
-              </div>
+              <img
+                src="/logo.jpg"
+                alt="ASME Studio Logo"
+                className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl object-cover shadow-md border border-neutral-700"
+              />
               <span className="font-extrabold text-xl tracking-tight">ASME Studio</span>
             </div>
 

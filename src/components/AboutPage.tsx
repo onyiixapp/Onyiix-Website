@@ -71,27 +71,40 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Mohammed Maaz A */}
-            <div className="bg-neutral-50 rounded-3xl p-8 sm:p-10 border border-neutral-200/80 flex flex-col justify-between">
+            <div className="bg-neutral-50 rounded-3xl p-7 sm:p-9 border border-neutral-200/80 flex flex-col justify-between hover:shadow-xl transition-all duration-300 group">
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-bold text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-100">
-                    Co-Founder &amp; Principal Architect
-                  </span>
-                  <span className="text-xs text-neutral-400 flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-neutral-400" />
-                    <span>Bengaluru, India</span>
-                  </span>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-5 mb-6">
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden bg-neutral-900 border-2 border-red-600/30 shrink-0 shadow-lg group-hover:scale-105 transition-transform">
+                    <img
+                      src="/founders/maaz.png"
+                      alt="Mohammed Maaz A"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-[11px] font-bold text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-100">
+                        Co-Founder &amp; Principal Architect
+                      </span>
+                    </div>
+
+                    <h3 className="text-2xl font-bold text-neutral-950">
+                      Mohammed Maaz A
+                    </h3>
+                    <p className="text-xs text-neutral-500 mt-1 flex items-center gap-1">
+                      <MapPin className="w-3 h-3 text-red-600" />
+                      <span>Bengaluru, Karnataka, India</span>
+                    </p>
+                  </div>
                 </div>
 
-                <h3 className="text-2xl font-bold text-neutral-950 mb-1">
-                  Mohammed Maaz A
-                </h3>
-                <p className="text-xs text-neutral-500 mb-4">
+                <p className="text-xs font-semibold text-neutral-800 mb-2">
                   BCA, MCA (Pursuing) • Analyst @ Cognizant • Lead Full-Stack Architect
                 </p>
 
                 <p className="text-sm text-neutral-600 leading-relaxed mb-6">
-                  Specialized in multi-tenant SaaS architecture, React/Next.js edge caching, distributed database design, and autonomous AI token-streaming systems.
+                  Specialized in multi-tenant SaaS architecture, Next.js server components, distributed database design, and autonomous AI token-streaming systems.
                 </p>
               </div>
 
@@ -130,22 +143,35 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
             </div>
 
             {/* Suman Kumar Singh */}
-            <div className="bg-neutral-50 rounded-3xl p-8 sm:p-10 border border-neutral-200/80 flex flex-col justify-between">
+            <div className="bg-neutral-50 rounded-3xl p-7 sm:p-9 border border-neutral-200/80 flex flex-col justify-between hover:shadow-xl transition-all duration-300 group">
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-bold text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-100">
-                    Co-Founder &amp; Systems Engineer
-                  </span>
-                  <span className="text-xs text-neutral-400 flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-neutral-400" />
-                    <span>Delhi, India</span>
-                  </span>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-5 mb-6">
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden bg-neutral-900 border-2 border-red-600/30 shrink-0 shadow-lg group-hover:scale-105 transition-transform">
+                    <img
+                      src="/founders/suman.png"
+                      alt="Suman Kumar Singh"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-[11px] font-bold text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-100">
+                        Co-Founder &amp; Systems Engineer
+                      </span>
+                    </div>
+
+                    <h3 className="text-2xl font-bold text-neutral-950">
+                      Suman Kumar Singh
+                    </h3>
+                    <p className="text-xs text-neutral-500 mt-1 flex items-center gap-1">
+                      <MapPin className="w-3 h-3 text-red-600" />
+                      <span>Delhi, India</span>
+                    </p>
+                  </div>
                 </div>
 
-                <h3 className="text-2xl font-bold text-neutral-950 mb-1">
-                  Suman Kumar Singh
-                </h3>
-                <p className="text-xs text-neutral-500 mb-4">
+                <p className="text-xs font-semibold text-neutral-800 mb-2">
                   BCA Graduate • Systems Engineer • Performance &amp; Next.js Lead
                 </p>
 
