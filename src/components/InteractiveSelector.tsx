@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, RotateCcw, Sparkles, Sliders } from 'lucide-react';
+import { ArrowRight, RotateCcw, Sliders, ShieldCheck, CheckCircle2, Zap, Lock, Code2, Globe2 } from 'lucide-react';
 
 interface InteractiveSelectorProps {
   onSelectPackage: (packageName: string) => void;
@@ -48,6 +48,34 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
 
   const rec = getRecommendation();
 
+  const standardInclusions = [
+    {
+      icon: ShieldCheck,
+      title: '1-Month Free Maintenance SLA',
+      desc: 'Zero-cost technical oversight, security checks, and minor copy modifications post-launch.',
+    },
+    {
+      icon: Lock,
+      title: '30-Day Zero-Cost Bug Warranty',
+      desc: 'Instant diagnostic and resolution of any scoped functional defect reported within 30 days.',
+    },
+    {
+      icon: Code2,
+      title: '100% Code & IP Ownership',
+      desc: 'Full intellectual property and GitHub repository transfer upon project handover.',
+    },
+    {
+      icon: Zap,
+      title: 'Sub-Second Performance SLA',
+      desc: 'Targeting ≤ 2.5s Largest Contentful Paint (LCP) verified across real-world mobile 4G/5G.',
+    },
+    {
+      icon: Globe2,
+      title: 'Technical SEO & OpenGraph',
+      desc: 'Schema.org JSON-LD structured data and social cards configured for indexation.',
+    },
+  ];
+
   return (
     <section
       id="selector"
@@ -87,168 +115,222 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
           </motion.div>
         </div>
 
-        <div className="max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-3xl p-7 sm:p-10 shadow-[0_12px_40px_rgba(0,0,0,0.04)] border border-gray-200/90"
-          >
-            {/* Step Indicators */}
-            <div className="flex items-center gap-2 mb-8 text-xs font-semibold text-gray-400">
-              <span className={step >= 1 ? 'text-[#F26522] font-bold' : ''}>1. Project Nature</span>
-              <span>&rarr;</span>
-              <span className={step >= 2 ? 'text-[#F26522] font-bold' : ''}>2. Scope &amp; Scale</span>
-              <span>&rarr;</span>
-              <span className={step === 3 ? 'text-[#F26522] font-bold' : ''}>3. Recommendation</span>
-            </div>
+        {/* 2-COLUMN DESKTOP GRID: Left = Decision Wizard, Right = What's Always Included */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          {/* LEFT: 3-Step Interactive Wizard (lg:col-span-7) */}
+          <div className="lg:col-span-7">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-3xl p-7 sm:p-10 shadow-[0_12px_40px_rgba(0,0,0,0.04)] border border-gray-200/90"
+            >
+              {/* Step Indicators */}
+              <div className="flex items-center gap-2 mb-8 text-xs font-semibold text-gray-400">
+                <span className={step >= 1 ? 'text-[#F26522] font-bold' : ''}>1. Project Nature</span>
+                <span>&rarr;</span>
+                <span className={step >= 2 ? 'text-[#F26522] font-bold' : ''}>2. Scope &amp; Scale</span>
+                <span>&rarr;</span>
+                <span className={step === 3 ? 'text-[#F26522] font-bold' : ''}>3. Recommendation</span>
+              </div>
 
-            <AnimatePresence mode="wait">
-              {/* STEP 1 */}
-              {step === 1 && (
-                <motion.div
-                  key="step1"
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 10 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 tracking-tight">
-                    What type of system are you building?
-                  </h3>
-                  <p className="text-xs sm:text-sm text-gray-500 mb-6">Select the primary outcome for your project.</p>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                    {[
-                      { id: 'marketing', label: 'Company / Marketing Website', desc: 'Fast single or multi-page site' },
-                      { id: 'business', label: 'Custom Business Platform', desc: 'CMS, blog & lead workflows' },
-                      { id: 'ecommerce', label: 'E-Commerce / Catalog Store', desc: 'Products, carts, Telegram bot' },
-                      { id: 'saas', label: 'SaaS / Multi-Tenant Web App', desc: 'Auth, database, RBAC dashboard' },
-                    ].map((opt) => (
-                      <button
-                        key={opt.id}
-                        type="button"
-                        onClick={() => {
-                          setProjectType(opt.id);
-                          setStep(2);
-                        }}
-                        className="p-5 rounded-2xl border border-gray-200/90 text-left hover:border-[#F26522] hover:bg-orange-50/40 hover:shadow-md transition-all group cursor-pointer"
-                      >
-                        <span className="block text-sm font-bold text-gray-900 group-hover:text-[#F26522] transition-colors">
-                          {opt.label}
-                        </span>
-                        <span className="block text-xs text-gray-500 mt-1">
-                          {opt.desc}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-
-              {/* STEP 2 */}
-              {step === 2 && (
-                <motion.div
-                  key="step2"
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 10 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 tracking-tight">
-                    What is your timeline &amp; scale?
-                  </h3>
-                  <p className="text-xs sm:text-sm text-gray-500 mb-6">Help us calibrate the delivery velocity.</p>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                    {[
-                      { id: 'urgent', scale: 'small', label: 'Immediate Launch (1-2 Weeks)', desc: 'Pre-launch MVP or quick turnaround' },
-                      { id: 'standard', scale: 'medium', label: 'Standard Build (2-3 Weeks)', desc: 'Full custom design and integrations' },
-                      { id: 'comprehensive', scale: 'large', label: 'Comprehensive System (3-5 Weeks)', desc: 'Deep custom logic, database, and APIs' },
-                      { id: 'continuous', scale: 'saas', label: 'Continuous SaaS Roadmap (6-12 Weeks)', desc: 'Multi-tenant architecture & SLA' },
-                    ].map((opt) => (
-                      <button
-                        key={opt.id}
-                        type="button"
-                        onClick={() => {
-                          setScale(opt.scale);
-                          setStep(3);
-                        }}
-                        className="p-5 rounded-2xl border border-gray-200/90 text-left hover:border-[#F26522] hover:bg-orange-50/40 hover:shadow-md transition-all group cursor-pointer"
-                      >
-                        <span className="block text-sm font-bold text-gray-900 group-hover:text-[#F26522] transition-colors">
-                          {opt.label}
-                        </span>
-                        <span className="block text-xs text-gray-500 mt-1">
-                          {opt.desc}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={() => setStep(1)}
-                    className="mt-6 text-xs font-semibold text-gray-500 hover:text-black transition-colors"
+              <AnimatePresence mode="wait">
+                {/* STEP 1 */}
+                {step === 1 && (
+                  <motion.div
+                    key="step1"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 10 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    &larr; Back to Step 1
-                  </button>
-                </motion.div>
-              )}
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 tracking-tight">
+                      What type of system are you building?
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-500 mb-6">Select the primary outcome for your project.</p>
 
-              {/* STEP 3 */}
-              {step === 3 && (
-                <motion.div
-                  key="step3"
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 10 }}
-                  transition={{ duration: 0.3 }}
-                  className="space-y-6"
-                >
-                  <div className="p-6 sm:p-7 rounded-2xl bg-orange-50/70 border border-orange-200/90 shadow-sm">
-                    <div className="flex items-center gap-2 text-xs font-bold text-[#F26522] mb-2">
-                      <Sparkles className="w-4 h-4" />
-                      <span>Recommended Architectural Package</span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                      {[
+                        { id: 'marketing', label: 'Company / Marketing Website', desc: 'Fast single or multi-page site' },
+                        { id: 'business', label: 'Custom Business Platform', desc: 'CMS, blog & lead workflows' },
+                        { id: 'ecommerce', label: 'E-Commerce / Catalog Store', desc: 'Products, carts, Telegram bot' },
+                        { id: 'saas', label: 'SaaS / Multi-Tenant Web App', desc: 'Auth, database, RBAC dashboard' },
+                      ].map((opt) => (
+                        <button
+                          key={opt.id}
+                          type="button"
+                          onClick={() => {
+                            setProjectType(opt.id);
+                            setStep(2);
+                          }}
+                          className="p-5 rounded-2xl border border-gray-200/90 text-left hover:border-[#F26522] hover:bg-orange-50/40 hover:shadow-md transition-all group cursor-pointer"
+                        >
+                          <span className="block text-sm font-bold text-gray-900 group-hover:text-[#F26522] transition-colors">
+                            {opt.label}
+                          </span>
+                          <span className="block text-xs text-gray-500 mt-1">
+                            {opt.desc}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* STEP 2 */}
+                {step === 2 && (
+                  <motion.div
+                    key="step2"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 10 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 tracking-tight">
+                      What is your timeline &amp; scale?
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-500 mb-6">Help us calibrate the delivery velocity.</p>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                      {[
+                        { id: 'urgent', scale: 'small', label: 'Immediate Launch (1-2 Weeks)', desc: 'Pre-launch MVP or quick turnaround' },
+                        { id: 'standard', scale: 'medium', label: 'Standard Build (2-3 Weeks)', desc: 'Full custom design and integrations' },
+                        { id: 'comprehensive', scale: 'large', label: 'Comprehensive System (3-5 Weeks)', desc: 'Deep custom logic, database, and APIs' },
+                        { id: 'continuous', scale: 'saas', label: 'Continuous SaaS Roadmap (6-12 Weeks)', desc: 'Multi-tenant architecture & SLA' },
+                      ].map((opt) => (
+                        <button
+                          key={opt.id}
+                          type="button"
+                          onClick={() => {
+                            setScale(opt.scale);
+                            setStep(3);
+                          }}
+                          className="p-5 rounded-2xl border border-gray-200/90 text-left hover:border-[#F26522] hover:bg-orange-50/40 hover:shadow-md transition-all group cursor-pointer"
+                        >
+                          <span className="block text-sm font-bold text-gray-900 group-hover:text-[#F26522] transition-colors">
+                            {opt.label}
+                          </span>
+                          <span className="block text-xs text-gray-500 mt-1">
+                            {opt.desc}
+                          </span>
+                        </button>
+                      ))}
                     </div>
 
-                    <h4 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
-                      {rec.pkg}
-                    </h4>
-                    <p className="text-xs sm:text-sm text-gray-700 mt-2 leading-relaxed">
-                      {rec.desc}
-                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setStep(1)}
+                      className="mt-6 text-xs font-semibold text-gray-500 hover:text-black transition-colors"
+                    >
+                      &larr; Back to Step 1
+                    </button>
+                  </motion.div>
+                )}
 
-                    <div className="mt-4 pt-4 border-t border-orange-200/80 flex flex-wrap gap-4 text-xs font-medium text-gray-800">
-                      <span>Estimated Velocity: <strong>{rec.timeline}</strong></span>
-                      <span>•</span>
-                      <span>Includes: <strong>1-Month Free Maintenance SLA</strong></span>
+                {/* STEP 3 */}
+                {step === 3 && (
+                  <motion.div
+                    key="step3"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 10 }}
+                    transition={{ duration: 0.3 }}
+                    className="space-y-6"
+                  >
+                    <div className="p-6 sm:p-7 rounded-2xl bg-orange-50/70 border border-orange-200/90 shadow-sm">
+                      <div className="flex items-center gap-2 text-xs font-bold text-[#F26522] mb-2">
+                        <CheckCircle2 className="w-4 h-4" />
+                        <span>Recommended Architectural Package</span>
+                      </div>
+
+                      <h4 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+                        {rec.pkg}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-gray-700 mt-2 leading-relaxed">
+                        {rec.desc}
+                      </p>
+
+                      <div className="mt-4 pt-4 border-t border-orange-200/80 flex flex-wrap gap-4 text-xs font-medium text-gray-800">
+                        <span>Estimated Velocity: <strong>{rec.timeline}</strong></span>
+                        <span>•</span>
+                        <span>Includes: <strong>1-Month Free Maintenance SLA</strong></span>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="flex flex-col sm:flex-row items-center gap-3">
-                    <button
-                      type="button"
-                      onClick={() => onSelectPackage(rec.pkg)}
-                      className="w-full sm:w-auto bg-[#F26522] hover:bg-[#e05a1a] text-white text-xs sm:text-sm font-semibold px-7 py-3.5 rounded-full flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
-                    >
-                      <span>Proceed with {rec.pkg}</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
+                    <div className="flex flex-col sm:flex-row items-center gap-3">
+                      <button
+                        type="button"
+                        onClick={() => onSelectPackage(rec.pkg)}
+                        className="w-full sm:w-auto bg-[#F26522] hover:bg-[#e05a1a] text-white text-xs sm:text-sm font-semibold px-7 py-3.5 rounded-full flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
+                      >
+                        <span>Proceed with {rec.pkg}</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </button>
 
-                    <button
-                      type="button"
-                      onClick={handleReset}
-                      className="w-full sm:w-auto bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-semibold px-5 py-3.5 rounded-full flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
-                    >
-                      <RotateCcw className="w-3.5 h-3.5" />
-                      <span>Recalculate</span>
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
+                      <button
+                        type="button"
+                        onClick={handleReset}
+                        className="w-full sm:w-auto bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-semibold px-5 py-3.5 rounded-full flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                      >
+                        <RotateCcw className="w-3.5 h-3.5" />
+                        <span>Recalculate</span>
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          </div>
+
+          {/* RIGHT: What's Always Included in All ASME Builds (lg:col-span-5) */}
+          <div className="lg:col-span-5">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-neutral-950 text-white rounded-3xl p-7 sm:p-9 shadow-xl border border-neutral-800"
+            >
+              <div className="flex items-center justify-between pb-5 border-b border-neutral-800 mb-6">
+                <div>
+                  <span className="text-[11px] font-bold text-red-500 uppercase tracking-widest block mb-1">
+                    ASME STANDARD
+                  </span>
+                  <h3 className="text-xl font-bold tracking-tight text-white">
+                    Included in All Builds
+                  </h3>
+                </div>
+                <div className="w-9 h-9 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center font-bold text-xs">
+                  SLA
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {standardInclusions.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={item.title} className="flex items-start gap-3.5">
+                      <div className="w-7 h-7 rounded-lg bg-neutral-900 border border-neutral-800 text-red-500 flex items-center justify-center shrink-0 mt-0.5">
+                        <Icon className="w-3.5 h-3.5 stroke-[2.5]" />
+                      </div>
+                      <div>
+                        <h4 className="text-xs sm:text-sm font-bold text-white leading-snug">
+                          {item.title}
+                        </h4>
+                        <p className="text-[11px] sm:text-xs text-neutral-400 leading-relaxed mt-0.5">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-neutral-800 flex items-center justify-between text-xs text-neutral-400">
+                <span>Handcrafted in Bengaluru</span>
+                <span className="font-semibold text-white">100% IP Handover</span>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

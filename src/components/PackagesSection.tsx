@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle2, ShieldCheck, Zap, Sparkles } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ShieldCheck, Zap, Layers } from 'lucide-react';
 
 interface PackagesSectionProps {
   onSelectTier: (tierName: string) => void;
@@ -89,7 +89,7 @@ export const PackagesSection: React.FC<PackagesSectionProps> = ({ onSelectTier }
             6
           </div>
           <div className="text-[12px] sm:text-[13px] font-medium border border-gray-300 bg-white rounded-full px-3.5 sm:px-4 py-1 sm:py-1.5 text-gray-900 shadow-sm flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-[#F26522]" />
+            <Layers className="w-3.5 h-3.5 text-[#F26522]" />
             <span>Packages &amp; Pricing</span>
           </div>
         </motion.div>

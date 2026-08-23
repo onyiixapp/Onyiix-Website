@@ -22,14 +22,14 @@ export const Footer: React.FC = () => {
             <div className="pt-2 space-y-2 text-xs text-neutral-400">
               <a
                 href="mailto:maazmohammed112@gmail.com"
-                className="flex items-center gap-2 text-neutral-300 hover:text-red-500 transition-colors font-medium"
+                className="flex items-center gap-2 text-neutral-300 hover:text-red-500 transition-colors font-medium break-all"
               >
-                <Mail className="w-3.5 h-3.5 text-red-500" />
+                <Mail className="w-3.5 h-3.5 text-red-500 shrink-0" />
                 <span>maazmohammed112@gmail.com</span>
               </a>
 
               <div className="flex items-center gap-2 text-neutral-400">
-                <MapPin className="w-3.5 h-3.5 text-red-500" />
+                <MapPin className="w-3.5 h-3.5 text-red-500 shrink-0" />
                 <span>Bengaluru, Karnataka, India • 12.9716° N, 77.5946° E</span>
               </div>
             </div>
@@ -140,20 +140,20 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
+        {/* Bottom Bar: Mobile-Optimized with Full Email Visibility */}
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-500 text-center md:text-left">
           <div>
             &copy; {new Date().getFullYear()} ASME Studio. All rights reserved. Handcrafted in Bengaluru, India.
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <a
               href="mailto:maazmohammed112@gmail.com"
-              className="hover:text-red-500 transition-colors"
+              className="text-neutral-300 hover:text-red-500 transition-colors font-medium break-all"
             >
               maazmohammed112@gmail.com
             </a>
-            <span>•</span>
+            <span className="hidden sm:inline text-neutral-700">•</span>
             <a
               href="https://github.com/sumansingh13"
               target="_blank"
@@ -162,7 +162,7 @@ export const Footer: React.FC = () => {
             >
               Suman GitHub
             </a>
-            <span>•</span>
+            <span className="hidden sm:inline text-neutral-700">•</span>
             <a
               href="https://linkedin.com/in/mohammed-maaz-a-0aa730217/"
               target="_blank"
@@ -171,12 +171,12 @@ export const Footer: React.FC = () => {
             >
               Maaz LinkedIn
             </a>
-            <span>•</span>
+            <span className="hidden sm:inline text-neutral-700">•</span>
             <a
               href="https://maazprofile.tech"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors flex items-center gap-1"
+              className="hover:text-white transition-colors inline-flex items-center gap-1"
             >
               <Globe className="w-3 h-3" />
               <span>Portfolio</span>
