@@ -25,6 +25,17 @@ export const SitemapPage: React.FC<SitemapPageProps> = ({ onBack }) => {
       ],
     },
     {
+      category: 'Focused Service Pages',
+      links: [
+        { label: 'Web Development', path: '/services/web-development', desc: 'Conversion websites, technical SEO, analytics and launch delivery' },
+        { label: 'SaaS Platforms', path: '/services/saas-platforms', desc: 'Multi-tenant products, dashboards, roles and scalable architecture' },
+        { label: 'AI Workflows', path: '/services/ai-workflows', desc: 'Practical AI automation with integrations and human oversight' },
+        { label: 'Digital Marketing & SEO', path: '/services/digital-marketing', desc: 'Search foundations, landing pages, analytics and campaign measurement' },
+        { label: 'Digital Systems', path: '/services/digital-systems', desc: 'Internal tools, portals and connected operations dashboards' },
+        { label: 'Global Delivery', path: '/global', desc: 'Honest remote delivery from Bengaluru for worldwide teams' },
+      ],
+    },
+    {
       category: 'Legal, Trust & Crawlers',
       links: [
         { label: 'Terms of Service', path: '/terms', desc: 'Client engagement rules, IP transfer, and warranties' },
@@ -60,7 +71,7 @@ export const SitemapPage: React.FC<SitemapPageProps> = ({ onBack }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4">
           {sections.map((sec) => (
             <div key={sec.category} className="bg-gray-50 rounded-3xl p-6 sm:p-8 border border-gray-200">
               <h2 className="text-lg font-bold text-gray-900 mb-6 pb-3 border-b border-gray-200 flex items-center gap-2">

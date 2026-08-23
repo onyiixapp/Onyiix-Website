@@ -15,6 +15,9 @@ import { TermsPage } from './components/TermsPage';
 import { PrivacyPage } from './components/PrivacyPage';
 import { SitemapPage } from './components/SitemapPage';
 import { NotFoundPage } from './components/NotFoundPage';
+import { TestimonialsSection } from './components/TestimonialsSection';
+import { SERVICE_LANDING_PAGES, ServiceLandingPage } from './components/ServiceLandingPage';
+import { GlobalDeliveryPage } from './components/GlobalDeliveryPage';
 
 export function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
@@ -53,18 +56,73 @@ export function App() {
         title: 'HTML Sitemap | Meyvaro Studio',
         description: 'Navigate Meyvaro Studio services, work, company pages and legal information.',
       },
+      '/services/web-development': {
+        title: 'Web Development Agency | Meyvaro Studio',
+        description: 'Fast, conversion-focused websites with technical SEO, analytics and full code ownership from Meyvaro Studio.',
+      },
+      '/services/saas-platforms': {
+        title: 'SaaS Platform Development | Meyvaro Studio',
+        description: 'Multi-tenant SaaS product design and engineering with clear workflows, resilient architecture and phased delivery.',
+      },
+      '/services/ai-workflows': {
+        title: 'AI Workflow Automation | Meyvaro Studio',
+        description: 'Practical AI workflows, integrations and human approval systems for operations, support and knowledge teams.',
+      },
+      '/services/digital-marketing': {
+        title: 'Digital Marketing, Technical SEO & Analytics | Meyvaro',
+        description: 'Technical SEO, conversion landing pages, analytics and campaign measurement built as one connected growth system.',
+      },
+      '/services/digital-systems': {
+        title: 'Custom Digital Systems & Dashboards | Meyvaro Studio',
+        description: 'Custom dashboards, portals and internal systems that connect operations, data and business workflows.',
+      },
+      '/global': {
+        title: 'Global Digital Product Delivery from Bengaluru | Meyvaro',
+        description: 'Meyvaro works from Bengaluru with remote-first teams across India, Europe, North America and worldwide.',
+      },
     };
 
     const meta = routeMeta[currentPath];
     const descriptionTag = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    const titleTag = document.querySelector<HTMLMetaElement>('meta[name="title"]');
     const robotsTag = document.querySelector<HTMLMetaElement>('meta[name="robots"]');
     const canonicalTag = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    const ogTitleTag = document.querySelector<HTMLMetaElement>('meta[property="og:title"]');
+    const ogDescriptionTag = document.querySelector<HTMLMetaElement>('meta[property="og:description"]');
+    const ogUrlTag = document.querySelector<HTMLMetaElement>('meta[property="og:url"]');
+    const twitterTitleTag = document.querySelector<HTMLMetaElement>('meta[name="twitter:title"]');
+    const twitterDescriptionTag = document.querySelector<HTMLMetaElement>('meta[name="twitter:description"]');
+    document.getElementById('route-structured-data')?.remove();
 
     if (meta) {
       document.title = meta.title;
+      titleTag?.setAttribute('content', meta.title);
       descriptionTag?.setAttribute('content', meta.description);
       robotsTag?.setAttribute('content', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
-      canonicalTag?.setAttribute('href', `https://asme.studio${currentPath === '/' ? '/' : currentPath}`);
+      const canonicalUrl = `https://asme.studio${currentPath === '/' ? '/' : currentPath}`;
+      canonicalTag?.setAttribute('href', canonicalUrl);
+      ogTitleTag?.setAttribute('content', meta.title);
+      ogDescriptionTag?.setAttribute('content', meta.description);
+      ogUrlTag?.setAttribute('content', canonicalUrl);
+      twitterTitleTag?.setAttribute('content', meta.title);
+      twitterDescriptionTag?.setAttribute('content', meta.description);
+
+      const serviceData = SERVICE_LANDING_PAGES[currentPath];
+      if (serviceData || currentPath === '/global') {
+        const routeSchema = document.createElement('script');
+        routeSchema.id = 'route-structured-data';
+        routeSchema.type = 'application/ld+json';
+        routeSchema.text = JSON.stringify(serviceData ? {
+          '@context': 'https://schema.org', '@type': 'Service', name: serviceData.eyebrow,
+          description: meta.description, url: canonicalUrl, areaServed: 'Worldwide',
+          provider: { '@type': 'Organization', name: 'Meyvaro Studio', url: 'https://asme.studio/' },
+        } : {
+          '@context': 'https://schema.org', '@type': 'Organization', name: 'Meyvaro Studio',
+          url: canonicalUrl, address: { '@type': 'PostalAddress', addressLocality: 'Bengaluru', addressRegion: 'Karnataka', addressCountry: 'IN' },
+          areaServed: 'Worldwide', description: meta.description,
+        });
+        document.head.appendChild(routeSchema);
+      }
     } else {
       document.title = 'Page Not Found | Meyvaro Studio';
       robotsTag?.setAttribute('content', 'noindex, follow');
@@ -179,6 +237,27 @@ export function App() {
     );
   }
 
+  const serviceLandingData = SERVICE_LANDING_PAGES[currentPath];
+  if (serviceLandingData) {
+    return (
+      <div className="min-h-screen bg-white text-gray-900">
+        <ServiceLandingPage data={serviceLandingData} onBack={() => navigateTo('/')} onOpenProject={() => handleOpenProject(`Service: ${serviceLandingData.eyebrow}`)} />
+        <Footer />
+        <ContactModal isOpen={modalOpen} onClose={() => setModalOpen(false)} initialType={modalType} />
+      </div>
+    );
+  }
+
+  if (currentPath === '/global') {
+    return (
+      <div className="min-h-screen bg-white text-gray-900">
+        <GlobalDeliveryPage onBack={() => navigateTo('/')} onOpenProject={() => handleOpenProject('Global Project Inquiry')} />
+        <Footer />
+        <ContactModal isOpen={modalOpen} onClose={() => setModalOpen(false)} initialType={modalType} />
+      </div>
+    );
+  }
+
   // 404 handler for unmatched paths
   if (currentPath !== '/' && !currentPath.startsWith('/#')) {
     return (
@@ -209,6 +288,8 @@ export function App() {
         <CaseStudiesSection
           onSelectProject={(projectTitle) => handleOpenProject(`Case Study: ${projectTitle}`)}
         />
+
+        <TestimonialsSection />
 
         {/* SECTION 6: 8-STAGE ENGINEERING PIPELINE */}
         <ProcessSection />

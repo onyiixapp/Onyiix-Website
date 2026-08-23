@@ -33,8 +33,10 @@ export const Footer: React.FC = () => {
           <div>
             <p className="mb-4 text-[10px] font-black uppercase tracking-[0.2em] text-neutral-500">Explore</p>
             <nav aria-label="Explore links" className="flex flex-col items-start gap-3 text-sm font-medium text-neutral-300">
-              <a href="#journey" className="transition-colors hover:text-blue-400">Services</a>
-              <a href="#projects" className="transition-colors hover:text-blue-400">Selected work</a>
+              <a href="/services/web-development" className="transition-colors hover:text-blue-400">Web development</a>
+              <a href="/services/saas-platforms" className="transition-colors hover:text-blue-400">SaaS platforms</a>
+              <a href="/services/digital-marketing" className="transition-colors hover:text-blue-400">Digital marketing</a>
+              <a href="/global" className="transition-colors hover:text-blue-400">Global delivery</a>
               <a href="/sitemap" className="transition-colors hover:text-blue-400">Sitemap</a>
             </nav>
           </div>
