@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Shader, Swirl, ChromaFlow, FlutedGlass, FilmGrain } from 'shaders/react';
-import { Clock, ArrowRight, Menu, X } from 'lucide-react';
+import { Clock, ArrowRight, Menu, X, ShieldCheck } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface HeroSectionProps {
@@ -9,19 +9,19 @@ interface HeroSectionProps {
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onOpenProject }) => {
-  const [londonTime, setLondonTime] = useState('');
+  const [bengaluruTime, setBengaluruTime] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Live London Clock
+  // Live Bengaluru Clock
   useEffect(() => {
     const updateTime = () => {
-      const timeString = new Intl.DateTimeFormat('en-GB', {
-        timeZone: 'Europe/London',
+      const timeString = new Intl.DateTimeFormat('en-IN', {
+        timeZone: 'Asia/Kolkata',
         hour: '2-digit',
         minute: '2-digit',
         hour12: false,
       }).format(new Date());
-      setLondonTime(timeString);
+      setBengaluruTime(timeString);
     };
 
     updateTime();
@@ -65,25 +65,33 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onOpenP
         <nav className="bg-white rounded-full p-[5px] flex items-center justify-between shadow-sm">
           {/* LEFT: Logo + Nav Links */}
           <div className="flex items-center">
-            {/* Dark Circle Logo "AX" */}
+            {/* Dark Circle Logo "AS" */}
             <a
-              href="#"
+              href="/"
               className="w-9 h-9 sm:w-10 sm:h-10 bg-gray-900 rounded-full flex items-center justify-center transition-transform duration-300 hover:scale-105"
             >
               <span className="text-[10px] sm:text-[11px] font-bold tracking-tight text-white">
-                AX
+                AS
               </span>
             </a>
 
             {/* Nav Links (hidden on mobile, shown md+) */}
             <div className="hidden md:flex items-center gap-6 ml-4 sm:ml-6">
-              {['Projects', 'Studio', 'Journal', 'Connect'].map((link) => (
+              {[
+                { label: 'Projects', href: '#projects' },
+                { label: 'Services', href: '#services' },
+                { label: 'Selector', href: '#selector' },
+                { label: 'Process', href: '#process' },
+                { label: 'Packages', href: '#packages' },
+                { label: 'Studio', href: '#studio' },
+                { label: 'Connect', href: '#contact' },
+              ].map((item) => (
                 <a
-                  key={link}
-                  href={`#${link.toLowerCase()}`}
-                  className="text-[14px] text-gray-900 hover:text-gray-500 transition-colors duration-300 font-normal"
+                  key={item.label}
+                  href={item.href}
+                  className="text-[14px] text-gray-900 hover:text-gray-500 transition-colors duration-300 font-medium"
                 >
-                  {link}
+                  {item.label}
                 </a>
               ))}
             </div>
@@ -95,9 +103,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onOpenP
               Taking on projects for Q1 2026
             </span>
 
+            {/* Live Bengaluru Time */}
             <div className="flex items-center gap-1.5 text-[13px] text-gray-600 font-normal">
               <Clock className="w-3.5 h-3.5 text-gray-600 stroke-[2]" />
-              <span>{londonTime ? `${londonTime} in London` : 'London'}</span>
+              <span>{bengaluruTime ? `${bengaluruTime} in Bengaluru` : 'Bengaluru, India'}</span>
             </div>
 
             {/* CTA Button: Book a strategy call with Text-Roll Animation */}
@@ -162,7 +171,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onOpenP
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-xs font-medium text-gray-600 bg-gray-100 px-3 py-1.5 rounded-full">
                   <Clock className="w-3.5 h-3.5 text-gray-700" />
-                  <span>{londonTime ? `${londonTime} in London` : 'London'}</span>
+                  <span>{bengaluruTime ? `${bengaluruTime} in Bengaluru` : 'Bengaluru'}</span>
                   <span>•</span>
                   <span>Q1 2026</span>
                 </div>
@@ -177,15 +186,23 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onOpenP
               </div>
 
               {/* Large Nav Links */}
-              <div className="flex flex-col gap-3 py-2 text-[28px] sm:text-[32px] font-medium text-gray-900">
-                {['Projects', 'Studio', 'Journal', 'Connect'].map((link) => (
+              <div className="flex flex-col gap-3 py-2 text-[26px] sm:text-[30px] font-medium text-gray-900">
+                {[
+                  { label: 'Projects', href: '#projects' },
+                  { label: 'Services', href: '#services' },
+                  { label: 'Selector', href: '#selector' },
+                  { label: 'Process', href: '#process' },
+                  { label: 'Packages', href: '#packages' },
+                  { label: 'Studio', href: '#studio' },
+                  { label: 'Contact', href: '#contact' },
+                ].map((item) => (
                   <a
-                    key={link}
-                    href={`#${link.toLowerCase()}`}
+                    key={item.label}
+                    href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
                     className="hover:text-gray-500 transition-colors"
                   >
-                    {link}
+                    {item.label}
                   </a>
                 ))}
               </div>
@@ -213,7 +230,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onOpenP
       <div className="flex-1 flex flex-col justify-end max-w-[1440px] w-full mx-auto px-5 sm:px-8 lg:px-12 pb-14 sm:pb-16 lg:pb-20 relative z-20">
         {/* Small Label */}
         <div className="text-[13px] sm:text-[14px] text-gray-900 tracking-wide mb-5 sm:mb-8 font-medium">
-          Axion Studio
+          ASME Studio
         </div>
 
         {/* Headline H1 */}
@@ -249,23 +266,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onOpenP
             </div>
           </button>
 
-          {/* Partner Badge */}
+          {/* Certified Partner & Free Month Badge */}
           <div className="bg-white rounded-[4px] px-3 py-2 sm:px-3.5 sm:py-2 flex items-center gap-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)] transition-shadow duration-300 border border-gray-100/50 cursor-pointer">
-            {/* Exact SVG Starburst Icon */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 100 100"
-              className="w-5 h-5 sm:w-6 sm:h-6 fill-current text-[#E8704E] shrink-0"
-            >
-              <path d="m19.6 66.5 19.7-11 .3-1-.3-.5h-1l-3.3-.2-11.2-.3L14 53l-9.5-.5-2.4-.5L0 49l.2-1.5 2-1.3 2.9.2 6.3.5 9.5.6 6.9.4L38 49.1h1.6l.2-.7-.5-.4-.4-.4L29 41l-10.6-7-5.6-4.1-3-2-1.5-2-.6-4.2 2.7-3 3.7.3.9.2 3.7 2.9 8 6.1L37 36l1.5 1.2.6-.4.1-.3-.7-1.1L33 25l-6-10.4-2.7-4.3-.7-2.6c-.3-1-.4-2-.4-3l3-4.2L28 0l4.2.6L33.8 2l2.6 6 4.1 9.3L47 29.9l2 3.8 1 3.4.3 1h.7v-.5l.5-7.2 1-8.7 1-11.2.3-3.2 1.6-3.8 3-2L61 2.6l2 2.9-.3 1.8-1.1 7.7L59 27.1l-1.5 8.2h.9l1-1.1 4.1-5.4 6.9-8.6 3-3.5L77 13l2.3-1.8h4.3l3.1 4.7-1.4 4.9-4.4 5.6-3.7 4.7-5.3 7.1-3.2 5.7.3.4h.7l12-2.6 6.4-1.1 7.6-1.3 3.5 1.6.4 1.6-1.4 3.4-8.2 2-9.6 2-14.3 3.3-.2.1.2.3 6.4.6 2.8.2h6.8l12.6 1 3.3 2 1.9 2.7-.3 2-5.1 2.6-6.8-1.6-16-3.8-5.4-1.3h-.8v.4l4.6 4.5 8.3 7.5L89 80.1l.5 2.4-1.3 2-1.4-.2-9.2-7-3.6-3-8-6.8h-.5v.7l1.8 2.7 9.8 14.7.5 4.5-.7 1.4-2.6 1-2.7-.6-5.8-8-6-9-4.7-8.2-.5.4-2.9 30.2-1.3 1.5-3 1.2-2.5-2-1.4-3 1.4-6.2 1.6-8 1.3-6.4 1.2-7.9.7-2.6v-.2H49L43 72l-9 12.3-7.2 7.6-1.7.7-3-1.5.3-2.8L24 86l10-12.8 6-7.9 4-4.6-.1-.5h-.3L17.2 77.4l-4.7.6-2-2 .2-3 1-1 8-5.5Z" />
-            </svg>
+            <ShieldCheck className="w-5 h-5 text-[#F26522] shrink-0" />
 
             <span className="text-[13px] sm:text-[14px] font-medium text-gray-900">
-              Certified Partner
+              1-Month Free Maintenance Included
             </span>
 
             <span className="text-[10px] sm:text-[11px] bg-gray-900 text-white px-1.5 sm:px-2 py-0.5 rounded font-medium">
-              Featured
+              Warranty
             </span>
           </div>
         </div>

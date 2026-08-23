@@ -1,227 +1,221 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import confetti from 'canvas-confetti';
-import { Send, CheckCircle2, ShieldCheck, User, Mail, MessageSquare, Briefcase } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, Mail, Phone, MapPin, Send, CheckCircle2, MessageSquare } from 'lucide-react';
 
-interface ContactSectionProps {
-  prefilledQuote?: {
-    typeName: string;
-    totalPrice: number;
-    totalDays: number;
-    selectedFeatures: string[];
-    isRush: boolean;
-  } | null;
-}
-
-export const ContactSection: React.FC<ContactSectionProps> = ({ prefilledQuote }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    projectType: 'High-Converting Landing Page',
-    budgetRange: '$1,000 - $3,000',
-    description: '',
-  });
-
+export const ContactSection: React.FC = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [service, setService] = useState('Full-Stack Web Development');
+  const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  useEffect(() => {
-    if (prefilledQuote) {
-      setFormData((prev) => ({
-        ...prev,
-        projectType: prefilledQuote.typeName,
-        budgetRange: `$${prefilledQuote.totalPrice.toLocaleString()} USD (Estimated)`,
-        description: `Selected Scope: ${prefilledQuote.typeName}\nAdd-on Modules: ${prefilledQuote.selectedFeatures.join(', ')}\nDelivery Pace: ${
-          prefilledQuote.isRush ? 'Express Rush Priority' : 'Standard Sprint'
-        } (~${prefilledQuote.totalDays} days)\nWarranty: 30-Day Free Bug Warranty Included.`,
-      }));
-    }
-  }, [prefilledQuote]);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
+    setLoading(true);
     setTimeout(() => {
-      setIsSubmitting(false);
+      setLoading(false);
       setSubmitted(true);
-      confetti({
-        particleCount: 120,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#EEA22A', '#121316', '#059669', '#EAE4D7'],
-      });
-    }, 800);
+    }, 600);
   };
 
   return (
-    <section id="contact" className="relative z-10 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-      <div className="paper-card rounded-3xl p-8 sm:p-12 relative overflow-hidden">
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-8">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#E6E2D8] bg-[#F3EFE7] px-4 py-1 text-xs font-mono text-[#6B6862] mb-3">
-            <span className="text-[#EEA22A] font-bold">08 / START YOUR BUILD</span>
+    <section
+      id="contact"
+      className="bg-[#F5F5F5] pt-16 sm:pt-20 lg:pt-28 pb-16 sm:pb-20 lg:pb-28"
+    >
+      <div className="max-w-[1440px] mx-auto">
+        {/* Badge row */}
+        <div className="px-5 sm:px-8 lg:px-12 flex items-center gap-3 mb-6 sm:mb-8">
+          <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gray-900 text-white text-[11px] sm:text-[12px] font-semibold flex items-center justify-center">
+            8
           </div>
-
-          <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-[#121316]">
-            Start Your Project with <br />
-            <span className="text-[#8C857B]">Maaz &amp; Suman.</span>
-          </h2>
-
-          <p className="mt-3 text-xs sm:text-sm text-[#6B6862]">
-            Fill in your project scope below. We review every brief personally and reply with a complete technical breakdown within 4 hours.
-          </p>
+          <div className="text-[12px] sm:text-[13px] font-medium border border-gray-300 rounded-full px-3 sm:px-4 py-1 sm:py-1.5 text-gray-900">
+            Connect With Us
+          </div>
         </div>
 
-        {/* Form Container */}
-        <AnimatePresence mode="wait">
-          {!submitted ? (
-            <motion.form
-              key="form"
-              onSubmit={handleSubmit}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="space-y-4"
-            >
-              {prefilledQuote && (
-                <div className="rounded-xl border border-[#059669]/30 bg-[#059669]/10 p-3 text-xs font-mono text-[#059669] flex items-center justify-between">
-                  <span className="flex items-center gap-2">
-                    <ShieldCheck className="h-4 w-4" /> Locked in Scope: {prefilledQuote.typeName} (~${prefilledQuote.totalPrice})
-                  </span>
-                  <span className="text-[11px] text-[#121316] font-bold">30-Day Warranty Free</span>
+        {/* Heading H2 */}
+        <h2 className="text-[clamp(1.75rem,7vw,4.2rem)] sm:text-[clamp(2.5rem,5vw,4.2rem)] font-medium leading-[1.08] tracking-[-0.03em] text-gray-900 mb-10 sm:mb-14 lg:mb-16 px-5 sm:px-8 lg:px-12 max-w-5xl">
+          Let&rsquo;s engineer something extraordinary.
+        </h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 px-5 sm:px-8 lg:px-12">
+          {/* Left Column: Direct Founder Contacts & Channels */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/80 shadow-sm space-y-6">
+              <div>
+                <span className="text-xs font-bold text-[#F26522] uppercase tracking-wider block mb-1">
+                  HEADQUARTERS &amp; GEO
+                </span>
+                <h3 className="text-xl font-bold text-gray-900">
+                  ASME Digital Studio
+                </h3>
+                <p className="text-xs text-gray-500 mt-1 flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5 text-[#F26522]" />
+                  <span>Bengaluru, Karnataka, India • 12.9716° N, 77.5946° E</span>
+                </p>
+              </div>
+
+              <div className="space-y-3 text-xs sm:text-sm">
+                <a
+                  href="mailto:maazmohammed112@gmail.com"
+                  className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors text-gray-800"
+                >
+                  <Mail className="w-4 h-4 text-[#F26522] shrink-0" />
+                  <span>maazmohammed112@gmail.com</span>
+                </a>
+
+                <a
+                  href="tel:+918884949216"
+                  className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors text-gray-800"
+                >
+                  <Phone className="w-4 h-4 text-[#F26522] shrink-0" />
+                  <span>+91 88849 49216</span>
+                </a>
+              </div>
+
+              {/* Direct Instant Channels */}
+              <div className="pt-4 border-t border-gray-100">
+                <span className="text-xs font-semibold text-gray-500 block mb-3">
+                  Direct Founder Chat Channels
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  <a
+                    href="https://wa.me/918884949216"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold hover:bg-emerald-100 transition-colors border border-emerald-200"
+                  >
+                    <MessageSquare className="w-3.5 h-3.5" />
+                    <span>WhatsApp Founder</span>
+                  </a>
+
+                  <a
+                    href="https://t.me/maazmohammed"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-50 text-sky-700 text-xs font-semibold hover:bg-sky-100 transition-colors border border-sky-200"
+                  >
+                    <Send className="w-3.5 h-3.5" />
+                    <span>Telegram Channel</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Project Brief Form */}
+          <div className="lg:col-span-7">
+            <div className="bg-white rounded-3xl p-6 sm:p-10 border border-gray-200/80 shadow-sm">
+              {!submitted ? (
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
+                    Submit a Project Brief
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-500 mb-6">
+                    Tell us about what you want to build. We reply with a scoped estimate within 24 hours.
+                  </p>
+
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-700 mb-1">
+                          Full Name *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="Your Name"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#F26522] focus:outline-none transition-all"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-700 mb-1">
+                          Email Address *
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          placeholder="name@company.com"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#F26522] focus:outline-none transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-700 mb-1">
+                        Service Required
+                      </label>
+                      <select
+                        value={service}
+                        onChange={(e) => setService(e.target.value)}
+                        className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:bg-white focus:border-[#F26522] focus:outline-none transition-all"
+                      >
+                        <option value="CMS & WordPress Websites">CMS &amp; WordPress Websites</option>
+                        <option value="SaaS & Custom Web Applications">SaaS &amp; Custom Web Applications</option>
+                        <option value="Full-Stack Web Development">Full-Stack Web Development</option>
+                        <option value="Ongoing Support & Optimization">Ongoing Support &amp; Optimization</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-700 mb-1">
+                        Project Brief &amp; Goals *
+                      </label>
+                      <textarea
+                        rows={4}
+                        required
+                        placeholder="Tell us about the target audience, features, timeline, and goals..."
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#F26522] focus:outline-none transition-all"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="w-full bg-[#F26522] hover:bg-[#e05a1a] text-white font-medium text-sm py-3.5 rounded-full transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer disabled:opacity-50"
+                    >
+                      {loading ? (
+                        'Sending brief...'
+                      ) : (
+                        <>
+                          <span>Submit Scoped Brief</span>
+                          <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+                        </>
+                      )}
+                    </button>
+                  </form>
+                </div>
+              ) : (
+                <div className="py-8 text-center space-y-4">
+                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-orange-50 text-[#F26522]">
+                    <CheckCircle2 className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-2xl font-medium text-gray-900">
+                    Brief Received
+                  </h3>
+                  <p className="text-sm text-gray-600 max-w-xs mx-auto leading-relaxed">
+                    Thank you, <strong className="text-gray-900">{name}</strong>. Our engineering leads will review your requirements and get back to <span className="text-gray-900 font-medium">{email}</span> within 24 hours.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setSubmitted(false)}
+                    className="bg-gray-900 text-white rounded-full px-6 py-2.5 text-xs font-medium mt-4 hover:bg-gray-800 transition-colors"
+                  >
+                    Submit Another Brief
+                  </button>
                 </div>
               )}
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Name */}
-                <div className="space-y-1.5">
-                  <label className="block text-xs font-semibold text-[#121316] flex items-center gap-1.5">
-                    <User className="h-3.5 w-3.5 text-[#EEA22A]" /> Your Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Alex Rivera"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full rounded-xl border border-[#E6E2D8] bg-[#FAF8F3] px-4 py-3 text-xs text-[#121316] placeholder:text-[#948E83] focus:border-[#EEA22A] focus:outline-none transition-all"
-                  />
-                </div>
-
-                {/* Email */}
-                <div className="space-y-1.5">
-                  <label className="block text-xs font-semibold text-[#121316] flex items-center gap-1.5">
-                    <Mail className="h-3.5 w-3.5 text-[#EEA22A]" /> Work Email *
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="alex@company.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full rounded-xl border border-[#E6E2D8] bg-[#FAF8F3] px-4 py-3 text-xs text-[#121316] placeholder:text-[#948E83] focus:border-[#EEA22A] focus:outline-none transition-all"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Company Name */}
-                <div className="space-y-1.5">
-                  <label className="block text-xs font-semibold text-[#121316] flex items-center gap-1.5">
-                    <Briefcase className="h-3.5 w-3.5 text-[#EEA22A]" /> Company / Project Name
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Apex Health AI"
-                    value={formData.company}
-                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full rounded-xl border border-[#E6E2D8] bg-[#FAF8F3] px-4 py-3 text-xs text-[#121316] placeholder:text-[#948E83] focus:border-[#EEA22A] focus:outline-none transition-all"
-                  />
-                </div>
-
-                {/* Project Category */}
-                <div className="space-y-1.5">
-                  <label className="block text-xs font-semibold text-[#121316]">
-                    Project Category
-                  </label>
-                  <select
-                    value={formData.projectType}
-                    onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                    className="w-full rounded-xl border border-[#E6E2D8] bg-[#FAF8F3] px-4 py-3 text-xs text-[#121316] focus:border-[#EEA22A] focus:outline-none transition-all"
-                  >
-                    <option value="High-Converting Landing Page">High-Converting Landing Page &amp; Forms</option>
-                    <option value="AI Web Application / Chatbot">AI Web Application &amp; Custom Chatbot</option>
-                    <option value="Headless E-Commerce Store">Headless E-Commerce Store</option>
-                    <option value="Full-Scale MVP / SaaS Platform">Full-Scale MVP / SaaS Platform</option>
-                  </select>
-                </div>
-              </div>
-
-              {/* Description */}
-              <div className="space-y-1.5">
-                <label className="block text-xs font-semibold text-[#121316] flex items-center gap-1.5">
-                  <MessageSquare className="h-3.5 w-3.5 text-[#EEA22A]" /> Project Brief &amp; Requirements
-                </label>
-                <textarea
-                  rows={3}
-                  required
-                  placeholder="Describe your product requirements, timelines, and features..."
-                  value={formData.description}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full rounded-xl border border-[#E6E2D8] bg-[#FAF8F3] px-4 py-3 text-xs text-[#121316] placeholder:text-[#948E83] focus:border-[#EEA22A] focus:outline-none transition-all"
-                />
-              </div>
-
-              {/* Bottom Submit */}
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-3 border-t border-[#E6E2D8]">
-                <div className="flex items-center gap-2 text-xs font-mono text-[#059669]">
-                  <ShieldCheck className="h-4 w-4" />
-                  <span>30-Day Zero-Cost Bug Warranty Activated Upon Launch</span>
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="btn-amber flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl px-7 py-3 text-xs font-bold disabled:opacity-50"
-                >
-                  {isSubmitting ? (
-                    <span>Submitting Brief...</span>
-                  ) : (
-                    <>
-                      <span>Send Project Brief to Maaz &amp; Suman</span>
-                      <Send className="h-3.5 w-3.5" />
-                    </>
-                  )}
-                </button>
-              </div>
-            </motion.form>
-          ) : (
-            <motion.div
-              key="success"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="py-10 text-center space-y-3"
-            >
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#059669]/10 text-[#059669] border border-[#059669]/30">
-                <CheckCircle2 className="h-7 w-7" />
-              </div>
-
-              <h3 className="font-display text-2xl font-bold text-[#121316]">
-                Brief Received by Maaz &amp; Suman!
-              </h3>
-
-              <p className="text-xs sm:text-sm text-[#6B6862] max-w-md mx-auto leading-relaxed">
-                Thank you, <span className="text-[#121316] font-bold">{formData.name}</span>. We are reviewing your scope and will respond to <span className="text-[#EEA22A] font-mono">{formData.email}</span> with a custom roadmap within 4 hours.
-              </p>
-
-              <div className="pt-2 font-handwritten text-2xl text-[#C9770E]">
-                &ldquo;We&apos;re excited to build something extraordinary with you!&rdquo; — Maaz &amp; Suman
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

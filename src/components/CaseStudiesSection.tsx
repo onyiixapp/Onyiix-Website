@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 
 interface CaseStudiesSectionProps {
   onSelectProject?: (title: string) => void;
@@ -27,8 +27,8 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
           Our projects
         </h2>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-7 px-5 sm:px-8 lg:px-12">
+        {/* Cards Grid: 2x2 Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 px-5 sm:px-8 lg:px-12">
           {/* Card 1 (Narrativ) */}
           <div
             onClick={() => onSelectProject && onSelectProject('Narrativ')}
@@ -50,7 +50,6 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
                   Learn more
                 </span>
 
-                {/* Link / Chain SVG Icon */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -105,6 +104,71 @@ export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({ onSelect
             </p>
             <h3 className="text-[14px] sm:text-[15px] font-semibold text-gray-900 mt-1">
               Luminar
+            </h3>
+          </div>
+
+          {/* Card 3 (primkart.app - Live Client in Bengaluru, India) */}
+          <div className="flex flex-col group">
+            <div className="aspect-[329/246] rounded-2xl overflow-hidden bg-white border border-gray-200 relative shadow-sm">
+              <img
+                src="https://images.unsplash.com/photo-1556742049-0a67e5572293?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+                alt="primkart.app e-commerce"
+                loading="lazy"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+
+              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-gray-900 shadow-sm">
+                Live &amp; Delivered • Bengaluru, India
+              </div>
+
+              {/* Action Button Link to Live Site */}
+              <a
+                href="https://primkart.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute bottom-4 left-4 bg-gray-900 hover:bg-[#F26522] text-white text-xs font-medium px-4 py-2 rounded-full flex items-center gap-1.5 transition-colors shadow-md"
+              >
+                <span>Visit primkart.app</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+
+            <p className="text-[13px] sm:text-[14px] text-gray-600 mt-4 leading-relaxed font-normal">
+              Local retail and kitchen warehouse e-commerce platform for distributors with automated Telegram order dispatch
+            </p>
+            <h3 className="text-[14px] sm:text-[15px] font-semibold text-gray-900 mt-1">
+              primkart.app
+            </h3>
+          </div>
+
+          {/* Card 4 (Workshop Management SaaS - Client in France) */}
+          <div
+            onClick={() => onSelectProject && onSelectProject('Workshop Management SaaS')}
+            className="flex flex-col cursor-pointer group"
+          >
+            <div className="aspect-[329/246] rounded-2xl overflow-hidden bg-white border border-gray-200 relative shadow-sm">
+              <img
+                src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+                alt="Workshop Management SaaS"
+                loading="lazy"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+
+              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-gray-900 shadow-sm">
+                Active SaaS Engineering • France
+              </div>
+
+              <div className="absolute bottom-4 left-4 bg-gray-900 text-white text-xs font-medium px-4 py-2 rounded-full flex items-center gap-1.5 shadow-md">
+                <span>Multi-Tenant Telemetry</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </div>
+            </div>
+
+            <p className="text-[13px] sm:text-[14px] text-gray-600 mt-4 leading-relaxed font-normal">
+              Automotive workshop cloud platform managing repair job cards, telemetry, parts inventory, and SMS alerts
+            </p>
+            <h3 className="text-[14px] sm:text-[15px] font-semibold text-gray-900 mt-1">
+              Workshop Management SaaS
             </h3>
           </div>
         </div>

@@ -1,132 +1,130 @@
-import React, { useRef, useState } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { ShieldCheck, Lock, Code2, Users, ChevronDown } from 'lucide-react';
+import React, { useState } from 'react';
+import { ChevronDown, ShieldCheck, Lock, Code2, Users } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export const TrustAndFaqSection: React.FC = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  const trustPillars = [
+  const trustPoints = [
     {
       icon: Code2,
-      title: '100% Full Code Ownership',
-      desc: 'You own 100% of your source code, Git repository, design tokens, and database schemas. Zero proprietary vendor lock-in.',
+      title: '100% Code Ownership',
+      desc: 'Upon project completion, you receive full intellectual property ownership and full repository access. Zero vendor lock-in.',
     },
     {
       icon: ShieldCheck,
-      title: '30-Day Zero-Cost Warranty',
-      desc: 'Every delivered platform includes 30 days of complimentary bug resolution and direct engineering SLA guarantees.',
+      title: '30-Day Zero-Cost Bug Warranty',
+      desc: 'If any bug arises within 30 days post-launch that was part of the scoped deliverables, we patch it immediately at zero cost.',
     },
     {
       icon: Users,
-      title: 'Direct Senior Engineering',
-      desc: 'Work directly with our core software architects. No junior handoffs, no middleman communication lag.',
+      title: 'Direct Founder Access',
+      desc: 'You communicate directly with Mohammed Maaz A & Suman Kumar Singh—no bureaucratic account managers or lost requirements.',
     },
     {
       icon: Lock,
-      title: 'Security & Web Vitals SLA',
-      desc: 'Enterprise-grade SSL, database encryption, automated snapshot backups, and sub-2.5s Core Web Vitals performance.',
+      title: '1-Month Free Maintenance SLA',
+      desc: 'Enjoy one month of free technical oversight, security checks, uptime audits, and minor content adjustments included in all builds.',
     },
   ];
 
   const faqs = [
     {
-      q: 'Do I own 100% of the website code and assets?',
-      a: 'Yes, absolutely. Upon final deployment and project sign-off, full ownership of the GitHub/GitLab repository, production build scripts, database schemas, and digital assets is permanently transferred to your team with complete commercial rights.',
+      q: 'What is included in the 1-Month Free Website Maintenance SLA?',
+      a: 'Our 1-Month Free Maintenance SLA includes continuous uptime monitoring, security updates, technical SEO verification, minor copy/image modifications, and Core Web Vitals checks to ensure your website operates flawlessly after launch.',
     },
     {
-      q: 'What happens after the 1-Month Free Maintenance period concludes?',
-      a: 'After your complimentary 30 days of bug fixes, monitoring, and content tweaks, you have full freedom to manage the platform independently, or subscribe to one of our optional monthly Care Plans (Basic, Standard, or Growth) for ongoing proactive support.',
+      q: 'Do I own 100% of the code and intellectual property after completion?',
+      a: 'Yes. Upon final settlement, all source code, design assets, Figma files, database schemas, and documentation are transferred 100% to you. We do not retain proprietary locks or vendor traps.',
     },
     {
-      q: 'How fast can ASME Studio launch our project?',
-      a: 'Typical timelines: Starter websites launch in 7–10 business days; Business platforms & e-commerce stores take 2–4 weeks; full-scale SaaS platforms and custom web applications take 4–8 weeks depending on database complexity.',
+      q: 'How does your 30-Day Zero-Cost Bug Warranty work?',
+      a: 'If any functional defect, responsive visual bug, or broken link arises within 30 days of launch that falls within the scoped agreement, we diagnose and deploy the fix immediately with no billing.',
     },
     {
-      q: 'How do you handle custom requirements or third-party integrations?',
-      a: 'We specialize in custom architectural integrations including Telegram bots, PostgreSQL multi-tenant databases, ERP connectors, and custom REST/GraphQL APIs. You can request a custom proposal via our Interactive Selector or contact form.',
+      q: 'Can you build custom Telegram bot integrations for ordering and alerts?',
+      a: 'Yes! As demonstrated in our live client delivery for primkart.app in Bengaluru, we build automated Telegram bots that dispatch instant order tickets, alerts, and customer notifications directly to your management chat groups.',
     },
     {
-      q: 'Where is ASME Studio based, and do you work with international clients?',
-      a: 'ASME Studio is headquartered in Bengaluru, India, and actively delivers production software for clients worldwide (including live platforms delivered to Bengaluru, India and active SaaS developments for clients in France).',
+      q: 'What technologies do you use for SaaS and full-stack development?',
+      a: 'We specialize in Next.js 15, React 19, TypeScript, Tailwind CSS, PostgreSQL, Prisma ORM, Node.js microservices, Docker, Redis, and modern vector RAG AI workflows.',
+    },
+    {
+      q: 'Where is ASME Studio located and what hours do you work?',
+      a: 'ASME Studio is founded and headquartered in Bengaluru, Karnataka, India (with co-engineering in Delhi, India). We operate on IST and comfortably overlap with US, European (France, UK), and Asia-Pacific timezones.',
     },
   ];
 
-  const toggleFaq = (idx: number) => {
-    setOpenFaq(openFaq === idx ? null : idx);
-  };
-
   return (
-    <section id="faq" ref={ref} className="bg-black py-24 sm:py-32 px-4 sm:px-6 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto">
-        {/* Trust Badges Grid (Star icon removed) */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="mb-20"
-        >
-          <div className="text-center sm:text-left mb-10">
-            <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-950/50 px-4 py-1.5 text-xs font-sans font-medium text-sky-300 mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
-              <span>07 / TRUST &amp; CREDIBILITY CHARTER</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-normal text-white tracking-tight">
-              Built on engineering <br />
-              <span className="font-serif italic text-sky-300">transparency &amp; ownership</span>.
-            </h2>
+    <section
+      id="faqs"
+      className="bg-white pt-16 sm:pt-20 lg:pt-28 pb-16 sm:pb-20 lg:pb-28"
+    >
+      <div className="max-w-[1440px] mx-auto">
+        {/* Badge row */}
+        <div className="px-5 sm:px-8 lg:px-12 flex items-center gap-3 mb-6 sm:mb-8">
+          <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gray-900 text-white text-[11px] sm:text-[12px] font-semibold flex items-center justify-center">
+            7
           </div>
+          <div className="text-[12px] sm:text-[13px] font-medium border border-gray-200 rounded-full px-3 sm:px-4 py-1 sm:py-1.5 text-gray-900">
+            Trust Charter &amp; FAQs
+          </div>
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {trustPillars.map((tp) => {
-              const Icon = tp.icon;
-              return (
-                <div
-                  key={tp.title}
-                  className="liquid-glass rounded-3xl p-6 sm:p-7 border border-white/10 flex flex-col justify-between hover:border-sky-400/40 transition-all duration-300 shadow-xl"
-                >
-                  <div>
-                    <div className="w-10 h-10 rounded-2xl bg-sky-500/10 border border-sky-400/30 flex items-center justify-center text-sky-400 mb-4">
-                      <Icon className="w-5 h-5" />
-                    </div>
-                    <h3 className="text-lg font-bold text-white tracking-tight mb-2 font-sans">{tp.title}</h3>
-                    <p className="text-xs sm:text-sm text-white/70 leading-relaxed font-sans">{tp.desc}</p>
-                  </div>
+        {/* Heading H2 */}
+        <h2 className="text-[clamp(1.75rem,7vw,4.2rem)] sm:text-[clamp(2.5rem,5vw,4.2rem)] font-medium leading-[1.08] tracking-[-0.03em] text-gray-900 mb-10 sm:mb-14 lg:mb-16 px-5 sm:px-8 lg:px-12 max-w-5xl">
+          Built on guarantees &amp; trust.
+        </h2>
+
+        {/* Trust Charter Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-5 sm:px-8 lg:px-12 mb-16">
+          {trustPoints.map((tp) => {
+            const Icon = tp.icon;
+            return (
+              <div
+                key={tp.title}
+                className="bg-gray-50 rounded-2xl p-6 border border-gray-200/80 hover:border-gray-300 transition-colors"
+              >
+                <div className="w-10 h-10 rounded-xl bg-orange-50 text-[#F26522] flex items-center justify-center mb-4">
+                  <Icon className="w-5 h-5" />
                 </div>
-              );
-            })}
-          </div>
-        </motion.div>
+
+                <h3 className="text-base font-bold text-gray-900 mb-2">
+                  {tp.title}
+                </h3>
+
+                <p className="text-xs text-gray-600 leading-relaxed">
+                  {tp.desc}
+                </p>
+              </div>
+            );
+          })}
+        </div>
 
         {/* FAQ Accordion */}
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-10">
-            <p className="text-sky-400 text-xs font-sans font-semibold tracking-wider uppercase mb-2">
-              FREQUENTLY ANSWERED QUESTIONS
-            </p>
-            <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight font-sans">
-              Clarity on Engagement &amp; Delivery
-            </h3>
-          </div>
+        <div className="px-5 sm:px-8 lg:px-12 max-w-4xl">
+          <h3 className="text-2xl font-bold text-gray-900 mb-6">
+            Frequently Asked Questions
+          </h3>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {faqs.map((faq, idx) => {
               const isOpen = openFaq === idx;
+
               return (
                 <div
                   key={faq.q}
-                  className="liquid-glass rounded-2xl border border-white/10 overflow-hidden transition-all"
+                  className="rounded-2xl border border-gray-200 overflow-hidden bg-gray-50 transition-colors"
                 >
                   <button
                     type="button"
-                    onClick={() => toggleFaq(idx)}
-                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 text-white hover:text-sky-300 transition-colors"
+                    onClick={() => setOpenFaq(isOpen ? null : idx)}
+                    className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-semibold text-sm sm:text-base text-gray-900"
                   >
-                    <span className="font-semibold text-sm sm:text-base font-sans">{faq.q}</span>
+                    <span>{faq.q}</span>
                     <ChevronDown
-                      className={`w-4 h-4 text-white/60 shrink-0 transition-transform duration-300 ${
-                        isOpen ? 'rotate-180 text-sky-400' : ''
+                      className={`w-5 h-5 text-gray-400 shrink-0 transition-transform duration-300 ${
+                        isOpen ? 'rotate-180 text-[#F26522]' : ''
                       }`}
                     />
                   </button>
@@ -137,9 +135,9 @@ export const TrustAndFaqSection: React.FC = () => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-white/70 leading-relaxed font-sans border-t border-white/5"
+                        className="overflow-hidden px-5 sm:px-6 pb-6 text-xs sm:text-sm text-gray-600 leading-relaxed border-t border-gray-100"
                       >
-                        {faq.a}
+                        <p className="pt-3">{faq.a}</p>
                       </motion.div>
                     )}
                   </AnimatePresence>

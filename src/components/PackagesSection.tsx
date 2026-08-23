@@ -1,342 +1,179 @@
-import React, { useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Check, ArrowRight, ShieldCheck } from 'lucide-react';
+import React from 'react';
+import { ArrowRight, CheckCircle2, ShieldCheck, Zap } from 'lucide-react';
 
 interface PackagesSectionProps {
-  onOpenContactModal: (packageName?: string) => void;
+  onSelectTier: (tierName: string) => void;
 }
 
-export const PackagesSection: React.FC<PackagesSectionProps> = ({ onOpenContactModal }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const [activeTab, setActiveTab] = useState<'cards' | 'table'>('cards');
-
-  const packages = [
+export const PackagesSection: React.FC<PackagesSectionProps> = ({ onSelectTier }) => {
+  const tiers = [
     {
-      name: 'Starter',
-      subtitle: 'First Business Presence',
-      tag: 'Tier 1',
-      desc: 'Ideal for small businesses and founders needing a clean, professional online presence built fast.',
-      popular: false,
-      attributes: {
-        pages: 'Up to 5 Pages',
-        responsive: '100% Mobile & Tablet Optimized',
-        seo: 'Basic Meta Tags, Sitemap & Indexing',
-        hosting: 'Cloudflare / Vercel Domain Setup',
-        maintenance: '1-Month Free Maintenance Included',
-        support: 'Email Support (24h Response SLA)',
-        revisions: '2 Rounds Included',
-        timeline: '7 - 10 Business Days',
-      },
+      name: 'Starter Tier',
+      tagline: 'Rapid online launch for founders & local brands',
+      price: 'Custom Scoped',
+      delivery: '1–2 Weeks',
+      highlight: false,
       features: [
-        'High-converting landing page + 4 subpages',
-        'Mobile responsive liquid-glass UI',
-        'Contact inquiry form with validation',
-        'Basic on-page SEO & Google indexing',
-        '1-Month Free Website Maintenance Care',
+        'Single-page or multi-page modern React website',
+        'Mobile, tablet & desktop responsiveness',
+        'Lead capture form & WhatsApp direct link',
+        'Basic technical SEO setup & domain routing',
+        '30-Day Zero-Cost Bug Warranty',
+        '1-Month Free Maintenance SLA Included',
       ],
     },
     {
-      name: 'Business',
-      subtitle: 'High-Converting Growth',
-      tag: 'Tier 2 / Most Popular',
-      desc: 'Engineered for established companies needing advanced lead-generation, bespoke CMS, and sub-second speed.',
-      popular: true,
-      attributes: {
-        pages: 'Up to 15 Pages',
-        responsive: '120fps Fluid Micro-Interactions',
-        seo: 'Advanced Technical SEO & Schema Markup',
-        hosting: 'High-Availability Edge Deployment',
-        maintenance: '1-Month Free Maintenance Included',
-        support: 'Priority Telegram & Email SLA',
-        revisions: '3 Rounds Included',
-        timeline: '2 - 3 Weeks Typical',
-      },
+      name: 'Business Tier',
+      tagline: 'Our most popular comprehensive company platform',
+      price: 'Custom Scoped',
+      delivery: '2–3 Weeks',
+      highlight: true,
+      badge: 'Most Popular',
       features: [
-        'Custom CMS (WordPress or Headless Next.js)',
-        'Core Web Vitals tuned (≤ 2.5s LCP)',
-        'Interactive lead funnels & qualification forms',
-        'Analytics, Google Tag Manager & Meta Pixel',
-        '1-Month Free Website Maintenance Care',
+        'Up to 8 custom pages with modern design system',
+        'Headless CMS or WordPress content integration',
+        'Interactive micro-animations & high-converting layout',
+        'Full Core Web Vitals speed optimization (≤ 2.5s LCP)',
+        'Technical SEO & OpenGraph structured data',
+        '30-Day Zero-Cost Bug Warranty',
+        '1-Month Free Maintenance SLA Included',
       ],
     },
     {
-      name: 'Professional',
-      subtitle: 'E-Commerce & Portals',
-      tag: 'Tier 3',
-      desc: 'Designed for businesses requiring product catalogs, distributor ordering systems, and automated bot integrations.',
-      popular: false,
-      attributes: {
-        pages: 'Bespoke Custom Scope',
-        responsive: 'Sub-Second Optimistic State UI',
-        seo: 'E-Commerce Schema & Rich Snippets',
-        hosting: 'Multi-Region Edge CDN Routing',
-        maintenance: '1-Month Free Maintenance Included',
-        support: 'Direct Founder Engineering Channel',
-        revisions: 'Iterative Sprint Reviews',
-        timeline: '3 - 4 Weeks Typical',
-      },
+      name: 'Professional Tier',
+      tagline: 'Advanced commerce, catalogs, & custom integrations',
+      price: 'Custom Scoped',
+      delivery: '3–5 Weeks',
+      highlight: false,
       features: [
-        'Full product catalog & distributor ordering',
-        'Automated Telegram Bot order dispatch sync',
-        'Optimistic zero-lag shopping cart transitions',
-        'Third-party ERP / Inventory API connectors',
-        '1-Month Free Website Maintenance Care',
+        'Custom e-commerce store / distributor ordering platform',
+        'Telegram bot order sync & real-time notifications',
+        'Custom database models & customer accounts',
+        'Sub-second page transitions & edge caching',
+        '30-Day Zero-Cost Bug Warranty',
+        '1-Month Free Maintenance SLA Included',
       ],
     },
     {
-      name: 'SaaS / Custom',
-      subtitle: 'Distributed Web Apps',
-      tag: 'Tier 4 / Enterprise',
-      desc: 'Full-scale cloud operating systems, multi-tenant portals, customer dashboards, and custom PostgreSQL database engines.',
-      popular: false,
-      attributes: {
-        pages: 'Full Custom Application Scope',
-        responsive: 'Tailored Web & Mobile Web App',
-        seo: 'Dynamic SSR / SSG Metadata',
-        hosting: 'Cloud Infrastructure & DB Clusters',
-        maintenance: '1-Month Free Maintenance Included',
-        support: 'Dedicated Architecture Channel',
-        revisions: 'Agile Milestones',
-        timeline: '4 - 8 Weeks Typical',
-      },
+      name: 'SaaS Platform / Custom',
+      tagline: 'Multi-tenant cloud systems & complex web apps',
+      price: 'Custom Scoped',
+      delivery: '6–12 Weeks',
+      highlight: false,
       features: [
-        'Multi-tenant PostgreSQL schema & Prisma ORM',
-        'Role-Based Access Control (RBAC) & Auth.js',
-        'Customer & Admin telemetry analytics dashboards',
-        'Custom REST / GraphQL API webhooks',
-        '1-Month Free Website Maintenance Care',
+        'Multi-tenant cloud architecture & database schemas',
+        'Role-based access control (RBAC) & admin panels',
+        'Automated billing, Stripe/Razorpay webhooks',
+        'Telemetry, analytics dashboards & background jobs',
+        'Private AI/RAG token streaming workflow integration',
+        '1-Month Free Maintenance SLA Included',
       ],
     },
   ];
 
   return (
-    <section id="packages" ref={ref} className="bg-black py-24 sm:py-32 px-4 sm:px-6 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header (Star icon removed) */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
-        >
+    <section
+      id="packages"
+      className="bg-[#F5F5F5] pt-16 sm:pt-20 lg:pt-28 pb-16 sm:pb-20 lg:pb-28"
+    >
+      <div className="max-w-[1440px] mx-auto">
+        {/* Badge row */}
+        <div className="px-5 sm:px-8 lg:px-12 flex items-center gap-3 mb-6 sm:mb-8">
+          <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gray-900 text-white text-[11px] sm:text-[12px] font-semibold flex items-center justify-center">
+            6
+          </div>
+          <div className="text-[12px] sm:text-[13px] font-medium border border-gray-300 rounded-full px-3 sm:px-4 py-1 sm:py-1.5 text-gray-900">
+            Packages &amp; Pricing
+          </div>
+        </div>
+
+        {/* Heading H2 */}
+        <div className="px-5 sm:px-8 lg:px-12 mb-10 sm:mb-14 lg:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-950/50 px-4 py-1.5 text-xs font-sans font-medium text-sky-300 mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
-              <span>05 / PACKAGES &amp; OFFERS</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-normal text-white tracking-tight">
-              Transparent, repeatable <br />
-              <span className="font-serif italic text-sky-300">engineering tiers</span>.
+            <h2 className="text-[clamp(1.75rem,7vw,4.2rem)] sm:text-[clamp(2.5rem,5vw,4.2rem)] font-medium leading-[1.08] tracking-[-0.03em] text-gray-900 max-w-4xl">
+              Transparent engineering tiers.
             </h2>
-            <p className="text-white/60 text-sm sm:text-base mt-2 max-w-xl font-sans">
-              Every package comes bundled with our <strong>30-Day Zero-Cost Bug Warranty</strong> and <strong>1-Month Free Maintenance Care</strong>.
+            <p className="text-sm sm:text-base text-gray-600 mt-2 max-w-2xl">
+              Every package comes bundled with our <strong>1-Month Free Website Maintenance SLA</strong> and <strong>30-Day Zero-Cost Bug Warranty</strong>.
             </p>
           </div>
 
-          {/* View Mode Toggle */}
-          <div className="flex items-center gap-2 bg-white/5 p-1.5 rounded-full border border-white/10 self-start md:self-auto">
-            <button
-              type="button"
-              onClick={() => setActiveTab('cards')}
-              className={`px-4 py-1.5 rounded-full text-xs font-sans font-medium transition-all ${
-                activeTab === 'cards'
-                  ? 'bg-sky-400 text-black font-semibold shadow-md'
-                  : 'text-white/70 hover:text-white'
+          <div className="bg-white border border-gray-200 rounded-2xl p-4 flex items-center gap-3 shrink-0 shadow-sm">
+            <ShieldCheck className="w-6 h-6 text-[#F26522]" />
+            <div className="text-xs">
+              <span className="font-bold text-gray-900 block">1-Month Free Maintenance</span>
+              <span className="text-gray-500">Zero extra cost upon launch</span>
+            </div>
+          </div>
+        </div>
+
+        {/* 4-Tier Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-5 sm:px-8 lg:px-12">
+          {tiers.map((t) => (
+            <div
+              key={t.name}
+              className={`rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 ${
+                t.highlight
+                  ? 'bg-gray-900 text-white shadow-xl scale-[1.02] border border-gray-800'
+                  : 'bg-white text-gray-900 shadow-sm border border-gray-200/80 hover:border-gray-300'
               }`}
             >
-              Cards View
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveTab('table')}
-              className={`px-4 py-1.5 rounded-full text-xs font-sans font-medium transition-all ${
-                activeTab === 'table'
-                  ? 'bg-sky-400 text-black font-semibold shadow-md'
-                  : 'text-white/70 hover:text-white'
-              }`}
-            >
-              Comparison Table
-            </button>
-          </div>
-        </motion.div>
+              <div>
+                {t.badge && (
+                  <span className="text-[10px] font-bold uppercase tracking-wider bg-[#F26522] text-white px-2.5 py-1 rounded-full inline-block mb-3">
+                    {t.badge}
+                  </span>
+                )}
 
-        {/* View 1: 4 Cards Grid (Fixed badge clipping on Tier 2) */}
-        {activeTab === 'cards' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch pt-3">
-            {packages.map((pkg, idx) => (
-              <motion.div
-                key={pkg.name}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className={`liquid-glass rounded-3xl p-6 sm:p-7 border flex flex-col justify-between transition-all duration-300 relative ${
-                  pkg.popular
-                    ? 'border-sky-400/60 bg-sky-950/25 shadow-2xl shadow-sky-950/50 ring-1 ring-sky-400/30'
-                    : 'border-white/10 hover:border-white/20'
-                }`}
-              >
-                <div>
-                  {/* Top Badge Row (Clean inside placement, never cut off) */}
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="font-sans text-[11px] text-sky-400 font-semibold tracking-wider uppercase">
-                      {pkg.tag}
-                    </span>
-                    {pkg.popular && (
-                      <span className="bg-sky-400 text-black font-sans text-[10px] uppercase font-bold px-2.5 py-0.5 rounded-full shadow-sm">
-                        Recommended
-                      </span>
-                    )}
-                  </div>
+                <h3 className={`text-xl font-bold ${t.highlight ? 'text-white' : 'text-gray-900'}`}>
+                  {t.name}
+                </h3>
 
-                  <h3 className="text-2xl font-bold text-white tracking-tight">{pkg.name}</h3>
-                  <div className="text-xs text-white/50 mb-3 font-sans">{pkg.subtitle}</div>
-                  <p className="text-white/70 text-xs leading-relaxed mb-6 font-sans">{pkg.desc}</p>
+                <p className={`text-xs mt-1 mb-4 leading-relaxed ${t.highlight ? 'text-gray-400' : 'text-gray-500'}`}>
+                  {t.tagline}
+                </p>
 
-                  {/* Feature Checklist */}
-                  <div className="space-y-2.5 pb-6 border-b border-white/10">
-                    {pkg.features.map((feat) => (
-                      <div key={feat} className="flex items-start gap-2 text-xs text-white/80 font-sans">
-                        <Check className="w-3.5 h-3.5 text-sky-400 mt-0.5 shrink-0" />
-                        <span>{feat}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Clean Sans-Serif Attribute Line Items */}
-                  <div className="py-4 space-y-2.5 text-xs font-sans text-white/70">
-                    <div className="flex justify-between items-center">
-                      <span className="text-white/50">Timeline:</span>
-                      <span className="text-white font-medium">{pkg.attributes.timeline}</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-white/50">Pages:</span>
-                      <span className="text-white font-medium">{pkg.attributes.pages}</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-white/50">Support SLA:</span>
-                      <span className="text-sky-300 font-medium">{pkg.attributes.support}</span>
-                    </div>
-                  </div>
+                <div className="flex items-baseline gap-1 my-4">
+                  <span className="text-2xl font-black">Coming Soon / Best Price</span>
                 </div>
 
-                {/* Card Action Button */}
-                <div className="pt-4 border-t border-white/10">
-                  <button
-                    type="button"
-                    onClick={() => onOpenContactModal(`${pkg.name} Package`)}
-                    className={`w-full py-3 rounded-full text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
-                      pkg.popular
-                        ? 'bg-white text-black hover:scale-105 shadow-xl'
-                        : 'bg-white/10 text-white hover:bg-white/20 border border-white/10'
-                    }`}
-                  >
-                    <span>Request {pkg.name} Quote</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
+                <div className={`text-xs font-semibold mb-6 flex items-center gap-1.5 ${t.highlight ? 'text-[#F26522]' : 'text-gray-700'}`}>
+                  <Zap className="w-3.5 h-3.5 text-[#F26522]" />
+                  <span>Velocity: {t.delivery}</span>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        )}
 
-        {/* View 2: Detailed Side-by-Side Comparison Table */}
-        {activeTab === 'table' && (
-          <div className="liquid-glass-elevated rounded-3xl p-6 sm:p-8 border border-white/15 overflow-x-auto no-scrollbar">
-            <table className="w-full text-left text-xs font-sans min-w-[700px]">
-              <thead>
-                <tr className="border-b border-white/15">
-                  <th className="pb-4 font-sans text-white/50 uppercase tracking-wider text-[11px] font-semibold">
-                    Attribute
-                  </th>
-                  {packages.map((p) => (
-                    <th key={p.name} className="pb-4 font-bold text-white text-sm">
-                      {p.name}
-                      <span className="block font-sans text-[11px] text-sky-400 font-normal">
-                        {p.subtitle}
+                <div className="space-y-2.5 pt-4 border-t border-gray-100/20 text-xs">
+                  {t.features.map((f) => (
+                    <div key={f} className="flex items-start gap-2">
+                      <CheckCircle2
+                        className={`w-3.5 h-3.5 mt-0.5 shrink-0 ${
+                          t.highlight ? 'text-[#F26522]' : 'text-[#F26522]'
+                        }`}
+                      />
+                      <span className={t.highlight ? 'text-gray-300' : 'text-gray-600'}>
+                        {f}
                       </span>
-                    </th>
+                    </div>
                   ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/10 text-white/80">
-                <tr>
-                  <td className="py-3.5 text-white/50 font-medium">Number of Pages</td>
-                  {packages.map((p) => (
-                    <td key={p.name} className="py-3.5">{p.attributes.pages}</td>
-                  ))}
-                </tr>
-                <tr>
-                  <td className="py-3.5 text-white/50 font-medium">Responsive Standard</td>
-                  {packages.map((p) => (
-                    <td key={p.name} className="py-3.5">{p.attributes.responsive}</td>
-                  ))}
-                </tr>
-                <tr>
-                  <td className="py-3.5 text-white/50 font-medium">SEO Scope</td>
-                  {packages.map((p) => (
-                    <td key={p.name} className="py-3.5">{p.attributes.seo}</td>
-                  ))}
-                </tr>
-                <tr>
-                  <td className="py-3.5 text-white/50 font-medium">Hosting / Deployment</td>
-                  {packages.map((p) => (
-                    <td key={p.name} className="py-3.5">{p.attributes.hosting}</td>
-                  ))}
-                </tr>
-                <tr>
-                  <td className="py-3.5 text-white/50 font-medium">Maintenance SLA</td>
-                  {packages.map((p) => (
-                    <td key={p.name} className="py-3.5 text-sky-300 font-semibold">{p.attributes.maintenance}</td>
-                  ))}
-                </tr>
-                <tr>
-                  <td className="py-3.5 text-white/50 font-medium">Included Revisions</td>
-                  {packages.map((p) => (
-                    <td key={p.name} className="py-3.5">{p.attributes.revisions}</td>
-                  ))}
-                </tr>
-                <tr>
-                  <td className="py-3.5 text-white/50 font-medium">Delivery Expectation</td>
-                  {packages.map((p) => (
-                    <td key={p.name} className="py-3.5">{p.attributes.timeline}</td>
-                  ))}
-                </tr>
-                <tr>
-                  <td className="py-4 text-white/50 font-medium">Action</td>
-                  {packages.map((p) => (
-                    <td key={p.name} className="py-4">
-                      <button
-                        type="button"
-                        onClick={() => onOpenContactModal(`${p.name} Package`)}
-                        className="px-4 py-1.5 rounded-full bg-white text-black font-semibold text-xs hover:scale-105 transition-all"
-                      >
-                        Inquire
-                      </button>
-                    </td>
-                  ))}
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        )}
+                </div>
+              </div>
 
-        {/* Free Maintenance Offer Banner Link */}
-        <div className="mt-12 liquid-glass rounded-2xl p-5 sm:p-6 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3 text-xs sm:text-sm text-white/80 font-sans text-center sm:text-left">
-            <ShieldCheck className="w-5 h-5 text-sky-400 shrink-0" />
-            <span>
-              <strong>1-Month Free Website Maintenance SLA</strong> is bundled with all eligible package deliveries.
-            </span>
-          </div>
-
-          <a
-            href="#maintenance"
-            className="text-xs font-sans text-sky-400 hover:text-sky-300 font-semibold flex items-center gap-1 transition-colors shrink-0"
-          >
-            <span>Read Free Period Scope Details</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </a>
+              <div className="mt-8 pt-4 border-t border-gray-100/20">
+                <button
+                  type="button"
+                  onClick={() => onSelectTier(t.name)}
+                  className={`w-full text-xs font-semibold py-3 rounded-full flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                    t.highlight
+                      ? 'bg-[#F26522] hover:bg-[#e05a1a] text-white shadow-md'
+                      : 'bg-gray-900 hover:bg-gray-800 text-white'
+                  }`}
+                >
+                  <span>Inquire {t.name}</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
