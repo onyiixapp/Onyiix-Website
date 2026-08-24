@@ -100,6 +100,7 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
   const [activeStage, setActiveStage] = useState(0);
   const [isCompact, setIsCompact] = useState(false);
   const [journeyCycle, setJourneyCycle] = useState(0);
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(() => new Set());
 
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end end'] });
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 165, damping: 34, mass: 0.28 });
@@ -121,10 +122,6 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
     media.addEventListener('change', updateLayout);
     return () => media.removeEventListener('change', updateLayout);
   }, []);
-
-  useEffect(() => {
-    journeyStops.forEach(({ image }) => { const preload = new Image(); preload.src = image; });
-  }, [journeyStops]);
 
   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
     if (latest <= 0.002) {
@@ -164,6 +161,7 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
   if (prefersReducedMotion) return <ReducedJourney destinations={journeyStops} />;
 
   const destination = journeyStops[Math.min(activeStage, journeyStops.length - 1)];
+  const activeImageLoaded = loadedImages.has(destination.image);
   const ActiveIcon = destination.Icon;
   const cardOnLeft = activeStage >= 2;
 
@@ -171,16 +169,32 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
     <section ref={sectionRef} id="journey" aria-label="A scroll-driven journey through Meyvaro Studio services" className="journey-section relative h-[420svh] bg-[#080D1A]">
       <div className="journey-stage sticky top-0 h-[100svh] overflow-hidden bg-[#080D1A] text-white">
         <div aria-hidden="true" className="absolute inset-0 overflow-hidden bg-[#080D1A]">
-          {journeyStops.map((item, index) => (
-            <motion.div
-              key={item.image}
-              className="journey-background absolute -inset-x-[3%] inset-y-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${item.image})`, x: horizonDrift }}
-              initial={false}
-              animate={{ opacity: index === activeStage ? 1 : 0, scale: index === activeStage ? 1.015 : 1.025 }}
-              transition={{ opacity: { duration: 0.58, ease: 'easeOut' }, scale: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } }}
-            />
-          ))}
+          <motion.div className="journey-background-track absolute -inset-x-[3%] inset-y-0" style={{ x: horizonDrift }}>
+            <motion.div className="journey-skeleton absolute inset-0" initial={false} animate={{ opacity: activeImageLoaded ? 0 : 1 }} transition={{ duration: 0.24 }} />
+            {journeyStops.map((item, index) => {
+              const isLoaded = loadedImages.has(item.image);
+              return (
+                <motion.img
+                  key={item.image}
+                  src={item.image}
+                  alt=""
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority={index < 2 ? 'high' : 'auto'}
+                  onLoad={() => setLoadedImages((current) => {
+                    if (current.has(item.image)) return current;
+                    const next = new Set(current);
+                    next.add(item.image);
+                    return next;
+                  })}
+                  className="journey-background absolute inset-0 h-full w-full object-cover object-center"
+                  initial={false}
+                  animate={{ opacity: index === activeStage && isLoaded ? 1 : 0, scale: index === activeStage ? 1.015 : 1.025 }}
+                  transition={{ opacity: { duration: 0.48, ease: 'easeOut' }, scale: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }}
+                />
+              );
+            })}
+          </motion.div>
         </div>
 
         <div aria-hidden="true" className="journey-grade absolute inset-0" />
@@ -203,7 +217,7 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
 
         <div className={`absolute left-4 right-4 top-[17%] z-30 sm:left-auto sm:right-auto sm:top-[22%] sm:w-[min(430px,37vw)] ${cardOnLeft ? 'sm:left-8 lg:left-20' : 'sm:right-20 lg:right-28'}`}>
           <AnimatePresence initial={false} mode="sync">
-            <motion.article key={`${journeyCycle}-${destination.number}`} initial={{ opacity: 0, x: cardOnLeft ? -18 : 18, y: 5 }} animate={{ opacity: 1, x: 0, y: 0 }} exit={{ opacity: 0, x: cardOnLeft ? 12 : -12, y: -3 }} transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }} className="journey-copy rounded-[1.4rem] border border-white/15 bg-[#0B1020]/[0.88] p-4 shadow-2xl backdrop-blur-lg sm:rounded-[2rem] sm:p-7">
+            <motion.article key={`${journeyCycle}-${destination.number}`} initial={{ opacity: 0, x: isCompact ? 0 : (cardOnLeft ? -18 : 18), y: isCompact ? 0 : 5 }} animate={{ opacity: 1, x: 0, y: 0 }} exit={{ opacity: 0, x: isCompact ? 0 : (cardOnLeft ? 12 : -12), y: isCompact ? 0 : -3 }} transition={{ duration: isCompact ? 0.24 : 0.38, ease: [0.22, 1, 0.36, 1] }} className="journey-copy rounded-[1.4rem] border border-white/15 bg-[#0B1020]/[0.88] p-4 shadow-2xl backdrop-blur-lg sm:rounded-[2rem] sm:p-7">
               <div className="flex items-center justify-between gap-4"><p className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-300 sm:text-xs">{destination.area} · {destination.eyebrow}</p><span className="flex h-8 w-8 items-center justify-center rounded-xl border border-blue-300/20 bg-blue-400/10 text-blue-300"><ActiveIcon className="h-4 w-4" /></span></div>
               <h2 className="mt-2 text-[clamp(1.65rem,3.4vw,4rem)] font-medium leading-[0.94] tracking-[-0.05em] sm:mt-3">{destination.title}</h2>
               <p className="mt-2 text-xs font-semibold text-white/90 sm:mt-3 sm:text-base">{destination.line}</p>
@@ -217,8 +231,8 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
 
         <motion.div className="journey-auto absolute bottom-[4.5%] left-0 z-20 w-[82vw] max-w-[640px] will-change-transform sm:bottom-[2.5%] sm:w-[39vw] sm:min-w-[430px]" style={{ x: autoX }}>
           <div aria-hidden="true" className="absolute bottom-[1%] left-[8%] right-[4%] h-[13%] rounded-[50%] bg-black/60 blur-xl" />
-          <motion.div className="journey-auto__chassis relative" style={{ rotate: vehicleTilt, y: vehicleLift }}>
-            <img src={autoImageSrc} alt="Suman driving a green and yellow Bengaluru auto rickshaw with Maaz as passenger" className="relative z-10 block h-auto w-full select-none" draggable={false} fetchPriority="high" />
+          <motion.div className="journey-auto__chassis relative" style={isCompact ? undefined : { rotate: vehicleTilt, y: vehicleLift }}>
+            <img src={autoImageSrc} alt="Suman driving a green and yellow Bengaluru auto rickshaw with Maaz as passenger" className="relative z-10 block h-auto w-full select-none" draggable={false} fetchPriority="high" decoding="async" />
             <WheelSpinner className="journey-wheel--rear" rotation={wheelRotation} />
             <WheelSpinner className="journey-wheel--front" rotation={wheelRotation} />
           </motion.div>
