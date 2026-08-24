@@ -48,13 +48,13 @@ export const TestimonialsSection: React.FC = () => (
         {testimonials.map(({ name, role, context, project, quote, Icon }, index) => (
           <motion.figure
             key={name}
-            initial={{ opacity: 0, y: 18 }}
+            initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.28 }}
             transition={{ delay: index * 0.08, duration: 0.5 }}
             className="group relative flex min-h-[330px] flex-col justify-between overflow-hidden rounded-[2rem] border border-slate-200 bg-[linear-gradient(145deg,#F8FAFF_0%,#EFF6FF_100%)] p-7 transition hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-[0_26px_70px_rgba(15,23,42,0.09)] sm:p-8"
           >
-            <div aria-hidden="true" className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-blue-100/70 blur-3xl transition group-hover:bg-blue-200/80" />
+            <div aria-hidden="true" className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(191,219,254,0.72)_0%,rgba(219,234,254,0)_72%)] opacity-80 transition-opacity group-hover:opacity-100" />
             <div className="relative">
               <div className="flex items-center justify-between gap-3">
                 <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-[0_12px_30px_rgba(37,99,235,0.22)]"><Quote className="h-5 w-5" /></span>

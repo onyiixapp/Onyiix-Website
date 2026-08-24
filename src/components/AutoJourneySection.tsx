@@ -95,6 +95,7 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
   const journeyStops = destinations.length ? destinations : DEFAULT_JOURNEY_DESTINATIONS;
   const sectionRef = useRef<HTMLElement>(null);
   const replayArmed = useRef(true);
+  const activeStageRef = useRef(0);
   const prefersReducedMotion = useReducedMotion();
   const [activeStage, setActiveStage] = useState(0);
   const [isCompact, setIsCompact] = useState(false);
@@ -128,14 +129,27 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
     if (latest <= 0.002) {
       replayArmed.current = true;
+      activeStageRef.current = 0;
       setActiveStage(0);
     } else if (replayArmed.current && latest > 0.008) {
       replayArmed.current = false;
       setJourneyCycle((cycle) => cycle + 1);
     }
 
-    const nextStage = latest >= 0.79 ? 3 : latest >= 0.56 ? 2 : latest >= 0.33 ? 1 : 0;
-    setActiveStage((current) => current === nextStage ? current : Math.min(nextStage, journeyStops.length - 1));
+    // A small dead zone prevents a trackpad from rapidly toggling two cards
+    // when the scroll position rests directly on a destination boundary.
+    const boundaries = [0.33, 0.56, 0.79];
+    const hysteresis = 0.012;
+    let nextStage = activeStageRef.current;
+
+    while (nextStage < boundaries.length && latest >= boundaries[nextStage] + hysteresis) nextStage += 1;
+    while (nextStage > 0 && latest < boundaries[nextStage - 1] - hysteresis) nextStage -= 1;
+
+    nextStage = Math.min(nextStage, journeyStops.length - 1);
+    if (nextStage !== activeStageRef.current) {
+      activeStageRef.current = nextStage;
+      setActiveStage(nextStage);
+    }
   });
 
   const goToStage = (index: number) => {
@@ -156,11 +170,18 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
   return (
     <section ref={sectionRef} id="journey" aria-label="A scroll-driven journey through Meyvaro Studio services" className="journey-section relative h-[420svh] bg-[#080D1A]">
       <div className="journey-stage sticky top-0 h-[100svh] overflow-hidden bg-[#080D1A] text-white">
-        <AnimatePresence initial={false} mode="sync">
-          <motion.div key={`${journeyCycle}-${destination.image}`} aria-hidden="true" className="absolute inset-0 will-change-transform" initial={{ opacity: 0, scale: 1.045 }} animate={{ opacity: 1, scale: 1.015 }} exit={{ opacity: 0 }} transition={{ duration: 0.78, ease: [0.22, 1, 0.36, 1] }}>
-            <motion.div className="absolute -inset-x-[3%] inset-y-0 bg-cover bg-center" style={{ backgroundImage: `url(${destination.image})`, x: horizonDrift }} />
-          </motion.div>
-        </AnimatePresence>
+        <div aria-hidden="true" className="absolute inset-0 overflow-hidden bg-[#080D1A]">
+          {journeyStops.map((item, index) => (
+            <motion.div
+              key={item.image}
+              className="journey-background absolute -inset-x-[3%] inset-y-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${item.image})`, x: horizonDrift }}
+              initial={false}
+              animate={{ opacity: index === activeStage ? 1 : 0, scale: index === activeStage ? 1.015 : 1.025 }}
+              transition={{ opacity: { duration: 0.58, ease: 'easeOut' }, scale: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } }}
+            />
+          ))}
+        </div>
 
         <div aria-hidden="true" className="journey-grade absolute inset-0" />
         <div aria-hidden="true" className="journey-grain absolute inset-0 opacity-[0.08]" />
@@ -181,8 +202,8 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
         </div>
 
         <div className={`absolute left-4 right-4 top-[17%] z-30 sm:left-auto sm:right-auto sm:top-[22%] sm:w-[min(430px,37vw)] ${cardOnLeft ? 'sm:left-8 lg:left-20' : 'sm:right-20 lg:right-28'}`}>
-          <AnimatePresence initial={false} mode="wait">
-            <motion.article key={`${journeyCycle}-${destination.number}`} initial={{ opacity: 0, x: cardOnLeft ? -26 : 26, y: 8 }} animate={{ opacity: 1, x: 0, y: 0 }} exit={{ opacity: 0, x: cardOnLeft ? 18 : -18, y: -4 }} transition={{ duration: 0.46, delay: 0.08, ease: [0.22, 1, 0.36, 1] }} className="journey-copy rounded-[1.4rem] border border-white/15 bg-[#0B1020]/[0.82] p-4 shadow-2xl backdrop-blur-xl sm:rounded-[2rem] sm:p-7">
+          <AnimatePresence initial={false} mode="sync">
+            <motion.article key={`${journeyCycle}-${destination.number}`} initial={{ opacity: 0, x: cardOnLeft ? -18 : 18, y: 5 }} animate={{ opacity: 1, x: 0, y: 0 }} exit={{ opacity: 0, x: cardOnLeft ? 12 : -12, y: -3 }} transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }} className="journey-copy rounded-[1.4rem] border border-white/15 bg-[#0B1020]/[0.88] p-4 shadow-2xl backdrop-blur-lg sm:rounded-[2rem] sm:p-7">
               <div className="flex items-center justify-between gap-4"><p className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-300 sm:text-xs">{destination.area} · {destination.eyebrow}</p><span className="flex h-8 w-8 items-center justify-center rounded-xl border border-blue-300/20 bg-blue-400/10 text-blue-300"><ActiveIcon className="h-4 w-4" /></span></div>
               <h2 className="mt-2 text-[clamp(1.65rem,3.4vw,4rem)] font-medium leading-[0.94] tracking-[-0.05em] sm:mt-3">{destination.title}</h2>
               <p className="mt-2 text-xs font-semibold text-white/90 sm:mt-3 sm:text-base">{destination.line}</p>

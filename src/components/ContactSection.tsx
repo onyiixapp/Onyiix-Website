@@ -54,10 +54,10 @@ export const ContactSection: React.FC = () => {
     <section id="contact" className="relative overflow-hidden bg-[#F5F5F5] py-20 sm:py-28">
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.12 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
           className="mx-auto max-w-4xl"
         >
           <div className="mb-6 flex items-center gap-3 sm:mb-8">

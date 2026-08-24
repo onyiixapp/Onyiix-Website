@@ -37,6 +37,17 @@
   img {
     display: block;
   }
+
+  /* Keep animated cards on a stable compositor surface while scrolling. */
+  main section,
+  main article {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  main section {
+    isolation: isolate;
+  }
 }
 
 @layer components {
@@ -158,9 +169,20 @@
 }
 
 .journey-copy {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform, opacity;
   box-shadow:
     0 28px 70px rgba(0, 0, 0, 0.36),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.journey-background,
+.journey-auto {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform, opacity;
 }
 
 .journey-plaque {
@@ -187,6 +209,9 @@
 
 .journey-auto__chassis {
   transform-origin: 50% 82%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
   animation: journey-engine-idle 560ms ease-in-out infinite alternate;
 }
 
@@ -260,10 +285,10 @@
 
 @keyframes journey-engine-idle {
   from {
-    transform: translate3d(0, -0.5px, 0);
+    transform: translate3d(0, -0.35px, 0);
   }
   to {
-    transform: translate3d(0, 0.7px, 0);
+    transform: translate3d(0, 0.45px, 0);
   }
 }
 

@@ -85,7 +85,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenBooking, onOpenP
       <div aria-hidden="true" className="absolute left-[8%] top-[22%] h-px w-[28vw] bg-gradient-to-r from-transparent via-blue-300/70 to-transparent" />
 
       <header className="fixed inset-x-0 top-0 z-50 p-3 sm:p-4">
-        <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between rounded-[1.3rem] border border-white/70 bg-white/[0.88] px-3 py-2 shadow-[0_16px_50px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:px-4">
+        <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between rounded-[1.3rem] border border-white bg-white/[0.97] px-3 py-2 shadow-[0_16px_50px_rgba(15,23,42,0.08)] sm:px-4">
           <a href="#home" aria-label="Meyvaro Studio home" className="group flex items-center">
             <AsmeLogo symbolSize={34} />
           </a>
