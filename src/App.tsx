@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { HeroSection } from './components/HeroSection';
+import { SiteHeader } from './components/SiteHeader';
+import { StudioIntroSection } from './components/StudioIntroSection';
 import { AboutSection } from './components/AboutSection';
 import { CaseStudiesSection } from './components/CaseStudiesSection';
 import { AutoJourneySection } from './components/AutoJourneySection';
@@ -153,11 +154,6 @@ export function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleOpenBooking = () => {
-    setModalType('Book a Strategy Call');
-    setModalOpen(true);
-  };
-
   const handleOpenProject = (customType?: string) => {
     setModalType(customType || 'Start a Project');
     setModalOpen(true);
@@ -271,14 +267,12 @@ export function App() {
   return (
     <div className="min-h-screen bg-[#F4F7FC] text-gray-900 font-sans selection:bg-[#2563EB]/20 selection:text-[#1D4ED8] relative">
       <main className="w-full">
-        {/* SECTION 1: lightweight animated title and navigation */}
-        <HeroSection
-          onOpenBooking={handleOpenBooking}
-          onOpenProject={() => handleOpenProject('Start a Project')}
-        />
+        <SiteHeader onOpenProject={() => handleOpenProject('Start a Project')} />
 
-        {/* The cinematic service story is intentionally the first experience after the title. */}
+        {/* The cinematic service journey is the opening experience. */}
         <AutoJourneySection />
+
+        <StudioIntroSection onOpenProject={() => handleOpenProject('Start a Project')} />
 
         <AboutSection
           onOpenAboutModal={() => handleOpenProject('About Studio Inquiry')}

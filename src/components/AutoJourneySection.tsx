@@ -167,6 +167,7 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
 
   return (
     <section ref={sectionRef} id="journey" aria-label="A scroll-driven journey through Meyvaro Studio services" className="journey-section relative h-[420svh] bg-[#080D1A]">
+      <h1 className="sr-only">Meyvaro Studio — web, SaaS, AI and digital systems built for ambitious teams</h1>
       <div className="journey-stage sticky top-0 h-[100svh] overflow-hidden bg-[#080D1A] text-white">
         <div aria-hidden="true" className="absolute inset-0 overflow-hidden bg-[#080D1A]">
           <motion.div className="journey-background-track absolute -inset-x-[3%] inset-y-0" style={{ x: horizonDrift }}>
@@ -180,7 +181,6 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
                   alt=""
                   loading="eager"
                   decoding="async"
-                  fetchPriority={index < 2 ? 'high' : 'auto'}
                   onLoad={() => setLoadedImages((current) => {
                     if (current.has(item.image)) return current;
                     const next = new Set(current);
@@ -232,7 +232,7 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
         <motion.div className="journey-auto absolute bottom-[4.5%] left-0 z-20 w-[82vw] max-w-[640px] will-change-transform sm:bottom-[2.5%] sm:w-[39vw] sm:min-w-[430px]" style={{ x: autoX }}>
           <div aria-hidden="true" className="absolute bottom-[1%] left-[8%] right-[4%] h-[13%] rounded-[50%] bg-black/60 blur-xl" />
           <motion.div className="journey-auto__chassis relative" style={isCompact ? undefined : { rotate: vehicleTilt, y: vehicleLift }}>
-            <img src={autoImageSrc} alt="Suman driving a green and yellow Bengaluru auto rickshaw with Maaz as passenger" className="relative z-10 block h-auto w-full select-none" draggable={false} fetchPriority="high" decoding="async" />
+            <img src={autoImageSrc} alt="Suman driving a green and yellow Bengaluru auto rickshaw with Maaz as passenger" className="relative z-10 block h-auto w-full select-none" draggable={false} decoding="async" />
             <WheelSpinner className="journey-wheel--rear" rotation={wheelRotation} />
             <WheelSpinner className="journey-wheel--front" rotation={wheelRotation} />
           </motion.div>
