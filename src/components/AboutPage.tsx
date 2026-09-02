@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowLeft, Mail, Globe, MapPin, ShieldCheck, Heart } from 'lucide-react';
 import { siGithub } from 'simple-icons';
+import { OnyiixX } from './OnyiixX';
 
 const GithubMark = () => (
   <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
@@ -28,18 +29,21 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
         </button>
 
         {/* Header */}
-        <div className="max-w-4xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-semibold mb-4">
-            <Heart className="w-3.5 h-3.5" />
-            <span>Our Genesis &amp; Philosophy</span>
+        <div className="max-w-4xl mb-16 space-y-5">
+          <div className="flex items-center">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-blue-600 text-xs font-semibold">
+              <Heart className="w-3.5 h-3.5" />
+              <span>Our Genesis &amp; Philosophy</span>
+            </div>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-neutral-950 leading-tight">
-            About Meyvaro Studio
+          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-neutral-950 leading-tight flex items-center flex-wrap">
+            <span>About ONYII</span>
+            <OnyiixX size="0.84em" className="ml-0.5 inline-block" />
           </h1>
 
           <p className="text-base sm:text-lg text-neutral-600 mt-6 leading-relaxed">
-            Founded in <strong>2024</strong> during our academic journey by two relentless friends, <strong>Mohammed Maaz A</strong> and <strong>Suman Kumar Singh</strong>, MEYVARO Studio was born with a singular purpose: to craft high-converting websites, scalable SaaS platforms, automated AI systems, and measurable digital growth experiences.
+            Founded in <strong>2024</strong> during our academic journey by two relentless friends, <strong>Mohammed Maaz A</strong> and <strong>Suman Kumar Singh</strong>, ONYIIX was born with a singular purpose: to craft high-converting websites, scalable SaaS platforms, automated AI systems, and measurable digital growth experiences.
           </p>
         </div>
 

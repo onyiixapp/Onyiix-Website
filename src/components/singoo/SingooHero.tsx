@@ -43,7 +43,7 @@ export const SingooHero: React.FC<SingooHeroProps> = ({ onOpenContactModal }) =>
           Your Data-Driven
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 my-1 sm:my-2">
             <span className="bg-blue-600 text-white px-3 sm:px-4 py-0.5 rounded-xl font-black shadow-md">
-              MEYVARO
+              ONYIIX
             </span>
             <div className="h-14 sm:h-20 md:h-24 overflow-hidden inline-flex">
               <div className="animate-scroll-down-hold flex flex-col">

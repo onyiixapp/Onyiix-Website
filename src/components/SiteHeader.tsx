@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, Clock, Menu, X } from 'lucide-react';
-import { AsmeLogo } from './AsmeLogo';
+import { OnyiixLogo } from './OnyiixLogo';
 
 interface SiteHeaderProps {
   onOpenProject: () => void;
@@ -34,8 +34,8 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ onOpenProject }) => {
     <>
       <header className="fixed inset-x-0 top-0 z-50 p-3 sm:p-4">
         <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between rounded-[1.3rem] border border-white/90 bg-white/[0.97] px-3 py-2 shadow-[0_18px_55px_rgba(3,7,18,0.18)] sm:px-4">
-          <a href="#journey" aria-label="Meyvaro Studio journey" className="group flex items-center">
-            <AsmeLogo symbolSize={34} />
+          <a href="#journey" aria-label="ONYIIX journey" className="group flex items-center">
+            <OnyiixLogo height={32} />
           </a>
 
           <nav aria-label="Main navigation" className="hidden items-center gap-0.5 xl:flex">
@@ -69,7 +69,7 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ onOpenProject }) => {
           <motion.div className="fixed inset-0 z-[60] flex items-end p-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <button type="button" aria-label="Close navigation" onClick={() => setMobileMenuOpen(false)} className="absolute inset-0 bg-slate-950/60" />
             <motion.div initial={{ y: 52 }} animate={{ y: 0 }} exit={{ y: 52 }} transition={{ type: 'spring', stiffness: 320, damping: 31 }} className="relative w-full rounded-[2rem] bg-white p-6 shadow-2xl">
-              <div className="mb-5 flex items-center justify-between"><AsmeLogo symbolSize={34} /><button type="button" onClick={() => setMobileMenuOpen(false)} className="rounded-full bg-slate-100 p-2"><X className="h-4 w-4" /></button></div>
+              <div className="mb-5 flex items-center justify-between"><OnyiixLogo height={30} /><button type="button" onClick={() => setMobileMenuOpen(false)} className="rounded-full bg-slate-100 p-2"><X className="h-4 w-4" /></button></div>
               <nav className="grid grid-cols-2 gap-2">
                 {navigation.map((item) => <a key={item.label} href={item.href} onClick={() => setMobileMenuOpen(false)} className="rounded-2xl bg-slate-50 px-4 py-3 text-sm font-bold text-slate-900">{item.label}</a>)}
               </nav>

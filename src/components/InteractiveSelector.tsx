@@ -282,7 +282,7 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
             </motion.div>
           </div>
 
-          {/* RIGHT: What's Always Included in All MEYVARO Builds (lg:col-span-5) */}
+          {/* RIGHT: What's Always Included in All ONYIIX Builds (lg:col-span-5) */}
           <div className="lg:col-span-5">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -293,7 +293,7 @@ export const InteractiveSelector: React.FC<InteractiveSelectorProps> = ({ onSele
               <div className="flex items-center justify-between pb-5 border-b border-neutral-800 mb-6">
                 <div>
                   <span className="text-[11px] font-bold text-blue-500 uppercase tracking-widest block mb-1">
-                    MEYVARO STANDARD
+                    ONYIIX STANDARD
                   </span>
                   <h3 className="text-xl font-bold tracking-tight text-white">
                     Included in All Builds

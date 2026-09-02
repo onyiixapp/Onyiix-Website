@@ -67,7 +67,7 @@ export const SitemapPage: React.FC<SitemapPageProps> = ({ onBack }) => {
             HTML Sitemap
           </h1>
           <p className="text-sm sm:text-base text-gray-600 mt-3 leading-relaxed">
-            Direct navigation indexing for all public routes, documentation, legal charters, and service pillars of Meyvaro Studio.
+            Direct navigation indexing for all public routes, documentation, legal charters, and service pillars of ONYIIX.
           </p>
         </div>
 

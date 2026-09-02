@@ -19,7 +19,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
               <Globe className="w-4 h-4 text-white transition-transform duration-300 group-hover:rotate-45" />
             </div>
             <span className="font-sans font-bold text-lg text-white tracking-tight">
-              MEYVARO
+              ONYIIX
             </span>
             <span className="text-[10px] font-sans font-semibold tracking-wider text-sky-400 bg-sky-950/60 px-2.5 py-0.5 rounded-full border border-sky-400/30">
               STUDIO

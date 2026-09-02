@@ -1,30 +1,75 @@
 import React, { useState } from 'react';
 import { AlertCircle, ArrowRight, CheckCircle2, LoaderCircle, LockKeyhole, RotateCcw } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { FieldTooltip } from './FieldTooltip';
 
 const WEB3FORMS_ACCESS_KEY = '2bd6cc68-aeca-4abf-a8b1-0d119b71ffde';
 type SubmissionState = 'idle' | 'submitting' | 'success' | 'error';
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  customService?: string;
+  message?: string;
+}
 
 export const ContactSection: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [service, setService] = useState('Web Development');
+  const [customService, setCustomService] = useState('');
   const [message, setMessage] = useState('');
+  const [errors, setErrors] = useState<FormErrors>({});
   const [submissionState, setSubmissionState] = useState<SubmissionState>('idle');
   const [submittedName, setSubmittedName] = useState('');
   const [resultMessage, setResultMessage] = useState('');
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+
+    if (!name.trim()) {
+      newErrors.name = 'Gotta drop your name first, bestie';
+    }
+
+    if (!email.trim()) {
+      newErrors.email = 'Drop your email so we can hit you back';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      newErrors.email = 'Double check that email format, bestie';
+    }
+
+    if (service === 'Want something different?' && !customService.trim()) {
+      newErrors.customService = 'Tell us what custom build you are imagining';
+    }
+
+    if (!message.trim()) {
+      newErrors.message = 'Give us a quick hint of what you are cooking up';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (submissionState === 'submitting') return;
 
+    if (!validateForm()) return;
+
     setSubmissionState('submitting');
     setResultMessage('');
 
+    const finalService = service === 'Want something different?' && customService.trim()
+      ? `Custom: ${customService.trim()}`
+      : service;
+
     const formData = new FormData(event.currentTarget);
     formData.set('access_key', WEB3FORMS_ACCESS_KEY);
-    formData.set('subject', `New Meyvaro project inquiry: ${service}`);
-    formData.set('from_name', 'Meyvaro Studio Website');
+    formData.set('subject', `New ONYIIX project inquiry: ${finalService}`);
+    formData.set('service', finalService);
+    if (customService.trim()) {
+      formData.set('custom_service', customService.trim());
+    }
+    formData.set('from_name', 'ONYIIX Website');
 
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
@@ -41,7 +86,9 @@ export const ContactSection: React.FC = () => {
       setName('');
       setEmail('');
       setService('Web Development');
+      setCustomService('');
       setMessage('');
+      setErrors({});
       setResultMessage(data.message || 'Your project brief was sent successfully.');
       setSubmissionState('success');
     } catch (error) {
@@ -91,7 +138,7 @@ export const ContactSection: React.FC = () => {
                     </motion.div>
                   )}
 
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  <form noValidate onSubmit={handleSubmit} className="space-y-4">
                     <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
@@ -101,12 +148,15 @@ export const ContactSection: React.FC = () => {
                         <input
                           type="text"
                           name="name"
-                          required
                           placeholder="Your Name"
                           value={name}
-                          onChange={(e) => setName(e.target.value)}
-                          className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#2563EB] focus:outline-none transition-all"
+                          onChange={(e) => {
+                            setName(e.target.value);
+                            if (errors.name) setErrors((prev) => ({ ...prev, name: undefined }));
+                          }}
+                          className={`w-full rounded-xl border ${errors.name ? 'border-rose-400 bg-rose-50/40' : 'border-gray-200 bg-gray-50'} px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#2563EB] focus:outline-none transition-all`}
                         />
+                        <FieldTooltip message={errors.name} />
                       </div>
 
                       <div>
@@ -116,12 +166,15 @@ export const ContactSection: React.FC = () => {
                         <input
                           type="email"
                           name="email"
-                          required
                           placeholder="name@company.com"
                           value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#2563EB] focus:outline-none transition-all"
+                          onChange={(e) => {
+                            setEmail(e.target.value);
+                            if (errors.email) setErrors((prev) => ({ ...prev, email: undefined }));
+                          }}
+                          className={`w-full rounded-xl border ${errors.email ? 'border-rose-400 bg-rose-50/40' : 'border-gray-200 bg-gray-50'} px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#2563EB] focus:outline-none transition-all`}
                         />
+                        <FieldTooltip message={errors.email} />
                       </div>
                     </div>
 
@@ -132,15 +185,46 @@ export const ContactSection: React.FC = () => {
                       <select
                         name="service"
                         value={service}
-                        onChange={(e) => setService(e.target.value)}
+                        onChange={(e) => {
+                          setService(e.target.value);
+                          if (errors.customService) setErrors((prev) => ({ ...prev, customService: undefined }));
+                        }}
                         className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:bg-white focus:border-[#2563EB] focus:outline-none transition-all"
                       >
                         <option value="Web Development">Web Development</option>
                         <option value="SaaS Platform">SaaS Platform</option>
                         <option value="AI Workflow">AI Workflow</option>
-                        <option value="Digital Marketing & SEO">Digital Marketing &amp; SEO</option>
                         <option value="Digital System">Digital System</option>
+                        <option value="Want something different?">Want something different?</option>
                       </select>
+
+                      <AnimatePresence>
+                        {service === 'Want something different?' && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                            animate={{ opacity: 1, height: 'auto', marginTop: 12 }}
+                            exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                            transition={{ duration: 0.25 }}
+                            className="overflow-hidden"
+                          >
+                            <label className="block text-xs font-semibold text-gray-700 mb-1">
+                              Custom Service Requirement *
+                            </label>
+                            <input
+                              type="text"
+                              name="custom_service"
+                              placeholder="Describe your custom service requirement..."
+                              value={customService}
+                              onChange={(e) => {
+                                setCustomService(e.target.value);
+                                if (errors.customService) setErrors((prev) => ({ ...prev, customService: undefined }));
+                              }}
+                              className={`w-full rounded-xl border ${errors.customService ? 'border-rose-400 bg-rose-50/40' : 'border-gray-200 bg-gray-50'} px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#2563EB] focus:outline-none transition-all`}
+                            />
+                            <FieldTooltip message={errors.customService} />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
 
                     <div>
@@ -150,12 +234,15 @@ export const ContactSection: React.FC = () => {
                       <textarea
                         name="message"
                         rows={4}
-                        required
                         placeholder="Tell us about the target audience, features, timeline, and goals..."
                         value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#2563EB] focus:outline-none transition-all"
+                        onChange={(e) => {
+                          setMessage(e.target.value);
+                          if (errors.message) setErrors((prev) => ({ ...prev, message: undefined }));
+                        }}
+                        className={`w-full rounded-xl border ${errors.message ? 'border-rose-400 bg-rose-50/40' : 'border-gray-200 bg-gray-50'} px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#2563EB] focus:outline-none transition-all`}
                       />
+                      <FieldTooltip message={errors.message} />
                     </div>
 
                     <button
@@ -178,7 +265,7 @@ export const ContactSection: React.FC = () => {
                   <p className="mt-5 text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600">Brief received</p>
                   <h3 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl">We&rsquo;ll be in touch shortly.</h3>
                   <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-gray-600">
-                    Thanks, <strong className="text-gray-900">{submittedName || 'there'}</strong>. Your project details reached the Meyvaro team successfully.
+                    Thanks, <strong className="text-gray-900">{submittedName || 'there'}</strong>. Your project details reached the ONYIIX team successfully.
                   </p>
                   <p className="mx-auto mt-4 max-w-sm rounded-2xl bg-blue-50 px-4 py-3 text-xs font-medium leading-5 text-blue-800">
                     Tea is good for health. Just kidding—your idea is what has our attention now. ☕

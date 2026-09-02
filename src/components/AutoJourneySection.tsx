@@ -101,6 +101,26 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
   const [isCompact, setIsCompact] = useState(false);
   const [journeyCycle, setJourneyCycle] = useState(0);
   const [loadedImages, setLoadedImages] = useState<Set<string>>(() => new Set());
+  const [isAutoLoaded, setIsAutoLoaded] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const img = new Image();
+      img.src = autoImageSrc;
+      return Boolean(img.complete && img.naturalWidth > 0);
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const img = new Image();
+    img.src = autoImageSrc;
+    if (img.complete && img.naturalWidth > 0) {
+      setIsAutoLoaded(true);
+    } else {
+      img.onload = () => setIsAutoLoaded(true);
+      img.onerror = () => setIsAutoLoaded(true);
+    }
+  }, [autoImageSrc]);
 
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end end'] });
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 165, damping: 34, mass: 0.28 });
@@ -166,8 +186,8 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
   const cardOnLeft = activeStage >= 2;
 
   return (
-    <section ref={sectionRef} id="journey" aria-label="A scroll-driven journey through Meyvaro Studio services" className="journey-section relative h-[420svh] bg-[#080D1A]">
-      <h1 className="sr-only">Meyvaro Studio — web, SaaS, AI and digital systems built for ambitious teams</h1>
+    <section ref={sectionRef} id="journey" aria-label="A scroll-driven journey through ONYIIX services" className="journey-section relative h-[420svh] bg-[#080D1A]">
+      <h1 className="sr-only">ONYIIX — web, SaaS, AI and digital systems built for ambitious teams</h1>
       <div className="journey-stage sticky top-0 h-[100svh] overflow-hidden bg-[#080D1A] text-white">
         <div aria-hidden="true" className="absolute inset-0 overflow-hidden bg-[#080D1A]">
           <motion.div className="journey-background-track absolute -inset-x-[3%] inset-y-0" style={{ x: horizonDrift }}>
@@ -231,10 +251,41 @@ export const AutoJourneySection: React.FC<AutoJourneySectionProps> = ({
 
         <motion.div className="journey-auto absolute bottom-[4.5%] left-0 z-20 w-[82vw] max-w-[640px] will-change-transform sm:bottom-[2.5%] sm:w-[39vw] sm:min-w-[430px]" style={{ x: autoX }}>
           <div aria-hidden="true" className="absolute bottom-[1%] left-[8%] right-[4%] h-[13%] rounded-[50%] bg-black/60 blur-xl" />
-          <motion.div className="journey-auto__chassis relative" style={isCompact ? undefined : { rotate: vehicleTilt, y: vehicleLift }}>
-            <img src={autoImageSrc} alt="Suman driving a green and yellow Bengaluru auto rickshaw with Maaz as passenger" className="relative z-10 block h-auto w-full select-none" draggable={false} decoding="async" />
-            <WheelSpinner className="journey-wheel--rear" rotation={wheelRotation} />
-            <WheelSpinner className="journey-wheel--front" rotation={wheelRotation} />
+          <motion.div className="journey-auto__chassis relative aspect-[1536/1024] w-full" style={isCompact ? undefined : { rotate: vehicleTilt, y: vehicleLift }}>
+            {/* Modern Minimalist Glassmorphic Skeleton Loading State */}
+            {!isAutoLoaded && (
+              <motion.div
+                className="journey-auto__skeleton pointer-events-none absolute inset-0 overflow-hidden rounded-3xl"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                aria-hidden="true"
+              >
+                <div className="absolute inset-0 bg-slate-900/35 backdrop-blur-sm rounded-3xl border border-white/5" />
+                <div className="journey-auto__skeleton-shimmer" />
+              </motion.div>
+            )}
+
+            {/* Real Auto Vehicle & Wheels: Synchronized reveal at the exact same time */}
+            <motion.div
+              className="relative h-full w-full"
+              initial={false}
+              animate={{ opacity: isAutoLoaded ? 1 : 0 }}
+              transition={{ duration: 0.42, ease: 'easeOut' }}
+            >
+              <img
+                src={autoImageSrc}
+                alt="Suman driving a green and yellow Bengaluru auto rickshaw with Maaz as passenger"
+                className="relative z-10 block h-full w-full select-none object-contain"
+                draggable={false}
+                decoding="async"
+                loading="eager"
+                onLoad={() => setIsAutoLoaded(true)}
+              />
+              <WheelSpinner className="journey-wheel--rear" rotation={wheelRotation} />
+              <WheelSpinner className="journey-wheel--front" rotation={wheelRotation} />
+            </motion.div>
           </motion.div>
         </motion.div>
 

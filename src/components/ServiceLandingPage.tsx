@@ -66,7 +66,7 @@ export const ServiceLandingPage: React.FC<ServiceLandingPageProps> = ({ data, on
   <main className="min-h-screen bg-[#F5F8FD] pt-28 text-slate-950">
     <section className="px-5 pb-20 sm:px-8 sm:pb-28 lg:px-12">
       <div className="mx-auto max-w-[1280px]">
-        <button type="button" onClick={onBack} className="mb-10 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-bold text-slate-600 transition hover:border-blue-200 hover:text-blue-700"><ArrowLeft className="h-4 w-4" />Back to Meyvaro</button>
+        <button type="button" onClick={onBack} className="mb-10 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-bold text-slate-600 transition hover:border-blue-200 hover:text-blue-700"><ArrowLeft className="h-4 w-4" />Back to ONYIIX</button>
         <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
           <div><p className="text-[11px] font-black uppercase tracking-[0.2em] text-blue-700">{data.eyebrow}</p><h1 className="mt-4 max-w-5xl text-[clamp(3rem,7vw,6.6rem)] font-medium leading-[0.92] tracking-[-0.065em]">{data.title}</h1></div>
           <div className="lg:pb-2"><p className="text-base font-semibold leading-8 text-slate-700">{data.intro}</p><button type="button" onClick={onOpenProject} className="mt-7 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-[0_16px_36px_rgba(37,99,235,0.24)] transition hover:bg-blue-700">Discuss this service <ArrowRight className="h-4 w-4" /></button></div>

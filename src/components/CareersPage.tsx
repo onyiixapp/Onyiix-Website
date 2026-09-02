@@ -20,7 +20,7 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onBack }) => {
 
         <div className="max-w-3xl mb-12">
           <span className="text-xs font-semibold text-[#2563EB] uppercase tracking-wider block mb-2">
-            CAREERS AT MEYVARO STUDIO
+            CAREERS AT ONYIIX
           </span>
           <h1 className="text-4xl sm:text-5xl font-medium tracking-tight text-gray-900">
             Work with us
@@ -45,7 +45,7 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onBack }) => {
           </p>
 
           <a
-            href="mailto:maazmohammed112@gmail.com?subject=MEYVARO Studio Speculative Application / Portfolio"
+            href="mailto:maazmohammed112@gmail.com?subject=ONYIIX Speculative Application / Portfolio"
             className="inline-flex items-center gap-2 bg-gray-900 hover:bg-[#2563EB] text-white text-xs font-semibold px-6 py-3 rounded-full transition-colors"
           >
             <Mail className="w-3.5 h-3.5" />

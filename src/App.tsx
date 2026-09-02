@@ -19,6 +19,8 @@ import { NotFoundPage } from './components/NotFoundPage';
 import { TestimonialsSection } from './components/TestimonialsSection';
 import { SERVICE_LANDING_PAGES, ServiceLandingPage } from './components/ServiceLandingPage';
 import { GlobalDeliveryPage } from './components/GlobalDeliveryPage';
+import { AgentationDev } from './components/AgentationDev';
+import { ContentProtection } from './components/ContentProtection';
 
 export function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
@@ -34,52 +36,52 @@ export function App() {
   useEffect(() => {
     const routeMeta: Record<string, { title: string; description: string }> = {
       '/': {
-        title: 'Meyvaro Studio | Web, SaaS, AI & Digital Marketing',
+        title: 'ONYIIX | Design • Build • Deliver',
         description: 'Founder-led web, SaaS, AI, technical SEO and digital marketing systems from Bengaluru for India and global teams.',
       },
       '/about': {
-        title: 'About Meyvaro Studio | Founder-Led Product Engineering',
-        description: 'Meet Maaz and Suman, the Bengaluru founders behind Meyvaro Studio and its web, SaaS and automation work.',
+        title: 'About ONYIIX | Founder-Led Product Engineering',
+        description: 'Meet Maaz and Suman, the Bengaluru founders behind ONYIIX and its web, SaaS and automation work.',
       },
       '/careers': {
-        title: 'Careers at Meyvaro Studio',
-        description: 'View current opportunities and future collaboration options at Meyvaro Studio in Bengaluru.',
+        title: 'Careers at ONYIIX',
+        description: 'View current opportunities and future collaboration options at ONYIIX in Bengaluru.',
       },
       '/terms': {
-        title: 'Terms of Service | Meyvaro Studio',
-        description: 'Meyvaro Studio project terms, ownership, warranties and delivery commitments.',
+        title: 'Terms of Service | ONYIIX',
+        description: 'ONYIIX project terms, ownership, warranties and delivery commitments.',
       },
       '/privacy': {
-        title: 'Privacy Policy | Meyvaro Studio',
-        description: 'How Meyvaro Studio handles project inquiries and client information.',
+        title: 'Privacy Policy | ONYIIX',
+        description: 'How ONYIIX handles project inquiries and client information.',
       },
       '/sitemap': {
-        title: 'HTML Sitemap | Meyvaro Studio',
-        description: 'Navigate Meyvaro Studio services, work, company pages and legal information.',
+        title: 'HTML Sitemap | ONYIIX',
+        description: 'Navigate ONYIIX services, work, company pages and legal information.',
       },
       '/services/web-development': {
-        title: 'Web Development Agency | Meyvaro Studio',
-        description: 'Fast, conversion-focused websites with technical SEO, analytics and full code ownership from Meyvaro Studio.',
+        title: 'Web Development Agency | ONYIIX',
+        description: 'Fast, conversion-focused websites with technical SEO, analytics and full code ownership from ONYIIX.',
       },
       '/services/saas-platforms': {
-        title: 'SaaS Platform Development | Meyvaro Studio',
+        title: 'SaaS Platform Development | ONYIIX',
         description: 'Multi-tenant SaaS product design and engineering with clear workflows, resilient architecture and phased delivery.',
       },
       '/services/ai-workflows': {
-        title: 'AI Workflow Automation | Meyvaro Studio',
+        title: 'AI Workflow Automation | ONYIIX',
         description: 'Practical AI workflows, integrations and human approval systems for operations, support and knowledge teams.',
       },
       '/services/digital-marketing': {
-        title: 'Digital Marketing, Technical SEO & Analytics | Meyvaro',
+        title: 'Digital Marketing, Technical SEO & Analytics | ONYIIX',
         description: 'Technical SEO, conversion landing pages, analytics and campaign measurement built as one connected growth system.',
       },
       '/services/digital-systems': {
-        title: 'Custom Digital Systems & Dashboards | Meyvaro Studio',
+        title: 'Custom Digital Systems & Dashboards | ONYIIX',
         description: 'Custom dashboards, portals and internal systems that connect operations, data and business workflows.',
       },
       '/global': {
-        title: 'Global Digital Product Delivery from Bengaluru | Meyvaro',
-        description: 'Meyvaro works from Bengaluru with remote-first teams across India, Europe, North America and worldwide.',
+        title: 'Global Digital Product Delivery from Bengaluru | ONYIIX',
+        description: 'ONYIIX works from Bengaluru with remote-first teams across India, Europe, North America and worldwide.',
       },
     };
 
@@ -100,32 +102,33 @@ export function App() {
       titleTag?.setAttribute('content', meta.title);
       descriptionTag?.setAttribute('content', meta.description);
       robotsTag?.setAttribute('content', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
-      const canonicalUrl = `https://asme.studio${currentPath === '/' ? '/' : currentPath}`;
-      canonicalTag?.setAttribute('href', canonicalUrl);
       ogTitleTag?.setAttribute('content', meta.title);
       ogDescriptionTag?.setAttribute('content', meta.description);
+
+      const canonicalUrl = `https://asme.studio${currentPath === '/' ? '/' : currentPath}`;
+      canonicalTag?.setAttribute('href', canonicalUrl);
       ogUrlTag?.setAttribute('content', canonicalUrl);
       twitterTitleTag?.setAttribute('content', meta.title);
       twitterDescriptionTag?.setAttribute('content', meta.description);
 
-      const serviceData = SERVICE_LANDING_PAGES[currentPath];
-      if (serviceData || currentPath === '/global') {
+      if (currentPath !== '/') {
         const routeSchema = document.createElement('script');
+        const serviceData = SERVICE_LANDING_PAGES[currentPath];
         routeSchema.id = 'route-structured-data';
         routeSchema.type = 'application/ld+json';
         routeSchema.text = JSON.stringify(serviceData ? {
           '@context': 'https://schema.org', '@type': 'Service', name: serviceData.eyebrow,
           description: meta.description, url: canonicalUrl, areaServed: 'Worldwide',
-          provider: { '@type': 'Organization', name: 'Meyvaro Studio', url: 'https://asme.studio/' },
+          provider: { '@type': 'Organization', name: 'ONYIIX', url: 'https://asme.studio/' },
         } : {
-          '@context': 'https://schema.org', '@type': 'Organization', name: 'Meyvaro Studio',
+          '@context': 'https://schema.org', '@type': 'Organization', name: 'ONYIIX',
           url: canonicalUrl, address: { '@type': 'PostalAddress', addressLocality: 'Bengaluru', addressRegion: 'Karnataka', addressCountry: 'IN' },
           areaServed: 'Worldwide', description: meta.description,
         });
         document.head.appendChild(routeSchema);
       }
     } else {
-      document.title = 'Page Not Found | Meyvaro Studio';
+      document.title = 'Page Not Found | ONYIIX';
       robotsTag?.setAttribute('content', 'noindex, follow');
     }
   }, [currentPath]);
@@ -256,11 +259,7 @@ export function App() {
 
   // 404 handler for unmatched paths
   if (currentPath !== '/' && !currentPath.startsWith('/#')) {
-    return (
-      <div className="min-h-screen bg-[#EFEFEF]">
-        <NotFoundPage onBack={() => navigateTo('/')} />
-      </div>
-    );
+    return <NotFoundPage onBack={() => navigateTo('/')} />;
   }
 
   // Main Landing Page with All Sections
@@ -309,6 +308,12 @@ export function App() {
         onClose={() => setModalOpen(false)}
         initialType={modalType}
       />
+
+      {/* Dev-only Agentation overlay */}
+      <AgentationDev />
+
+      {/* Global strict right-click, inspect, and copy protection */}
+      <ContentProtection />
     </div>
   );
 }

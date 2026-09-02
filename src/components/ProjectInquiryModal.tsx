@@ -78,7 +78,7 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({ isOpen
                   Get a comprehensive quote &amp; technical roadmap in &lt; 4 hours.
                 </p>
 
-                <form onSubmit={handleSubmit} className="space-y-3.5">
+                <form noValidate onSubmit={handleSubmit} className="space-y-3.5">
                   <div className="space-y-1">
                     <label className="block text-xs font-semibold text-[#121316] flex items-center gap-1">
                       <User className="h-3 w-3 text-[#EEA22A]" /> Name

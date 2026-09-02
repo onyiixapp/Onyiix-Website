@@ -1,10 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
   <defs>
-    <linearGradient id="a" x1="7" y1="8" x2="43" y2="45" gradientUnits="userSpaceOnUse"><stop stop-color="#60A5FA"/><stop offset="1" stop-color="#1D4ED8"/></linearGradient>
-    <linearGradient id="b" x1="42" y1="7" x2="14" y2="46" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB"/><stop offset="1" stop-color="#0B3BA7"/></linearGradient>
+    <linearGradient id="onyiix-metal-a" x1="14" y1="14" x2="50" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="28%" stop-color="#E2E8F0" />
+      <stop offset="55%" stop-color="#64748B" />
+      <stop offset="80%" stop-color="#CBD5E1" />
+      <stop offset="100%" stop-color="#94A3B8" />
+    </linearGradient>
+    <linearGradient id="onyiix-metal-b" x1="50" y1="14" x2="14" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="35%" stop-color="#94A3B8" />
+      <stop offset="65%" stop-color="#334155" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
   </defs>
-  <path d="M6 40V11.5C6 8.8 9.1 7.25 11.25 8.9L26 20.25L18.55 28.15L13.25 24.1V40H6Z" fill="url(#a)"/>
-  <path d="M46 40V11.5C46 8.8 42.9 7.25 40.75 8.9L26 20.25L33.45 28.15L38.75 24.1V40H46Z" fill="url(#b)"/>
-  <path d="M18.55 28.15L26 20.25L33.45 28.15L26 36.1L18.55 28.15Z" fill="#0B1020"/>
-  <path d="M38.75 35.25L46 40V31.5L38.75 35.25Z" fill="#60A5FA"/>
+  <!-- Background squircle -->
+  <rect width="64" height="64" rx="16" fill="#0A0E1A" />
+  <rect x="1" y="1" width="62" height="62" rx="15" stroke="rgba(255,255,255,0.15)" stroke-width="1.2" />
+  
+  <!-- Iconic Metallic X of ONYIIX -->
+  <path d="M 16 16 L 27 16 L 48 48 L 37 48 Z" fill="url(#onyiix-metal-a)" />
+  <path d="M 48 16 L 37 16 L 16 48 L 27 48 Z" fill="url(#onyiix-metal-b)" />
+  <circle cx="32" cy="32" r="3.5" fill="#FFFFFF" opacity="0.95" />
 </svg>

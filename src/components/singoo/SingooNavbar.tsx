@@ -16,10 +16,10 @@ export const SingooNavbar: React.FC<SingooNavbarProps> = ({ onOpenContactModal }
         <div className="flex items-center">
           <a href="/" className="flex items-center gap-2.5 group">
             <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-black text-sm tracking-tighter shadow-md group-hover:scale-105 transition-transform">
-              A
+              O
             </div>
             <span className="font-extrabold text-2xl tracking-tight bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
-              MEYVARO
+              ONYIIX
             </span>
           </a>
         </div>
@@ -171,7 +171,7 @@ export const SingooNavbar: React.FC<SingooNavbarProps> = ({ onOpenContactModal }
             </div>
 
             <div className="pt-4 mt-4 border-t border-neutral-100 flex items-center justify-between">
-              <span className="text-xs text-neutral-500">MEYVARO Studio • Bengaluru</span>
+              <span className="text-xs text-neutral-500">ONYIIX • Bengaluru</span>
               <button
                 type="button"
                 onClick={() => {

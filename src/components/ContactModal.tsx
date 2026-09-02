@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, CheckCircle2, ArrowRight } from 'lucide-react';
+import { FieldTooltip } from './FieldTooltip';
 
 interface ContactModalProps {
   isOpen: boolean;
   onClose: () => void;
   initialType?: string;
+}
+
+interface ModalErrors {
+  name?: string;
+  email?: string;
+  projectDetails?: string;
 }
 
 export const ContactModal: React.FC<ContactModalProps> = ({
@@ -17,10 +24,30 @@ export const ContactModal: React.FC<ContactModalProps> = ({
   const [email, setEmail] = useState('');
   const [projectDetails, setProjectDetails] = useState('');
   const [budget, setBudget] = useState('Need recommendation');
+  const [errors, setErrors] = useState<ModalErrors>({});
   const [submitted, setSubmitted] = useState(false);
+
+  const validateForm = (): boolean => {
+    const newErrors: ModalErrors = {};
+    if (!name.trim()) {
+      newErrors.name = 'Gotta drop your name first, bestie';
+    }
+    if (!email.trim()) {
+      newErrors.email = 'Drop your email so we can hit you back';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      newErrors.email = 'Double check that email format, bestie';
+    }
+    if (!projectDetails.trim()) {
+      newErrors.projectDetails = 'Give us a quick hint of what you are cooking up';
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateForm()) return;
+
     const subject = encodeURIComponent(`${initialType} — ${name}`);
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nEngagement: ${initialType}\nScope preference: ${budget}\n\nProject brief:\n${projectDetails}`);
     window.location.href = `mailto:maazmohammed112@gmail.com?subject=${subject}&body=${body}`;
@@ -29,6 +56,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
   const handleClose = () => {
     setSubmitted(false);
+    setErrors({});
     onClose();
   };
 
@@ -64,7 +92,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             {!submitted ? (
               <div>
                 <span className="text-[12px] font-semibold text-[#2563EB] uppercase tracking-wider block mb-1">
-                  MEYVARO STUDIO INTAKE
+                  ONYIIX INTAKE
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-medium text-gray-900 tracking-tight">
                   {initialType.includes('Book') || initialType.includes('Strategy')
@@ -75,19 +103,22 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   Tell us about the goal. We review the brief and reply within one working day.
                 </p>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form noValidate onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label className="block text-xs font-semibold text-gray-700 mb-1">
                       Full Name *
                     </label>
                     <input
                       type="text"
-                      required
                       placeholder="Alex Rivera"
                       value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#2563EB] focus:outline-none transition-all"
+                      onChange={(e) => {
+                        setName(e.target.value);
+                        if (errors.name) setErrors((prev) => ({ ...prev, name: undefined }));
+                      }}
+                      className={`w-full rounded-xl border ${errors.name ? 'border-rose-400 bg-rose-50/40' : 'border-gray-200 bg-gray-50'} px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#2563EB] focus:outline-none transition-all`}
                     />
+                    <FieldTooltip message={errors.name} />
                   </div>
 
                   <div>
@@ -96,12 +127,15 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     </label>
                     <input
                       type="email"
-                      required
                       placeholder="alex@company.com"
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#2563EB] focus:outline-none transition-all"
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        if (errors.email) setErrors((prev) => ({ ...prev, email: undefined }));
+                      }}
+                      className={`w-full rounded-xl border ${errors.email ? 'border-rose-400 bg-rose-50/40' : 'border-gray-200 bg-gray-50'} px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#2563EB] focus:outline-none transition-all`}
                     />
+                    <FieldTooltip message={errors.email} />
                   </div>
 
                   <div>
@@ -126,12 +160,15 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     </label>
                     <textarea
                       rows={3}
-                      required
                       placeholder="Tell us what you are aiming to build, timeline, and vision..."
                       value={projectDetails}
-                      onChange={(e) => setProjectDetails(e.target.value)}
-                      className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#2563EB] focus:outline-none transition-all"
+                      onChange={(e) => {
+                        setProjectDetails(e.target.value);
+                        if (errors.projectDetails) setErrors((prev) => ({ ...prev, projectDetails: undefined }));
+                      }}
+                      className={`w-full rounded-xl border ${errors.projectDetails ? 'border-rose-400 bg-rose-50/40' : 'border-gray-200 bg-gray-50'} px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:bg-white focus:border-[#2563EB] focus:outline-none transition-all`}
                     />
+                    <FieldTooltip message={errors.projectDetails} />
                   </div>
 
                   <button

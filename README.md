@@ -1,10 +1,10 @@
-# Meyvaro Studio
+# ONYIIX
 
 A founder-led digital product studio website built with React, TypeScript, Tailwind CSS and Framer Motion.
 
 ## Experience
 
-- Lightweight animated hero with a responsive glass navigation bar
+- Lightweight animated hero with a responsive glass navigation bar and metallic shining logo
 - Scroll-driven Bengaluru auto journey across four service destinations
 - Reversible journey timeline with repeatable first-stop animation
 - Featured Primkart storefront and operations case study
@@ -29,6 +29,9 @@ npm run build
 
 - `public/journey/` — auto and destination scenes
 - `public/projects/` — Primkart brand and case-study visuals
-- `public/favicon.svg` — transparent Meyvaro monogram
+- `public/favicon.svg` — transparent ONYIIX monogram
+- `public/onyiix-logo-dark.png` & `public/onyiix-logo-white.png` — official brand logos
+- `public/onyiix-x-metallic.png` & `public/onyiix-x-white.png` — metallic X shining layer
 
-The public canonical URL remains `https://asme.studio/` until a new Meyvaro domain is selected and verified.
+The public canonical URL remains `https://asme.studio/` until a new ONYIIX domain is selected and verified.
+

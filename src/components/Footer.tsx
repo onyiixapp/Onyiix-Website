@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowUpRight, Mail, MapPin } from 'lucide-react';
-import { AsmeLogo } from './AsmeLogo';
+import { OnyiixLogo } from './OnyiixLogo';
 
 export const Footer: React.FC = () => {
   return (
@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
       <div className="relative mx-auto max-w-[1440px]">
         <div className="grid gap-9 pb-10 sm:grid-cols-2 lg:grid-cols-[1.65fr_1fr_1fr_1fr] lg:gap-12">
           <div>
-            <AsmeLogo symbolSize={42} textColor="text-white" />
+            <OnyiixLogo variant="white" height={40} />
             <p className="mt-4 max-w-sm text-xs leading-5 text-neutral-400 sm:text-sm">
               Useful digital products, thoughtfully designed and engineered to last.
             </p>
@@ -52,7 +52,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="flex flex-col gap-2 border-t border-neutral-800/90 pt-5 text-center text-[11px] font-medium tracking-wide text-neutral-500 sm:flex-row sm:items-center sm:justify-between sm:text-left sm:text-xs">
-          <span>&copy; 2026 Meyvaro Studio. All rights reserved.</span>
+          <span>&copy; 2026 ONYIIX. All rights reserved.</span>
           <span>Founder-led in Bengaluru. Built for everywhere.</span>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, Gauge, Globe2, ShieldCheck, Users } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { OnyiixX } from './OnyiixX';
 
 interface AboutSectionProps { onOpenAboutModal: () => void; }
 
@@ -16,7 +17,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenAboutModal }) 
       <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
         <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.35 }}>
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.16em] text-blue-700">
-            <Users className="h-3.5 w-3.5" /> About the studio
+            <Users className="h-3.5 w-3.5" /> About ONYII<OnyiixX size="1.05em" className="ml-0.5" />
           </div>
           <h2 className="max-w-3xl text-[clamp(2.2rem,5.6vw,5.4rem)] font-medium leading-[0.98] tracking-[-0.055em] text-[#0B1020]">
             Small team.<br />Senior thinking.<br /><span className="text-blue-600">Serious systems.</span>
@@ -25,7 +26,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenAboutModal }) 
 
         <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ delay: 0.1 }} className="lg:pt-10">
           <p className="text-lg font-semibold leading-relaxed text-slate-800 sm:text-xl">
-            Meyvaro is the product studio of Maaz and Suman. We design, engineer and grow websites, SaaS products, AI workflows and digital marketing systems for teams that value clarity and momentum.
+            ONYII<OnyiixX size="0.84em" className="inline-block ml-0.5 mr-1" /> is the product studio of Maaz and Suman. We design, engineer and grow websites, SaaS products, AI workflows and digital marketing systems for teams that value clarity and momentum.
           </p>
           <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-600">
             One senior team stays with the work from discovery to launch—connecting product design with technical SEO, analytics, conversion journeys and campaign-ready landing experiences.

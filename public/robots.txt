@@ -1,4 +1,23 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://asme.studio/sitemap.xml
+# AI Crawlers & LLM Search Agents
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://onyiix.vercel.app/sitemap.xml

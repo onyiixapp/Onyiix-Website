@@ -26,7 +26,7 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onBack }) => {
             Privacy Policy
           </h1>
           <p className="text-xs text-gray-500 mt-2">
-            Last Updated: August 2026 • Meyvaro Studio, Bengaluru, India
+            Last Updated: August 2026 • ONYIIX, Bengaluru, India
           </p>
         </div>
 
@@ -34,7 +34,7 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onBack }) => {
           <section>
             <h2 className="text-lg font-bold text-gray-900 mb-2">1. Information We Collect</h2>
             <p>
-              MEYVARO Studio collects information directly from you when you submit project briefs, book strategy calls, or contact our engineering leads. This includes your name, work email, company name, project requirements, and communication preferences.
+              ONYIIX collects information directly from you when you submit project briefs, book strategy calls, or contact our engineering leads. This includes your name, work email, company name, project requirements, and communication preferences.
             </p>
           </section>
 

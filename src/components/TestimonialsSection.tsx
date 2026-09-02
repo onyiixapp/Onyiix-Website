@@ -8,7 +8,7 @@ const testimonials = [
     role: 'Owner, Primkart',
     context: 'Retail & distribution · Bengaluru',
     project: 'Commerce platform',
-    quote: 'Meyvaro understood how our retail and distribution business works and turned the idea I imagined into a product we can actually use.',
+    quote: 'ONYIIX understood how our retail and distribution business works and turned the idea I imagined into a product we can actually use.',
     Icon: Store,
   },
   {
@@ -16,7 +16,7 @@ const testimonials = [
     role: 'Founder, DigitalClink',
     context: 'Marketing & digital services',
     project: 'Marketing website',
-    quote: 'Working with Meyvaro was smooth and thoughtful. They took our marketing website to the next level and made the brand feel much stronger online.',
+    quote: 'Working with ONYIIX was smooth and thoughtful. They took our marketing website to the next level and made the brand feel much stronger online.',
     Icon: Megaphone,
   },
   {
