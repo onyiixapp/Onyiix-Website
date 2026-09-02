@@ -37,21 +37,15 @@ export const Footer: React.FC = () => {
                 href="https://discussit.in/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Discuss - Developer discussions and projects platform on discussit.in (opens in a new tab)"
-                className="group relative -mx-2.5 -my-2 flex flex-col items-start rounded-xl p-2.5 transition-all duration-200 hover:bg-neutral-900/60 hover:ring-1 hover:ring-neutral-800"
+                aria-label="Discuss - Developer discussion platform (opens in a new tab)"
+                className="group flex flex-col items-start gap-1 transition-colors"
               >
-                <div className="inline-flex items-center gap-1.5 text-neutral-200 transition-colors group-hover:text-blue-400">
-                  <span className="font-semibold text-white group-hover:text-blue-400">Discuss</span>
-                  <span className="inline-flex items-center rounded-full bg-blue-500/10 px-1.5 py-0.5 text-[9px] font-semibold text-blue-400 border border-blue-500/20">
-                    Live
-                  </span>
+                <span className="inline-flex items-center gap-1 font-medium text-neutral-300 transition-colors group-hover:text-blue-400">
+                  Discuss
                   <ArrowUpRight className="h-3.5 w-3.5 text-neutral-400 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-blue-400" />
-                </div>
-                <span className="mt-1 text-xs font-normal text-neutral-400 transition-colors group-hover:text-neutral-300">
-                  Developer discussions &amp; chat
                 </span>
-                <span className="mt-0.5 font-mono text-[11px] font-normal text-neutral-500 transition-colors group-hover:text-blue-400">
-                  discussit.in &rarr;
+                <span className="text-xs font-normal text-neutral-400 transition-colors group-hover:text-neutral-300">
+                  Developer discussion platform
                 </span>
               </a>
             </nav>
