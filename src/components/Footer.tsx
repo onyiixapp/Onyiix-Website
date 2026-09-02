@@ -9,8 +9,8 @@ export const Footer: React.FC = () => {
       <div aria-hidden="true" className="absolute left-1/2 top-0 h-24 w-72 -translate-x-1/2 rounded-full bg-blue-600/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-[1440px]">
-        <div className="grid gap-9 pb-10 sm:grid-cols-2 lg:grid-cols-[1.65fr_1fr_1fr_1fr] lg:gap-12">
-          <div>
+        <div className="grid gap-9 pb-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1.15fr_1fr_1fr] lg:gap-10 xl:gap-12">
+          <div className="sm:col-span-2 lg:col-span-1">
             <OnyiixLogo variant="white" height={40} />
             <p className="mt-4 max-w-sm text-xs leading-5 text-neutral-400 sm:text-sm">
               Useful digital products, thoughtfully designed and engineered to last.
@@ -27,6 +27,33 @@ export const Footer: React.FC = () => {
               <a href="/about" className="transition-colors hover:text-blue-400">About the studio</a>
               <a href="/about#founders" className="transition-colors hover:text-blue-400">Founder profiles</a>
               <a href="/careers" className="transition-colors hover:text-blue-400">Careers</a>
+            </nav>
+          </div>
+
+          <div>
+            <p className="mb-4 text-[10px] font-black uppercase tracking-[0.2em] text-neutral-500">Our Products</p>
+            <nav aria-label="Our products links" className="flex flex-col items-start gap-3 text-sm font-medium text-neutral-300">
+              <a
+                href="https://discussit.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Discuss - Developer discussions and projects platform on discussit.in (opens in a new tab)"
+                className="group relative -mx-2.5 -my-2 flex flex-col items-start rounded-xl p-2.5 transition-all duration-200 hover:bg-neutral-900/60 hover:ring-1 hover:ring-neutral-800"
+              >
+                <div className="inline-flex items-center gap-1.5 text-neutral-200 transition-colors group-hover:text-blue-400">
+                  <span className="font-semibold text-white group-hover:text-blue-400">Discuss</span>
+                  <span className="inline-flex items-center rounded-full bg-blue-500/10 px-1.5 py-0.5 text-[9px] font-semibold text-blue-400 border border-blue-500/20">
+                    Live
+                  </span>
+                  <ArrowUpRight className="h-3.5 w-3.5 text-neutral-400 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-blue-400" />
+                </div>
+                <span className="mt-1 text-xs font-normal text-neutral-400 transition-colors group-hover:text-neutral-300">
+                  Developer discussions &amp; chat
+                </span>
+                <span className="mt-0.5 font-mono text-[11px] font-normal text-neutral-500 transition-colors group-hover:text-blue-400">
+                  discussit.in &rarr;
+                </span>
+              </a>
             </nav>
           </div>
 
