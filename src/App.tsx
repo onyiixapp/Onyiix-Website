@@ -15,8 +15,8 @@ import { SERVICE_LANDING_PAGES, ServiceLandingPage } from './components/ServiceL
 import { GlobalDeliveryPage } from './components/GlobalDeliveryPage';
 import { AgentationDev } from './components/AgentationDev';
 import { ContentProtection } from './components/ContentProtection';
+import { AutoJourneySection } from './components/AutoJourneySection';
 // New premium UI components
-import AirlockHero from './components/ui/airlock-spaceship-hero';
 import { LandingAccordionItem } from './components/ui/interactive-image-accordion';
 import { HeroParallax, onyiixProducts } from './components/blocks/hero-parallax';
 import { WorldMap } from './components/ui/world-map';
@@ -270,14 +270,8 @@ export function App() {
       <main className="w-full">
         <SiteHeader onOpenProject={() => handleOpenProject('Start a Project')} />
 
-        {/* HERO: Scroll-locked ISS video scrub experience */}
-        <AirlockHero
-          title="ONYIIX STUDIO"
-          tagline="Founder-led builds from Bengaluru, shipped to the world."
-          theme="vacuum"
-          scrubDistance={3200}
-          holdDistance={1100}
-        />
+        {/* The cinematic service journey is the opening experience. */}
+        <AutoJourneySection />
 
         {/* SERVICE SHOWCASE: Interactive image accordion */}
         <LandingAccordionItem />
