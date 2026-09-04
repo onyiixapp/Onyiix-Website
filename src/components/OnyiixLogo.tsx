@@ -30,7 +30,7 @@ export const OnyiixLogo: React.FC<OnyiixLogoProps> = ({
   const calculatedHeight = height || (symbolSize ? Math.round(symbolSize * 0.82) : 32);
 
   return (
-    <div className={`relative inline-flex items-center select-none ${className}`}>
+    <div className={`relative inline-flex w-fit items-center select-none ${className}`}>
       <img
         src={logoSrc}
         alt={alt}
