@@ -28,6 +28,11 @@ const footerLinks = [
 const contactInfo = [
   {
     icon: <Mail size={18} className="text-[#3ca2fa]" />,
+    text: "sumansingh.np@gmail.com",
+    href: "mailto:sumansingh.np@gmail.com",
+  },
+  {
+    icon: <Mail size={18} className="text-[#3ca2fa]" />,
     text: "maazmohammed112@gmail.com",
     href: "mailto:maazmohammed112@gmail.com",
   },
