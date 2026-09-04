@@ -1,14 +1,8 @@
 import { useState, useEffect } from 'react';
 import { SiteHeader } from './components/SiteHeader';
-import { StudioIntroSection } from './components/StudioIntroSection';
-import { AboutSection } from './components/AboutSection';
-import { CaseStudiesSection } from './components/CaseStudiesSection';
-import { AutoJourneySection } from './components/AutoJourneySection';
 import { ProcessSection } from './components/ProcessSection';
-import { PackagesSection } from './components/PackagesSection';
 import { TrustAndFaqSection } from './components/TrustAndFaqSection';
 import { ContactSection } from './components/ContactSection';
-import { Footer } from './components/Footer';
 import { ContactModal } from './components/ContactModal';
 import { AboutPage } from './components/AboutPage';
 import { CareersPage } from './components/CareersPage';
@@ -21,6 +15,14 @@ import { SERVICE_LANDING_PAGES, ServiceLandingPage } from './components/ServiceL
 import { GlobalDeliveryPage } from './components/GlobalDeliveryPage';
 import { AgentationDev } from './components/AgentationDev';
 import { ContentProtection } from './components/ContentProtection';
+// New premium UI components
+import AirlockHero from './components/ui/airlock-spaceship-hero';
+import { LandingAccordionItem } from './components/ui/interactive-image-accordion';
+import { HeroParallax, onyiixProducts } from './components/blocks/hero-parallax';
+import { WorldMap } from './components/ui/world-map';
+import { Pricing, onyiixPlans } from './components/blocks/pricing';
+import HoverFooter from './components/HoverFooter';
+import { motion } from 'framer-motion';
 
 export function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
@@ -170,7 +172,7 @@ export function App() {
           onBack={() => navigateTo('/')}
           onOpenProject={() => handleOpenProject('About Page Direct Inquiry')}
         />
-        <Footer />
+        <HoverFooter />
         <ContactModal
           isOpen={modalOpen}
           onClose={() => setModalOpen(false)}
@@ -184,7 +186,7 @@ export function App() {
     return (
       <div className="min-h-screen bg-white text-gray-900">
         <CareersPage onBack={() => navigateTo('/')} />
-        <Footer />
+        <HoverFooter />
         <ContactModal
           isOpen={modalOpen}
           onClose={() => setModalOpen(false)}
@@ -198,7 +200,7 @@ export function App() {
     return (
       <div className="min-h-screen bg-white text-gray-900">
         <TermsPage onBack={() => navigateTo('/')} />
-        <Footer />
+        <HoverFooter />
         <ContactModal
           isOpen={modalOpen}
           onClose={() => setModalOpen(false)}
@@ -212,7 +214,7 @@ export function App() {
     return (
       <div className="min-h-screen bg-white text-gray-900">
         <PrivacyPage onBack={() => navigateTo('/')} />
-        <Footer />
+        <HoverFooter />
         <ContactModal
           isOpen={modalOpen}
           onClose={() => setModalOpen(false)}
@@ -226,7 +228,7 @@ export function App() {
     return (
       <div className="min-h-screen bg-white text-gray-900">
         <SitemapPage onBack={() => navigateTo('/')} />
-        <Footer />
+        <HoverFooter />
         <ContactModal
           isOpen={modalOpen}
           onClose={() => setModalOpen(false)}
@@ -241,7 +243,7 @@ export function App() {
     return (
       <div className="min-h-screen bg-white text-gray-900">
         <ServiceLandingPage data={serviceLandingData} onBack={() => navigateTo('/')} onOpenProject={() => handleOpenProject(`Service: ${serviceLandingData.eyebrow}`)} />
-        <Footer />
+        <HoverFooter />
         <ContactModal isOpen={modalOpen} onClose={() => setModalOpen(false)} initialType={modalType} />
       </div>
     );
@@ -251,7 +253,7 @@ export function App() {
     return (
       <div className="min-h-screen bg-white text-gray-900">
         <GlobalDeliveryPage onBack={() => navigateTo('/')} onOpenProject={() => handleOpenProject('Global Project Inquiry')} />
-        <Footer />
+        <HoverFooter />
         <ContactModal isOpen={modalOpen} onClose={() => setModalOpen(false)} initialType={modalType} />
       </div>
     );
@@ -264,43 +266,107 @@ export function App() {
 
   // Main Landing Page with All Sections
   return (
-    <div className="min-h-screen bg-[#F4F7FC] text-gray-900 font-sans selection:bg-[#2563EB]/20 selection:text-[#1D4ED8] relative">
+    <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-[#2563EB]/20 selection:text-[#1D4ED8] relative">
       <main className="w-full">
         <SiteHeader onOpenProject={() => handleOpenProject('Start a Project')} />
 
-        {/* The cinematic service journey is the opening experience. */}
-        <AutoJourneySection />
-
-        <StudioIntroSection onOpenProject={() => handleOpenProject('Start a Project')} />
-
-        <AboutSection
-          onOpenAboutModal={() => handleOpenProject('About Studio Inquiry')}
+        {/* HERO: Scroll-locked ISS video scrub experience */}
+        <AirlockHero
+          title="ONYIIX STUDIO"
+          tagline="Founder-led builds from Bengaluru, shipped to the world."
+          theme="vacuum"
+          scrubDistance={3200}
+          holdDistance={1100}
         />
 
-        {/* SECTION 3: CASE STUDIES (Light gray background, Narrativ, Luminar, primkart.app, Workshop SaaS) */}
-        <CaseStudiesSection
-          onSelectProject={(projectTitle) => handleOpenProject(`Case Study: ${projectTitle}`)}
-        />
+        {/* SERVICE SHOWCASE: Interactive image accordion */}
+        <LandingAccordionItem />
+
+        {/* CASE STUDIES: Parallax product grid */}
+        <section id="projects" className="bg-[#F4F7FC] overflow-hidden">
+          <HeroParallax products={onyiixProducts} />
+        </section>
+
+        {/* GLOBAL DELIVERY: Animated world map */}
+        <section className="bg-white py-20 sm:py-28 px-5 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-[1440px]">
+            <div className="text-center mb-10">
+              <span className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-blue-600">Global reach</span>
+              <h2 className="mt-3 text-[clamp(2rem,4.5vw,4rem)] font-medium leading-[0.98] tracking-[-0.055em] text-[#0B1020]">
+                Built in Bengaluru.
+                <br />
+                <motion.span
+                  className="text-blue-600"
+                  initial={{ x: -10, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  Ready everywhere.
+                </motion.span>
+              </h2>
+              <p className="mt-5 text-sm sm:text-base text-slate-500 max-w-2xl mx-auto leading-7">
+                We work with founders across India, Europe, North America and worldwide — delivering fast, remote-first with direct founder access from first call to launch.
+              </p>
+            </div>
+            <WorldMap
+              lineColor="#2563EB"
+              dots={[
+                // Wave 1 — Bengaluru outward
+                { start: { lat: 12.9716, lng: 77.5946 }, end: { lat: 51.5074, lng: -0.1278 } },
+                { start: { lat: 12.9716, lng: 77.5946 }, end: { lat: 25.2048, lng: 55.2708 } },
+                { start: { lat: 12.9716, lng: 77.5946 }, end: { lat: 1.3521,  lng: 103.8198 } },
+                { start: { lat: 12.9716, lng: 77.5946 }, end: { lat: 35.6762, lng: 139.6503 } },
+                { start: { lat: 12.9716, lng: 77.5946 }, end: { lat: -33.8688, lng: 151.2093 } },
+                // Wave 2 — Europe spreading
+                { start: { lat: 51.5074, lng: -0.1278 }, end: { lat: 40.7128,  lng: -74.0060 } },
+                { start: { lat: 51.5074, lng: -0.1278 }, end: { lat: 48.8566,  lng:   2.3522 } },
+                { start: { lat: 48.8566, lng:  2.3522 }, end: { lat: 52.5200,  lng:  13.4050 } },
+                { start: { lat: 48.8566, lng:  2.3522 }, end: { lat: 41.9028,  lng:  12.4964 } },
+                // Wave 3 — Americas
+                { start: { lat: 40.7128, lng: -74.0060 }, end: { lat: 37.7749, lng: -122.4194 } },
+                { start: { lat: 40.7128, lng: -74.0060 }, end: { lat: 19.4326, lng:  -99.1332 } },
+                { start: { lat: 37.7749, lng: -122.4194 }, end: { lat: -23.5505, lng: -46.6333 } },
+                { start: { lat: -23.5505, lng: -46.6333 }, end: { lat: -34.6037, lng: -58.3816 } },
+                // Wave 4 — Middle East & Africa
+                { start: { lat: 25.2048, lng: 55.2708 }, end: { lat: 30.0444, lng:  31.2357 } },
+                { start: { lat: 30.0444, lng: 31.2357 }, end: { lat:  -1.2921, lng:  36.8219 } },
+                { start: { lat: -1.2921, lng: 36.8219 }, end: { lat: -26.2041, lng:  28.0473 } },
+                // Wave 5 — SE Asia & Pacific
+                { start: { lat: 1.3521,  lng: 103.8198 }, end: { lat: 22.3193, lng: 114.1694 } },
+                { start: { lat: 35.6762, lng: 139.6503 }, end: { lat: 37.5665, lng: 126.9780 } },
+                { start: { lat: 35.6762, lng: 139.6503 }, end: { lat: 37.7749, lng: -122.4194 } },
+                { start: { lat: -33.8688, lng: 151.2093 }, end: { lat: -36.8485, lng: 174.7633 } },
+              ]}
+
+            />
+          </div>
+        </section>
 
         <TestimonialsSection />
 
-        {/* SECTION 6: 8-STAGE ENGINEERING PIPELINE */}
+        {/* ENGINEERING PIPELINE */}
         <ProcessSection />
 
-        {/* SECTION 7: PACKAGES & PRICING WITH 1-MONTH FREE MAINTENANCE SLA */}
-        <PackagesSection
-          onSelectTier={(tier) => handleOpenProject(`Tier Selected: ${tier}`)}
-        />
+        {/* PRICING: Animated cards with confetti annual toggle */}
+        <section id="packages">
+          <Pricing
+            plans={onyiixPlans}
+            title="Choose the right starting lane."
+            description="Every engagement is scoped after a short technical call.\nNo hidden template restrictions and no lock-in."
+            onSelectPlan={(plan) => handleOpenProject(`Tier Selected: ${plan}`)}
+          />
+        </section>
 
-        {/* SECTION 8: TRUST CHARTER & FAQS ACCORDION */}
+        {/* TRUST & FAQS */}
         <TrustAndFaqSection />
 
-        {/* SECTION 9: DIRECT FOUNDER INTAKE & GEO CHANNELS */}
+        {/* CONTACT */}
         <ContactSection />
       </main>
 
-      {/* MASTER FOOTER */}
-      <Footer />
+      {/* HOVER FOOTER */}
+      <HoverFooter />
 
       {/* Strategy Call / Project Intake Modal */}
       <ContactModal
