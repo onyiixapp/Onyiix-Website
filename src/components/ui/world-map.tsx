@@ -10,16 +10,23 @@ interface MapProps {
   lineColor?: string;
 }
 
+let cachedSvgMap: string | null = null;
+function getCachedSvgMap(): string {
+  if (!cachedSvgMap) {
+    const map = new DottedMap({ height: 100, grid: "diagonal" });
+    cachedSvgMap = map.getSVG({
+      radius: 0.22,
+      color: "#00000030",
+      shape: "circle",
+      backgroundColor: "transparent",
+    });
+  }
+  return cachedSvgMap;
+}
+
 export function WorldMap({ dots = [], lineColor = "#3b82f6" }: MapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
-  const map = new DottedMap({ height: 100, grid: "diagonal" });
-
-  const svgMap = map.getSVG({
-    radius: 0.22,
-    color: "#00000030",
-    shape: "circle",
-    backgroundColor: "transparent",
-  });
+  const svgMap = getCachedSvgMap();
 
   const projectPoint = (lat: number, lng: number) => {
     const x = (lng + 180) * (800 / 360);

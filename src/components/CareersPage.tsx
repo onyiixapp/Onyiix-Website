@@ -12,10 +12,10 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onBack }) => {
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-xs font-semibold text-gray-600 hover:text-black mb-8 p-2 rounded-full hover:bg-gray-100 transition-colors"
+          className="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-bold text-slate-700 shadow-sm transition hover:border-blue-200 hover:text-blue-700 hover:bg-slate-50 cursor-pointer"
         >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to Home</span>
+          <ArrowLeft className="h-4 w-4" />
+          <span>Back to Studio</span>
         </button>
 
         <div className="max-w-3xl mb-12">
@@ -45,7 +45,7 @@ export const CareersPage: React.FC<CareersPageProps> = ({ onBack }) => {
           </p>
 
           <a
-            href="mailto:maazmohammed112@gmail.com?subject=ONYIIX Speculative Application / Portfolio"
+            href="mailto:maaz@onyiix.com?subject=ONYIIX Speculative Application / Portfolio"
             className="inline-flex items-center gap-2 bg-gray-900 hover:bg-[#2563EB] text-white text-xs font-semibold px-6 py-3 rounded-full transition-colors"
           >
             <Mail className="w-3.5 h-3.5" />

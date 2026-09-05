@@ -1,4 +1,21 @@
+# ONYIIX (https://onyiix.com) Robots Configuration
 User-agent: *
+Allow: /
+
+# Search Engine Web Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
 Allow: /
 
 # AI Crawlers & LLM Search Agents
@@ -20,4 +37,12 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://onyiix.vercel.app/sitemap.xml
+User-agent: Cohere-ai
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+# Canonical XML Sitemap & Host
+Sitemap: https://onyiix.com/sitemap.xml
+Host: https://onyiix.com

@@ -12,10 +12,10 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onBack }) => {
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-xs font-semibold text-gray-600 hover:text-black mb-8 p-2 rounded-full hover:bg-gray-100 transition-colors"
+          className="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-bold text-slate-700 shadow-sm transition hover:border-blue-200 hover:text-blue-700 hover:bg-slate-50 cursor-pointer"
         >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to Home</span>
+          <ArrowLeft className="h-4 w-4" />
+          <span>Back to Studio</span>
         </button>
 
         <div className="mb-10">
@@ -55,7 +55,7 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onBack }) => {
           <section>
             <h2 className="text-lg font-bold text-gray-900 mb-2">4. Contacting Data Officer</h2>
             <p>
-              For privacy inquiries or data removal requests, contact Mohammed Maaz A at <a href="mailto:maazmohammed112@gmail.com" className="text-[#2563EB] underline">maazmohammed112@gmail.com</a>.
+              For privacy inquiries or data removal requests, contact Mohammed Maaz A at <a href="mailto:maaz@onyiix.com" className="text-[#2563EB] underline">maaz@onyiix.com</a>.
             </p>
           </section>
         </div>

@@ -1,0 +1,21 @@
+{
+  "short_name": "ONYIIX",
+  "name": "ONYIIX Product Engineering Studio",
+  "description": "Founder-led web, SaaS, AI workflow and digital-system engineering from Bengaluru to the world.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#0B1020",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/onyiix-logo-dark.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

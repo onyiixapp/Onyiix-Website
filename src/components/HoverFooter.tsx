@@ -8,7 +8,6 @@ const footerLinks = [
     title: "Studio",
     links: [
       { label: "About ONYIIX", href: "/about" },
-      { label: "Founder profiles", href: "/about#founders" },
       { label: "Careers", href: "/careers" },
       { label: "Global delivery", href: "/global" },
     ],
@@ -74,8 +73,8 @@ const InstagramIcon = ({ size = 20 }: { size?: number }) => (
 );
 
 const socialLinks = [
-  { icon: <LinkedinIcon size={20} />, label: "LinkedIn", href: "http://linkedin.com/company/onyiix" },
-  { icon: <InstagramIcon size={20} />, label: "Instagram", href: "https://www.instagram.com/onyiix.co/" },
+  { icon: <LinkedinIcon size={18} />, label: "LinkedIn", href: "http://linkedin.com/company/onyiix" },
+  { icon: <InstagramIcon size={18} />, label: "Instagram", href: "https://www.instagram.com/onyiix.co/" },
 ];
 
 function HoverFooter() {
@@ -130,23 +129,31 @@ function HoverFooter() {
                 </li>
               ))}
             </ul>
+
+            {/* Social Icons moved below Bengaluru text in Contact section */}
+            <div className="mt-5 pt-3 border-t border-white/10 flex items-center gap-3">
+              {socialLinks.map(({ icon, label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-neutral-400 hover:text-[#3ca2fa] hover:border-[#3ca2fa]/50 hover:bg-[#3ca2fa]/10 transition-all"
+                  title={label}
+                >
+                  {icon}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
         <hr className="border-t border-white/10 my-6" />
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
-          <div className="flex gap-5 text-neutral-500">
-            {socialLinks.map(({ icon, label, href }) => (
-              <a key={label} href={href} aria-label={label} target="_blank" rel="noopener noreferrer" className="hover:text-[#3ca2fa] transition-colors">
-                {icon}
-              </a>
-            ))}
-          </div>
-          <div className="text-neutral-600 text-center sm:text-right flex flex-col gap-1">
-            <span>&copy; 2026 Onyiix. All rights reserved.</span>
-            <span>Crafted with creativity.</span>
-          </div>
+          <span className="text-neutral-500">&copy; 2026 Onyiix. All rights reserved.</span>
+          <span className="text-neutral-500">Crafted with creativity from Bengaluru.</span>
         </div>
       </div>
 

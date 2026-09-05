@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, ArrowRight, CheckCircle2, Gauge, Search, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, Gauge, Search, ShieldCheck, TrendingUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export interface ServiceLandingData {
@@ -66,13 +66,20 @@ export const ServiceLandingPage: React.FC<ServiceLandingPageProps> = ({ data, on
   <main className="min-h-screen bg-[#F5F8FD] pt-28 text-slate-950">
     <section className="px-5 pb-20 sm:px-8 sm:pb-28 lg:px-12">
       <div className="mx-auto max-w-[1280px]">
-        <button type="button" onClick={onBack} className="mb-10 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-bold text-slate-600 transition hover:border-blue-200 hover:text-blue-700"><ArrowLeft className="h-4 w-4" />Back to ONYIIX</button>
+        <button
+          type="button"
+          onClick={onBack}
+          className="mb-10 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-bold text-slate-700 shadow-sm transition hover:border-blue-200 hover:text-blue-700 hover:bg-slate-50 cursor-pointer"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          <span>Back to Studio</span>
+        </button>
         <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
           <div><p className="text-[11px] font-black uppercase tracking-[0.2em] text-blue-700">{data.eyebrow}</p><h1 className="mt-4 max-w-5xl text-[clamp(3rem,7vw,6.6rem)] font-medium leading-[0.92] tracking-[-0.065em]">{data.title}</h1></div>
           <div className="lg:pb-2"><p className="text-base font-semibold leading-8 text-slate-700">{data.intro}</p><button type="button" onClick={onOpenProject} className="mt-7 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-[0_16px_36px_rgba(37,99,235,0.24)] transition hover:bg-blue-700">Discuss this service <ArrowRight className="h-4 w-4" /></button></div>
         </motion.div>
 
-        <div className="mt-14 grid gap-3 md:grid-cols-3">{data.outcomes.map((outcome, index) => <motion.div key={outcome} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 + index * 0.06 }} className="rounded-2xl border border-blue-100 bg-white p-5 shadow-sm"><span className="mb-4 flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 text-blue-600">{index === 0 ? <Search className="h-4 w-4" /> : index === 1 ? <Gauge className="h-4 w-4" /> : <Sparkles className="h-4 w-4" />}</span><p className="text-sm font-extrabold">{outcome}</p></motion.div>)}</div>
+        <div className="mt-14 grid gap-3 md:grid-cols-3">{data.outcomes.map((outcome, index) => <motion.div key={outcome} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 + index * 0.06 }} className="rounded-2xl border border-blue-100 bg-white p-5 shadow-sm"><span className="mb-4 flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 text-blue-600">{index === 0 ? <Search className="h-4 w-4" /> : index === 1 ? <Gauge className="h-4 w-4" /> : <TrendingUp className="h-4 w-4" />}</span><p className="text-sm font-extrabold">{outcome}</p></motion.div>)}</div>
       </div>
     </section>
 

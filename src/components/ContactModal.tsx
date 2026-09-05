@@ -50,7 +50,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
     const subject = encodeURIComponent(`${initialType} — ${name}`);
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nEngagement: ${initialType}\nScope preference: ${budget}\n\nProject brief:\n${projectDetails}`);
-    window.location.href = `mailto:maazmohammed112@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:maaz@onyiix.com?subject=${subject}&body=${body}`;
     setSubmitted(true);
   };
 

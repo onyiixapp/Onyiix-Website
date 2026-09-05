@@ -1,69 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Homepage -->
   <url>
-    <loc>https://onyiix.vercel.app/</loc>
-    <lastmod>2026-09-02</lastmod>
+    <loc>https://onyiix.com/</loc>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://onyiix.com/og-image.jpg</image:loc>
+      <image:title>ONYIIX Product Studio</image:title>
+      <image:caption>Founder-led product engineering studio in Bengaluru</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://onyiix.com/journey/asme-auto-founders.png</image:loc>
+      <image:title>ONYIIX Founders Bengaluru Journey</image:title>
+      <image:caption>Founders Mohammed Maaz A and Suman Kumar Singh</image:caption>
+    </image:image>
   </url>
+
+  <!-- About & Founders -->
   <url>
-    <loc>https://onyiix.vercel.app/about</loc>
-    <lastmod>2026-09-02</lastmod>
+    <loc>https://onyiix.com/about</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://onyiix.com/founders/suman.png</image:loc>
+      <image:title>Mohammed Maaz A - Co-Founder &amp; Principal Architect</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://onyiix.com/founders/maaz.png</image:loc>
+      <image:title>Suman Kumar Singh - Co-Founder &amp; Systems Engineer</image:title>
+    </image:image>
+  </url>
+
+  <!-- Services: Web Development -->
+  <url>
+    <loc>https://onyiix.com/services/web-development</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://onyiix.com/journey/destination-web-development.jpg</image:loc>
+      <image:title>ONYIIX Web Development Architecture</image:title>
+    </image:image>
+  </url>
+
+  <!-- Services: SaaS Platforms -->
+  <url>
+    <loc>https://onyiix.com/services/saas-platforms</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://onyiix.com/journey/destination-saas-platforms.jpg</image:loc>
+      <image:title>ONYIIX SaaS Platform Engineering</image:title>
+    </image:image>
+  </url>
+
+  <!-- Services: AI Workflows -->
+  <url>
+    <loc>https://onyiix.com/services/ai-workflows</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://onyiix.com/journey/destination-ai-automation.jpg</image:loc>
+      <image:title>ONYIIX AI Workflow Automation</image:title>
+    </image:image>
+  </url>
+
+  <!-- Services: Digital Marketing & Technical SEO -->
+  <url>
+    <loc>https://onyiix.com/services/digital-marketing</loc>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- Services: Digital Systems & Dashboards -->
   <url>
-    <loc>https://onyiix.vercel.app/careers</loc>
-    <lastmod>2026-09-02</lastmod>
+    <loc>https://onyiix.com/services/digital-systems</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://onyiix.com/journey/destination-digital-systems.jpg</image:loc>
+      <image:title>ONYIIX Digital Systems and Dashboards</image:title>
+    </image:image>
+  </url>
+
+  <!-- Global Delivery Hub -->
+  <url>
+    <loc>https://onyiix.com/global</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Careers -->
+  <url>
+    <loc>https://onyiix.com/careers</loc>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- HTML Sitemap -->
   <url>
-    <loc>https://onyiix.vercel.app/terms</loc>
-    <lastmod>2026-09-02</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://onyiix.vercel.app/privacy</loc>
-    <lastmod>2026-09-02</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://onyiix.vercel.app/sitemap</loc>
-    <lastmod>2026-09-02</lastmod>
+    <loc>https://onyiix.com/sitemap</loc>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+
+  <!-- Terms of Service -->
   <url>
-    <loc>https://onyiix.vercel.app/services/web-development</loc>
-    <lastmod>2026-09-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://onyiix.com/terms</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
+
+  <!-- Privacy Policy -->
   <url>
-    <loc>https://onyiix.vercel.app/services/saas-platforms</loc>
-    <lastmod>2026-09-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://onyiix.vercel.app/services/ai-workflows</loc>
-    <lastmod>2026-09-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://onyiix.vercel.app/services/digital-systems</loc>
-    <lastmod>2026-09-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://onyiix.vercel.app/global</loc>
-    <lastmod>2026-09-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://onyiix.com/privacy</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>

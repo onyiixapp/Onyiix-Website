@@ -22,10 +22,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-xs font-semibold text-gray-600 hover:text-black mb-8 p-2 rounded-full hover:bg-gray-100 transition-colors cursor-pointer"
+          className="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-bold text-slate-700 shadow-sm transition hover:border-blue-200 hover:text-blue-700 hover:bg-slate-50 cursor-pointer"
         >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to Studio Overview</span>
+          <ArrowLeft className="h-4 w-4" />
+          <span>Back to Studio</span>
         </button>
 
         {/* Header */}
@@ -121,10 +121,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
 
               <div className="flex items-center justify-end gap-2 border-t border-neutral-200/60 pt-4">
                 <a
-                  href="mailto:maazmohammed112@gmail.com"
+                  href="mailto:maaz@onyiix.com"
                   className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600"
                   aria-label="Email Mohammed Maaz A"
-                  title="Email Maaz"
+                  title="Email Maaz (maaz@onyiix.com)"
                 >
                   <Mail className="h-4 w-4" />
                 </a>
@@ -203,10 +203,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
 
               <div className="flex items-center justify-end gap-2 border-t border-neutral-200/60 pt-4">
                 <a
-                  href="mailto:sumansingh.np13@gmail.com"
+                  href="mailto:suman@onyiix.com"
                   className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-600"
                   aria-label="Email Suman Kumar Singh"
-                  title="Email Suman"
+                  title="Email Suman (suman@onyiix.com)"
                 >
                   <Mail className="h-4 w-4" />
                 </a>

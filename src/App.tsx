@@ -20,17 +20,27 @@ import { AutoJourneySection } from './components/AutoJourneySection';
 import { LandingAccordionItem } from './components/ui/interactive-image-accordion';
 import { HeroParallax, onyiixProducts } from './components/blocks/hero-parallax';
 import { WorldMap } from './components/ui/world-map';
-import { Pricing, onyiixPlans } from './components/blocks/pricing';
+import { Pricing } from './components/blocks/pricing';
 import HoverFooter from './components/HoverFooter';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState('Strategy Call');
+  const [isNavigating, setIsNavigating] = useState(false);
 
   useEffect(() => {
-    const handleLocation = () => setCurrentPath(window.location.pathname);
+    setIsNavigating(true);
+    const timer = setTimeout(() => setIsNavigating(false), 240);
+    return () => clearTimeout(timer);
+  }, [currentPath]);
+
+  useEffect(() => {
+    const handleLocation = () => {
+      setCurrentPath(window.location.pathname);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    };
     window.addEventListener('popstate', handleLocation);
     return () => window.removeEventListener('popstate', handleLocation);
   }, []);
@@ -107,7 +117,7 @@ export function App() {
       ogTitleTag?.setAttribute('content', meta.title);
       ogDescriptionTag?.setAttribute('content', meta.description);
 
-      const canonicalUrl = `https://asme.studio${currentPath === '/' ? '/' : currentPath}`;
+      const canonicalUrl = `https://onyiix.com${currentPath === '/' ? '/' : currentPath}`;
       canonicalTag?.setAttribute('href', canonicalUrl);
       ogUrlTag?.setAttribute('content', canonicalUrl);
       twitterTitleTag?.setAttribute('content', meta.title);
@@ -121,7 +131,7 @@ export function App() {
         routeSchema.text = JSON.stringify(serviceData ? {
           '@context': 'https://schema.org', '@type': 'Service', name: serviceData.eyebrow,
           description: meta.description, url: canonicalUrl, areaServed: 'Worldwide',
-          provider: { '@type': 'Organization', name: 'ONYIIX', url: 'https://asme.studio/' },
+          provider: { '@type': 'Organization', name: 'ONYIIX', url: 'https://onyiix.com/' },
         } : {
           '@context': 'https://schema.org', '@type': 'Organization', name: 'ONYIIX',
           url: canonicalUrl, address: { '@type': 'PostalAddress', addressLocality: 'Bengaluru', addressRegion: 'Karnataka', addressCountry: 'IN' },
@@ -156,7 +166,7 @@ export function App() {
   const navigateTo = (path: string) => {
     window.history.pushState({}, '', path);
     setCurrentPath(path);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   };
 
   const handleOpenProject = (customType?: string) => {
@@ -164,109 +174,59 @@ export function App() {
     setModalOpen(true);
   };
 
-  // Dedicated Route Views
-  if (currentPath === '/about') {
-    return (
-      <div className="min-h-screen bg-white text-gray-900">
+  const renderPageContent = () => {
+    if (currentPath === '/about') {
+      return (
         <AboutPage
           onBack={() => navigateTo('/')}
           onOpenProject={() => handleOpenProject('About Page Direct Inquiry')}
         />
-        <HoverFooter />
-        <ContactModal
-          isOpen={modalOpen}
-          onClose={() => setModalOpen(false)}
-          initialType={modalType}
+      );
+    }
+
+    if (currentPath === '/careers') {
+      return <CareersPage onBack={() => navigateTo('/')} />;
+    }
+
+    if (currentPath === '/terms') {
+      return <TermsPage onBack={() => navigateTo('/')} />;
+    }
+
+    if (currentPath === '/privacy') {
+      return <PrivacyPage onBack={() => navigateTo('/')} />;
+    }
+
+    if (currentPath === '/sitemap') {
+      return <SitemapPage onBack={() => navigateTo('/')} />;
+    }
+
+    const serviceLandingData = SERVICE_LANDING_PAGES[currentPath];
+    if (serviceLandingData) {
+      return (
+        <ServiceLandingPage
+          data={serviceLandingData}
+          onBack={() => navigateTo('/')}
+          onOpenProject={() => handleOpenProject(`Service: ${serviceLandingData.eyebrow}`)}
         />
-      </div>
-    );
-  }
+      );
+    }
 
-  if (currentPath === '/careers') {
-    return (
-      <div className="min-h-screen bg-white text-gray-900">
-        <CareersPage onBack={() => navigateTo('/')} />
-        <HoverFooter />
-        <ContactModal
-          isOpen={modalOpen}
-          onClose={() => setModalOpen(false)}
-          initialType={modalType}
+    if (currentPath === '/global') {
+      return (
+        <GlobalDeliveryPage
+          onBack={() => navigateTo('/')}
+          onOpenProject={() => handleOpenProject('Global Project Inquiry')}
         />
-      </div>
-    );
-  }
+      );
+    }
 
-  if (currentPath === '/terms') {
+    // 404 handler for unmatched paths
+    if (currentPath !== '/' && !currentPath.startsWith('/#')) {
+      return <NotFoundPage onBack={() => navigateTo('/')} />;
+    }
+
+    // Main Landing Page with All Sections
     return (
-      <div className="min-h-screen bg-white text-gray-900">
-        <TermsPage onBack={() => navigateTo('/')} />
-        <HoverFooter />
-        <ContactModal
-          isOpen={modalOpen}
-          onClose={() => setModalOpen(false)}
-          initialType={modalType}
-        />
-      </div>
-    );
-  }
-
-  if (currentPath === '/privacy') {
-    return (
-      <div className="min-h-screen bg-white text-gray-900">
-        <PrivacyPage onBack={() => navigateTo('/')} />
-        <HoverFooter />
-        <ContactModal
-          isOpen={modalOpen}
-          onClose={() => setModalOpen(false)}
-          initialType={modalType}
-        />
-      </div>
-    );
-  }
-
-  if (currentPath === '/sitemap') {
-    return (
-      <div className="min-h-screen bg-white text-gray-900">
-        <SitemapPage onBack={() => navigateTo('/')} />
-        <HoverFooter />
-        <ContactModal
-          isOpen={modalOpen}
-          onClose={() => setModalOpen(false)}
-          initialType={modalType}
-        />
-      </div>
-    );
-  }
-
-  const serviceLandingData = SERVICE_LANDING_PAGES[currentPath];
-  if (serviceLandingData) {
-    return (
-      <div className="min-h-screen bg-white text-gray-900">
-        <ServiceLandingPage data={serviceLandingData} onBack={() => navigateTo('/')} onOpenProject={() => handleOpenProject(`Service: ${serviceLandingData.eyebrow}`)} />
-        <HoverFooter />
-        <ContactModal isOpen={modalOpen} onClose={() => setModalOpen(false)} initialType={modalType} />
-      </div>
-    );
-  }
-
-  if (currentPath === '/global') {
-    return (
-      <div className="min-h-screen bg-white text-gray-900">
-        <GlobalDeliveryPage onBack={() => navigateTo('/')} onOpenProject={() => handleOpenProject('Global Project Inquiry')} />
-        <HoverFooter />
-        <ContactModal isOpen={modalOpen} onClose={() => setModalOpen(false)} initialType={modalType} />
-      </div>
-    );
-  }
-
-  // 404 handler for unmatched paths
-  if (currentPath !== '/' && !currentPath.startsWith('/#')) {
-    return <NotFoundPage onBack={() => navigateTo('/')} />;
-  }
-
-  // Main Landing Page with All Sections
-  return (
-    <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-[#2563EB]/20 selection:text-[#1D4ED8] relative">
       <main className="w-full">
         <SiteHeader onOpenProject={() => handleOpenProject('Start a Project')} />
 
@@ -332,7 +292,6 @@ export function App() {
                 { start: { lat: 35.6762, lng: 139.6503 }, end: { lat: 37.7749, lng: -122.4194 } },
                 { start: { lat: -33.8688, lng: 151.2093 }, end: { lat: -36.8485, lng: 174.7633 } },
               ]}
-
             />
           </div>
         </section>
@@ -343,12 +302,11 @@ export function App() {
         <ProcessSection />
 
         {/* PRICING: Animated cards with confetti annual toggle */}
+        {/* PRICING */}
         <section id="packages">
           <Pricing
-            plans={onyiixPlans}
-            title="Choose the right starting lane."
-            description="Every engagement is scoped after a short technical call.\nNo hidden template restrictions and no lock-in."
-            onSelectPlan={(plan) => handleOpenProject(`Tier Selected: ${plan}`)}
+            title="Pricing"
+            onSelectPlan={(plan) => handleOpenProject(plan || 'Pricing Scope Inquiry')}
           />
         </section>
 
@@ -358,21 +316,37 @@ export function App() {
         {/* CONTACT */}
         <ContactSection />
       </main>
+    );
+  };
 
-      {/* HOVER FOOTER */}
-      <HoverFooter />
+  const isNotFound = currentPath !== '/' && !currentPath.startsWith('/#') && !SERVICE_LANDING_PAGES[currentPath] && !['/about', '/careers', '/terms', '/privacy', '/sitemap', '/global'].includes(currentPath);
 
-      {/* Strategy Call / Project Intake Modal */}
+  return (
+    <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-[#2563EB]/20 selection:text-[#1D4ED8] relative">
+      {/* Top Route Progress Bar - Instant feedback without white blank screen */}
+      {isNavigating && (
+        <div
+          aria-hidden="true"
+          className="fixed top-0 left-0 right-0 z-[9999] h-[2.5px] bg-gradient-to-r from-blue-600 via-indigo-500 to-blue-400 animate-pulse pointer-events-none transition-opacity duration-200 shadow-[0_0_8px_rgba(37,99,235,0.6)]"
+        />
+      )}
+
+      {renderPageContent()}
+
+      {/* Global Footer (rendered for all routes except 404) */}
+      {!isNotFound && <HoverFooter />}
+
+      {/* Strategy Call / Project Intake Modal (accessible globally) */}
       <ContactModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         initialType={modalType}
       />
 
-      {/* Dev-only Agentation overlay */}
+      {/* Global Dev-only Agentation visual feedback overlay - visible on ALL pages */}
       <AgentationDev />
 
-      {/* Global strict right-click, inspect, and copy protection */}
+      {/* Global strict right-click, inspect, and copy protection across all pages */}
       <ContentProtection />
     </div>
   );
