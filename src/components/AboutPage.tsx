@@ -47,6 +47,20 @@ const teamMembers: TeamMember[] = [
     github: 'https://github.com/sumansingh13',
     linkedin: 'https://www.linkedin.com/in/suman-singh-4320331a4/',
   },
+  {
+    image: '/founders/saad.jpg',
+    name: 'Mohammed Saad',
+    role: 'CTO',
+    location: 'India',
+    email: 'saad@onyiix.com',
+  },
+  {
+    image: '/founders/vineet.jpg',
+    name: 'Vineet Kumar Singh',
+    role: 'CFO',
+    location: 'India',
+    email: 'vineet@onyiix.com',
+  },
 ];
 
 interface AboutPageProps {
