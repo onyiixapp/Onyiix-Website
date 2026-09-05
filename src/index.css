@@ -13,6 +13,12 @@
   animation: fadeOutLabel 2.5s ease forwards;
 }
 
+/* Marquee infinite scroll */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - var(--gap))); }
+}
+
 @layer base {
   *,
   *::before,
