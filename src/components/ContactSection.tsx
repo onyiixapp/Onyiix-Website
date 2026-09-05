@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { FieldTooltip } from './FieldTooltip';
 import { ScanningBracketHeading } from './ScanningBracketHeading';
 
-const WEB3FORMS_ACCESS_KEY = '2bd6cc68-aeca-4abf-a8b1-0d119b71ffde';
+const WEB3FORMS_ACCESS_KEY = '59567099-6ee1-46f3-aa10-03a7835e260f';
 type SubmissionState = 'idle' | 'submitting' | 'success' | 'error';
 
 interface FormErrors {
