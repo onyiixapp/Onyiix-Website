@@ -11,33 +11,146 @@ const faqs = [
 ];
 
 const commitments = [
-  { Icon: Code2, title: 'Code ownership' }, { Icon: ShieldCheck, title: 'Scoped bug warranty' },
-  { Icon: Users, title: 'Direct founder access' }, { Icon: Lock, title: 'Private project handling' },
+  { Icon: Code2, title: 'Code ownership' },
+  { Icon: ShieldCheck, title: 'Scoped bug warranty' },
+  { Icon: Users, title: 'Direct founder access' },
+  { Icon: Lock, title: 'Private project handling' },
 ];
 
+// Animated bracket component — corners slide in from outside
+const AnimatedBracketHeading: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <motion.div
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.5 }}
+    className="relative inline-flex items-center gap-3"
+  >
+    {/* Left bracket corner */}
+    <motion.span
+      variants={{
+        hidden: { opacity: 0, x: 18, y: -18 },
+        visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+      }}
+      className="select-none font-black text-[#2563EB] leading-none"
+      aria-hidden="true"
+      style={{ fontSize: 'clamp(2.4rem,5.5vw,4.4rem)', lineHeight: 1 }}
+    >
+      [
+    </motion.span>
+
+    {/* Heading text */}
+    <motion.span
+      variants={{
+        hidden: { opacity: 0, y: 10 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.45, delay: 0.1, ease: 'easeOut' } },
+      }}
+    >
+      {children}
+    </motion.span>
+
+    {/* Right bracket corner */}
+    <motion.span
+      variants={{
+        hidden: { opacity: 0, x: -18, y: 18 },
+        visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+      }}
+      className="select-none font-black text-[#2563EB] leading-none"
+      aria-hidden="true"
+      style={{ fontSize: 'clamp(2.4rem,5.5vw,4.4rem)', lineHeight: 1 }}
+    >
+      ]
+    </motion.span>
+  </motion.div>
+);
+
 export const TrustAndFaqSection: React.FC = () => {
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
   return (
-    <section id="faqs" className="overflow-hidden bg-white px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
-      <div className="mx-auto grid max-w-[1280px] gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-        <div>
-          <span className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-blue-700">Clear commitments</span>
-          <h2 className="mt-3 text-[clamp(2.2rem,4.8vw,4.6rem)] font-medium leading-[0.98] tracking-[-0.055em] text-[#0B1020]">The useful answers, upfront.</h2>
-          <p className="mt-4 max-w-md text-sm leading-7 text-slate-600">A short trust charter so ownership, support and collaboration are clear before the first sprint.</p>
-          <div className="mt-8 grid grid-cols-2 gap-3">
-            {commitments.map(({ Icon, title }) => <div key={title} className="rounded-2xl border border-slate-200 bg-[#F8FAFF] p-4"><span className="mb-4 flex h-9 w-9 items-center justify-center rounded-xl bg-white text-blue-600 shadow-[0_8px_22px_rgba(37,99,235,0.12)]"><Icon className="h-4 w-4" /></span><p className="text-xs font-extrabold text-slate-800">{title}</p></div>)}
-          </div>
+    <section id="faqs" className="overflow-hidden bg-[#F4F4F4] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+      <div className="mx-auto max-w-[1280px]">
+
+        {/* Header */}
+        <div className="mb-14 text-center">
+          <h2 className="text-[clamp(2.2rem,5vw,4rem)] font-bold leading-[1.05] tracking-[-0.04em] text-[#0B1020]">
+            <AnimatedBracketHeading>Frequently Asked Questions</AnimatedBracketHeading>
+          </h2>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.35, duration: 0.4 }}
+            className="mt-5 text-sm leading-7 text-slate-500 max-w-xl mx-auto"
+          >
+            A short trust charter so ownership, support and collaboration are clear before the first sprint.
+          </motion.p>
         </div>
 
+
+        {/* Commitments row */}
+        <div className="mb-12 grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {commitments.map(({ Icon, title }) => (
+            <div
+              key={title}
+              className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm"
+            >
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                <Icon className="h-4 w-4" />
+              </span>
+              <p className="text-xs font-bold text-slate-800">{title}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* FAQ Accordion */}
         <div className="space-y-3">
           {faqs.map((faq, index) => {
             const isOpen = openFaq === index;
             return (
-              <motion.div key={faq.q} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.04 }} className={`overflow-hidden rounded-2xl border transition ${isOpen ? 'border-blue-200 bg-blue-50/50 shadow-[0_12px_35px_rgba(37,99,235,0.08)]' : 'border-slate-200 bg-white'}`}>
-                <button type="button" onClick={() => setOpenFaq(isOpen ? null : index)} aria-expanded={isOpen} className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left text-sm font-extrabold text-slate-950 sm:px-6">
-                  {faq.q}<span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition ${isOpen ? 'rotate-180 bg-blue-600 text-white' : 'bg-slate-100 text-slate-500'}`}><ChevronDown className="h-4 w-4" /></span>
+              <motion.div
+                key={faq.q}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.06 }}
+                className="overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-sm"
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenFaq(isOpen ? null : index)}
+                  aria-expanded={isOpen}
+                  className="flex w-full items-center gap-4 px-6 py-5 text-left"
+                >
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-500 text-sm font-black">
+                    ?
+                  </span>
+                  <span className="flex-1 text-sm font-bold text-slate-900 sm:text-base">{faq.q}</span>
+                  <span
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 transition-all duration-300 ${
+                      isOpen
+                        ? 'rotate-180 border-[#2563EB] bg-[#2563EB] text-white'
+                        : 'border-slate-200 bg-white text-slate-400'
+                    }`}
+                  >
+                    <ChevronDown className="h-4 w-4" />
+                  </span>
                 </button>
-                <AnimatePresence initial={false}>{isOpen && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.25 }} className="overflow-hidden"><p className="px-5 pb-6 text-sm leading-7 text-slate-600 sm:px-6">{faq.a}</p></motion.div>}</AnimatePresence>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <p className="px-6 pb-6 pl-[4.5rem] text-sm leading-7 text-slate-500">
+                        {faq.a}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             );
           })}
@@ -46,3 +159,4 @@ export const TrustAndFaqSection: React.FC = () => {
     </section>
   );
 };
+

@@ -28,13 +28,8 @@ const footerLinks = [
 const contactInfo = [
   {
     icon: <Mail size={18} className="text-[#3ca2fa]" />,
-    text: "sumansingh.np@gmail.com",
-    href: "mailto:sumansingh.np@gmail.com",
-  },
-  {
-    icon: <Mail size={18} className="text-[#3ca2fa]" />,
-    text: "maazmohammed112@gmail.com",
-    href: "mailto:maazmohammed112@gmail.com",
+    text: "info@onyiix.com",
+    href: "mailto:info@onyiix.com",
   },
   {
     icon: <MapPin size={18} className="text-[#3ca2fa]" />,
@@ -148,7 +143,10 @@ function HoverFooter() {
               </a>
             ))}
           </div>
-          <p className="text-neutral-600">&copy; {new Date().getFullYear()} ONYIIX. Bengaluru, India.</p>
+          <div className="text-neutral-600 text-center sm:text-right flex flex-col gap-1">
+            <span>&copy; 2026 Onyiix. All rights reserved.</span>
+            <span>Crafted with creativity.</span>
+          </div>
         </div>
       </div>
 

@@ -98,7 +98,7 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-[#F5F5F5] py-20 sm:py-28">
+    <section id="contact" className="relative overflow-hidden bg-white py-20 sm:py-28">
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0 }}
@@ -107,18 +107,56 @@ export const ContactSection: React.FC = () => {
           transition={{ duration: 0.4, ease: 'easeOut' }}
           className="mx-auto max-w-4xl"
         >
-          <div className="mb-6 flex items-center gap-3 sm:mb-8">
-          <div className="text-[12px] sm:text-[13px] font-medium border border-gray-300 bg-white rounded-full px-3.5 sm:px-4 py-1 sm:py-1.5 text-gray-900 shadow-sm">
-            Start a Conversation
+          <div className="mb-8 text-center">
+            <h2 className="text-[clamp(2.2rem,5vw,4rem)] font-bold leading-[1.05] tracking-[-0.04em] text-[#0B1020]">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.5 }}
+                className="inline-flex items-center gap-3"
+              >
+                <motion.span
+                  variants={{
+                    hidden: { opacity: 0, x: 18, y: -18 },
+                    visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+                  }}
+                  className="select-none font-black text-[#2563EB] leading-none"
+                  aria-hidden="true"
+                  style={{ fontSize: 'clamp(2.4rem,5.5vw,4.4rem)', lineHeight: 1 }}
+                >
+                  [
+                </motion.span>
+                <motion.span
+                  variants={{
+                    hidden: { opacity: 0, y: 10 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.45, delay: 0.1, ease: 'easeOut' } },
+                  }}
+                >
+                  Get In Touch
+                </motion.span>
+                <motion.span
+                  variants={{
+                    hidden: { opacity: 0, x: -18, y: 18 },
+                    visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+                  }}
+                  className="select-none font-black text-[#2563EB] leading-none"
+                  aria-hidden="true"
+                  style={{ fontSize: 'clamp(2.4rem,5.5vw,4.4rem)', lineHeight: 1 }}
+                >
+                  ]
+                </motion.span>
+              </motion.div>
+            </h2>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.35, duration: 0.4 }}
+              className="mt-4 text-sm leading-7 text-slate-500 max-w-xl mx-auto"
+            >
+              Have a project in mind? Let&rsquo;s create something amazing together. Share your idea and we&rsquo;ll get back within one working day.
+            </motion.p>
           </div>
-          </div>
-
-          <h2 className="mb-4 max-w-3xl text-[clamp(2rem,5vw,3.8rem)] font-medium leading-[1.08] tracking-[-0.03em] text-gray-900">
-            Let&rsquo;s build something useful.
-          </h2>
-          <p className="mb-10 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">
-            Share the outcome you need, the challenge you are solving and your ideal timeline. No account or technical brief required.
-          </p>
 
           <div className="rounded-[2rem] border border-gray-200/80 bg-white p-6 shadow-[0_24px_80px_rgba(15,23,42,0.08)] sm:p-10">
               <AnimatePresence mode="wait" initial={false}>
@@ -248,7 +286,7 @@ export const ContactSection: React.FC = () => {
                     <button
                       type="submit"
                       disabled={submissionState === 'submitting'}
-                      className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-[#2563EB] py-3.5 text-sm font-medium text-white shadow-md transition-all hover:bg-[#1D4ED8] disabled:cursor-wait disabled:bg-blue-400"
+                      className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#0B1020] py-4 text-sm font-bold text-white shadow-lg transition-all hover:bg-[#2563EB] disabled:cursor-wait disabled:opacity-60"
                     >
                       {submissionState === 'submitting' ? <><LoaderCircle className="h-4 w-4 animate-spin" /><span>Sending your brief&hellip;</span></> : <><span>Send Project Brief</span><ArrowRight className="w-4 h-4 stroke-[2.5]" /></>}
                     </button>
