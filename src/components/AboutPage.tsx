@@ -102,8 +102,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onBack, onOpenProject }) =
         <div className="relative z-10 mx-auto max-w-7xl">
           {/* Centered heading */}
           <div className="mx-auto mb-16 flex max-w-5xl flex-col items-center px-6 text-center lg:px-0">
-            <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white">
-              <Users className="h-6 w-6" />
+            <div className="mb-6 flex items-center justify-center">
+              <OnyiixX size="4rem" />
             </div>
 
             <h1 className="relative mb-4 text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl leading-tight flex items-center justify-center flex-wrap">
