@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, Code2, Lock, ShieldCheck, Users } from 'lucide-react';
+import { ScanningBracketHeading } from './ScanningBracketHeading';
 
 const faqs = [
   { q: 'What happens after launch?', a: 'We include one month of technical oversight and minor agreed adjustments, plus a 30-day warranty for defects inside the delivered scope.' },
@@ -17,52 +18,6 @@ const commitments = [
   { Icon: Lock, title: 'Private project handling' },
 ];
 
-// Animated bracket component — corners slide in from outside
-const AnimatedBracketHeading: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <motion.div
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true, amount: 0.5 }}
-    className="relative inline-flex items-center gap-3"
-  >
-    {/* Left bracket corner */}
-    <motion.span
-      variants={{
-        hidden: { opacity: 0, x: 18, y: -18 },
-        visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
-      }}
-      className="select-none font-black text-[#2563EB] leading-none"
-      aria-hidden="true"
-      style={{ fontSize: 'clamp(2.4rem,5.5vw,4.4rem)', lineHeight: 1 }}
-    >
-      [
-    </motion.span>
-
-    {/* Heading text */}
-    <motion.span
-      variants={{
-        hidden: { opacity: 0, y: 10 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.45, delay: 0.1, ease: 'easeOut' } },
-      }}
-    >
-      {children}
-    </motion.span>
-
-    {/* Right bracket corner */}
-    <motion.span
-      variants={{
-        hidden: { opacity: 0, x: -18, y: 18 },
-        visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
-      }}
-      className="select-none font-black text-[#2563EB] leading-none"
-      aria-hidden="true"
-      style={{ fontSize: 'clamp(2.4rem,5.5vw,4.4rem)', lineHeight: 1 }}
-    >
-      ]
-    </motion.span>
-  </motion.div>
-);
-
 export const TrustAndFaqSection: React.FC = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -72,8 +27,8 @@ export const TrustAndFaqSection: React.FC = () => {
 
         {/* Header */}
         <div className="mb-14 text-center">
-          <h2 className="text-[clamp(2.2rem,5vw,4rem)] font-bold leading-[1.05] tracking-[-0.04em] text-[#0B1020]">
-            <AnimatedBracketHeading>Frequently Asked Questions</AnimatedBracketHeading>
+          <h2 className="text-[clamp(2.2rem,5vw,4rem)] font-bold leading-[1.15] tracking-[-0.04em] text-[#0B1020]">
+            <ScanningBracketHeading words={['Frequently', 'Asked', 'Questions']} loop />
           </h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -85,6 +40,7 @@ export const TrustAndFaqSection: React.FC = () => {
             A short trust charter so ownership, support and collaboration are clear before the first sprint.
           </motion.p>
         </div>
+
 
 
         {/* Commitments row */}

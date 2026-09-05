@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AlertCircle, ArrowRight, CheckCircle2, LoaderCircle, LockKeyhole, RotateCcw } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FieldTooltip } from './FieldTooltip';
+import { ScanningBracketHeading } from './ScanningBracketHeading';
 
 const WEB3FORMS_ACCESS_KEY = '2bd6cc68-aeca-4abf-a8b1-0d119b71ffde';
 type SubmissionState = 'idle' | 'submitting' | 'success' | 'error';
@@ -108,44 +109,8 @@ export const ContactSection: React.FC = () => {
           className="mx-auto max-w-4xl"
         >
           <div className="mb-8 text-center">
-            <h2 className="text-[clamp(2.2rem,5vw,4rem)] font-bold leading-[1.05] tracking-[-0.04em] text-[#0B1020]">
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.5 }}
-                className="inline-flex items-center gap-3"
-              >
-                <motion.span
-                  variants={{
-                    hidden: { opacity: 0, x: 18, y: -18 },
-                    visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
-                  }}
-                  className="select-none font-black text-[#2563EB] leading-none"
-                  aria-hidden="true"
-                  style={{ fontSize: 'clamp(2.4rem,5.5vw,4.4rem)', lineHeight: 1 }}
-                >
-                  [
-                </motion.span>
-                <motion.span
-                  variants={{
-                    hidden: { opacity: 0, y: 10 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.45, delay: 0.1, ease: 'easeOut' } },
-                  }}
-                >
-                  Get In Touch
-                </motion.span>
-                <motion.span
-                  variants={{
-                    hidden: { opacity: 0, x: -18, y: 18 },
-                    visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
-                  }}
-                  className="select-none font-black text-[#2563EB] leading-none"
-                  aria-hidden="true"
-                  style={{ fontSize: 'clamp(2.4rem,5.5vw,4.4rem)', lineHeight: 1 }}
-                >
-                  ]
-                </motion.span>
-              </motion.div>
+            <h2 className="text-[clamp(2.2rem,5vw,4rem)] font-bold leading-[1.15] tracking-[-0.04em] text-[#0B1020]">
+              <ScanningBracketHeading words={['Get', 'In', 'Touch']} loop />
             </h2>
             <motion.p
               initial={{ opacity: 0, y: 10 }}

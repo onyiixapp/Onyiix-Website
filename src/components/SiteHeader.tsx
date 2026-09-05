@@ -38,7 +38,6 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ onOpenProject }) => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('');
 
-  // Clock
   useEffect(() => {
     const updateTime = () => setBengaluruTime(new Intl.DateTimeFormat('en-IN', {
       timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', hour12: false,
@@ -48,7 +47,6 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ onOpenProject }) => {
     return () => window.clearInterval(interval);
   }, []);
 
-  // Scroll — collapse + section spy
   useEffect(() => {
     const sectionIds = navigation.flatMap(n => n.sectionId ? [n.sectionId] : []);
     const onScroll = () => {
@@ -68,149 +66,148 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ onOpenProject }) => {
 
   const getLinkClass = (sectionId?: string) => {
     const isActive = sectionId && activeSection === sectionId;
-    const base = 'rounded-full px-3.5 py-1.5 text-xs font-bold transition-all duration-200';
+    const base = 'rounded-full px-3.5 py-1.5 text-xs font-bold transition-all duration-300';
     if (scrolled) {
       return `${base} ${isActive ? 'bg-[#2563EB] text-white' : 'text-white/80 hover:bg-white/10 hover:text-white'}`;
     }
     return `${base} ${isActive ? 'bg-[#2563EB] text-white' : 'text-slate-600 hover:bg-blue-50 hover:text-blue-700'}`;
   };
 
-  const NavLinks = () => (
-    <>
-      {navigation.map((item) =>
-        item.dropdown ? (
-          <div key={item.label} className="group relative">
-            <button
-              className={`flex items-center gap-1 rounded-full px-3.5 py-1.5 text-xs font-bold transition-all duration-200 ${
-                scrolled
-                  ? 'text-white/80 hover:bg-white/10 hover:text-white'
-                  : 'text-slate-600 hover:bg-blue-50 hover:text-blue-700'
-              }`}
-            >
-              {item.label}
-              <ChevronDown className="h-3 w-3 opacity-60 transition-transform group-hover:rotate-180" />
-            </button>
-            <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
-              <div className="flex w-48 flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white p-1.5 shadow-xl">
-                {item.dropdown.map((dropItem) => (
-                  <a
-                    key={dropItem.label}
-                    href={dropItem.href}
-                    className="rounded-xl px-3 py-2 text-xs font-semibold text-slate-600 transition-colors hover:bg-slate-50 hover:text-blue-600"
-                  >
-                    {dropItem.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        ) : (
-          <a key={item.label} href={item.href} className={getLinkClass(item.sectionId)}>
-            {item.label}
-          </a>
-        )
-      )}
-    </>
-  );
+  const getDropdownBtnClass = () => {
+    const base = 'flex items-center gap-1 rounded-full px-3.5 py-1.5 text-xs font-bold transition-all duration-300';
+    if (scrolled) return `${base} text-white/80 hover:bg-white/10 hover:text-white`;
+    return `${base} text-slate-600 hover:bg-blue-50 hover:text-blue-700`;
+  };
 
   return (
     <>
-      {/* Single header — morphs from full-width to compact centered pill */}
+      {/*
+        Single pill that is ALWAYS centered.
+        We use CSS transition on max-width to smoothly morph size,
+        and framer-motion animate only for bg/border/shadow colors.
+        No layout animation = no left-flash.
+      */}
       <header className="fixed inset-x-0 top-0 z-50 flex justify-center p-3 sm:p-4 pointer-events-none">
         <motion.div
-          layout
-          transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+          initial={false}
           animate={{
             backgroundColor: scrolled ? 'rgba(11,16,32,0.96)' : 'rgba(255,255,255,0.97)',
             borderColor: scrolled ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.90)',
             boxShadow: scrolled
               ? '0 8px 32px rgba(0,0,0,0.38)'
               : '0 18px 55px rgba(3,7,18,0.18)',
-            borderRadius: scrolled ? '9999px' : '1.3rem',
           }}
-          className={`pointer-events-auto border flex items-center gap-1 ${
-            scrolled
-              ? 'px-2 py-1.5'
-              : 'w-full max-w-[1440px] justify-between px-3 py-2 sm:px-4'
-          }`}
+          transition={{ duration: 0.35, ease: 'easeInOut' }}
+          style={{
+            maxWidth: scrolled ? 'fit-content' : '1440px',
+            borderRadius: scrolled ? '9999px' : '1.3rem',
+            transition: 'max-width 0.4s cubic-bezier(0.22,1,0.36,1), border-radius 0.4s cubic-bezier(0.22,1,0.36,1), padding 0.4s cubic-bezier(0.22,1,0.36,1)',
+            padding: scrolled ? '6px 8px' : undefined,
+          }}
+          className={`pointer-events-auto border flex items-center w-full ${scrolled ? '' : 'justify-between px-3 py-2 sm:px-4'}`}
         >
-          {/* Logo — hidden when collapsed */}
-          <AnimatePresence>
-            {!scrolled && (
-              <motion.a
-                key="logo"
-                href="/"
-                aria-label="ONYIIX home"
-                className="flex shrink-0 items-center"
-                initial={{ opacity: 0, width: 0 }}
-                animate={{ opacity: 1, width: 'auto' }}
-                exit={{ opacity: 0, width: 0 }}
-                transition={{ duration: 0.25 }}
-              >
-                <OnyiixLogo height={32} />
-              </motion.a>
-            )}
-          </AnimatePresence>
 
-          {/* Desktop Nav — always shown */}
+          {/* Logo — slides out when collapsed */}
+          <div
+            className="shrink-0 overflow-hidden xl:block hidden"
+            style={{
+              maxWidth: scrolled ? '0px' : '200px',
+              opacity: scrolled ? 0 : 1,
+              transition: 'max-width 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease',
+              marginRight: scrolled ? '0' : '8px',
+            }}
+          >
+            <a href="/" aria-label="ONYIIX home" className="flex items-center whitespace-nowrap">
+              <OnyiixLogo height={32} />
+            </a>
+          </div>
+
+          {/* Desktop Nav — always visible */}
           <nav aria-label="Main navigation" className="hidden items-center gap-0.5 xl:flex">
-            <NavLinks />
+            {navigation.map((item) =>
+              item.dropdown ? (
+                <div key={item.label} className="group relative">
+                  <button className={getDropdownBtnClass()}>
+                    {item.label}
+                    <ChevronDown className="h-3 w-3 opacity-60 transition-transform group-hover:rotate-180" />
+                  </button>
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
+                    <div className="flex w-48 flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white p-1.5 shadow-xl">
+                      {item.dropdown.map((dropItem) => (
+                        <a
+                          key={dropItem.label}
+                          href={dropItem.href}
+                          className="rounded-xl px-3 py-2 text-xs font-semibold text-slate-600 transition-colors hover:bg-slate-50 hover:text-blue-600"
+                        >
+                          {dropItem.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <a key={item.label} href={item.href} className={getLinkClass(item.sectionId)}>
+                  {item.label}
+                </a>
+              )
+            )}
           </nav>
 
-          {/* Right side — full right when expanded, compact CTA when collapsed */}
-          <AnimatePresence mode="wait">
-            {!scrolled ? (
-              <motion.div
-                key="right-expanded"
-                className="hidden items-center gap-3 xl:flex shrink-0"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                {/* Clock */}
-                <div className="flex items-center gap-1.5 rounded-full bg-slate-50 px-3 py-2 text-[11px] font-bold text-slate-600">
-                  <Clock className="h-3.5 w-3.5 text-blue-600" />
-                  {bengaluruTime || '--:--'} IST
-                </div>
-                {/* CTA */}
-                <button
-                  type="button"
-                  onClick={onOpenProject}
-                  className="flex items-center gap-1.5 rounded-full bg-[#0B1020] px-4 py-2.5 text-xs font-bold text-white transition hover:bg-[#2563EB]"
-                >
-                  Start a project <ArrowUpRight className="h-3.5 w-3.5" />
-                </button>
-              </motion.div>
-            ) : (
-              <motion.div
-                key="right-collapsed"
-                className="hidden xl:flex items-center gap-2"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                {/* Divider */}
-                <div className="h-4 w-px bg-white/20" />
-                {/* CTA */}
-                <button
-                  type="button"
-                  onClick={onOpenProject}
-                  className="flex items-center gap-1.5 rounded-full bg-white/15 px-4 py-2 text-xs font-bold text-white transition hover:bg-[#2563EB]"
-                >
-                  Start a project <ArrowUpRight className="h-3.5 w-3.5" />
-                </button>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {/* Right side — clock + CTA slides out, replaced by inline CTA */}
+          <div className="hidden xl:flex items-center shrink-0">
+            {/* Clock — fades out */}
+            <div
+              className="overflow-hidden"
+              style={{
+                maxWidth: scrolled ? '0px' : '150px',
+                opacity: scrolled ? 0 : 1,
+                transition: 'max-width 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease',
+                marginRight: scrolled ? '0' : '12px',
+              }}
+            >
+              <div className="flex items-center gap-1.5 rounded-full bg-slate-50 px-3 py-2 text-[11px] font-bold text-slate-600 whitespace-nowrap">
+                <Clock className="h-3.5 w-3.5 text-blue-600" />
+                {bengaluruTime || '--:--'} IST
+              </div>
+            </div>
 
-          {/* Mobile buttons */}
-          <div className={`flex items-center gap-2 xl:hidden ${scrolled ? 'px-1' : ''}`}>
+            {/* Divider — visible only when scrolled */}
+            <div
+              style={{
+                width: scrolled ? '1px' : '0px',
+                height: '16px',
+                opacity: scrolled ? 1 : 0,
+                transition: 'all 0.3s ease',
+                marginLeft: scrolled ? '8px' : '0',
+                marginRight: scrolled ? '8px' : '0',
+              }}
+              className="bg-white/20"
+            />
+
+            {/* CTA button — always visible, adapts style */}
             <button
               type="button"
               onClick={onOpenProject}
-              className={`rounded-full px-3 font-bold text-white ${scrolled ? 'py-1.5 text-[11px] bg-white/15 hover:bg-[#2563EB] transition' : 'py-2 text-[11px] bg-[#0B1020]'}`}
+              className={`flex items-center gap-1.5 rounded-full px-4 text-xs font-bold text-white transition-all duration-300 ${
+                scrolled
+                  ? 'bg-white/15 py-2 hover:bg-[#2563EB]'
+                  : 'bg-[#0B1020] py-2.5 hover:bg-[#2563EB]'
+              }`}
+            >
+              Start a project <ArrowUpRight className="h-3.5 w-3.5" />
+            </button>
+          </div>
+
+          {/* Mobile buttons */}
+          <div className="flex items-center gap-2 xl:hidden">
+            <button
+              type="button"
+              onClick={onOpenProject}
+              className={`rounded-full font-bold text-white transition-all duration-300 ${
+                scrolled
+                  ? 'px-3 py-1.5 text-[11px] bg-white/15 hover:bg-[#2563EB]'
+                  : 'px-3 py-2 text-[11px] bg-[#0B1020]'
+              }`}
             >
               Inquire
             </button>
@@ -219,7 +216,11 @@ export const SiteHeader: React.FC<SiteHeaderProps> = ({ onOpenProject }) => {
               onClick={() => setMobileMenuOpen(o => !o)}
               aria-expanded={mobileMenuOpen}
               aria-label="Toggle navigation"
-              className={`rounded-full border p-2 ${scrolled ? 'border-white/20 bg-white/10 text-white' : 'border-slate-200 bg-white text-slate-950'}`}
+              className={`rounded-full border p-2 transition-all duration-300 ${
+                scrolled
+                  ? 'border-white/20 bg-white/10 text-white'
+                  : 'border-slate-200 bg-white text-slate-950'
+              }`}
             >
               {mobileMenuOpen
                 ? <X className={scrolled ? 'h-4 w-4' : 'h-5 w-5'} />
